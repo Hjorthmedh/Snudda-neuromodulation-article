@@ -19,7 +19,7 @@ bounds = ([0, 0.001, 0.1, 0, 0.001, 0.1, 4.0],      # lower bounds
 popt, pcov = curve_fit(dopamine_release2, t_data, C_data, 
                        p0=initial_guess, bounds=bounds, maxfev=5000)
 
-A_fit, tau_release_fit, tau_uptake_fit, B_fit, tau_release2_fit, tau_uptake2_fit, t0_fit = popt
+A_fit, tau_rise_fit, tau_decay_fit, B_fit, tau_rise2_fit, tau_decay2_fit, t0_fit = popt
 param_errors = np.sqrt(np.diag(pcov))
     
 # Generate fitted curve for plotting
@@ -49,11 +49,11 @@ plt.legend()
 
 param_text = (f'Fitted Parameters:\n'
               f'A = {A_fit*1e6:.1f} ± {param_errors[0]*1e6:.1f} nM\n'
-              f'τ_release = {tau_release_fit*1000:.1f} ± {param_errors[1]*1000:.1f} ms\n'
-              f'τ_uptake = {tau_uptake_fit:.2f} ± {param_errors[2]:.2f} s\n'
+              f'τ_rise = {tau_rise_fit*1000:.1f} ± {param_errors[1]*1000:.1f} ms\n'
+              f'τ_decay = {tau_decay_fit:.2f} ± {param_errors[2]:.2f} s\n'
               f'B = {B_fit*1e6:.1f} ± {param_errors[3]*1e6:.1f} nM\n'
-              f'τ_release = {tau_release2_fit*1000:.1f} ± {param_errors[4]*1000:.1f} ms\n'
-              f'τ_uptake = {tau_uptake2_fit:.2f} ± {param_errors[5]:.2f} s\n'
+              f'τ_rise = {tau_rise2_fit*1000:.1f} ± {param_errors[4]*1000:.1f} ms\n'
+              f'τ_decay = {tau_decay2_fit:.2f} ± {param_errors[5]:.2f} s\n'
               f't₀ = {t0_fit:.2f} ± {param_errors[6]:.2f} s\n'
               f'R² = {r_squared:.4f}')
 
@@ -65,11 +65,9 @@ plt.tight_layout()
 plt.ion()
 plt.show()
 
-plt.savefig("DA_activation_fit.png")
+plt.savefig("DA_activation_fit2.png")
 
 
-import pdb
-pdb.set_trace()
 
 
 
