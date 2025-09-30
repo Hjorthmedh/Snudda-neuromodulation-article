@@ -9,11 +9,12 @@ df = pd.read_csv("LihiriBevan-Fig1D.csv")
 df.columns = df.columns.str.strip()
 t_data = df["t"].values
 C_data = df["C"].values
+C_data = np.maximum(0, C_data)  # Can't have negative concentrations
 
 
 initial_guess = [600e-9, 0.02, 2.0, 200e-9, 0.03, 10.0, 5.2]
 bounds = ([0, 0.001, 0.1, 0, 0.001, 0.1, 4.0],      # lower bounds
-          [2000e-9, 0.5, 10.0, 2000, 0.5, 50.0, 6.0]) 
+          [2000, 0.5, 10.0, 2000, 0.5, 50.0, 6.0]) 
 
 
 popt, pcov = curve_fit(dopamine_release2, t_data, C_data, 
@@ -48,11 +49,11 @@ plt.grid(True, alpha=0.3)
 plt.legend()
 
 param_text = (f'Fitted Parameters:\n'
-              f'A = {A_fit*1e6:.1f} ± {param_errors[0]*1e6:.1f} nM\n'
-              f'τ_rise = {tau_rise_fit*1000:.1f} ± {param_errors[1]*1000:.1f} ms\n'
+              f'A = {A_fit:.3g} ± {param_errors[0]:.3g} mM\n'
+              f'τ_rise = {tau_rise_fit:.4f} ± {param_errors[1]:.4f} s\n'
               f'τ_decay = {tau_decay_fit:.2f} ± {param_errors[2]:.2f} s\n'
-              f'B = {B_fit*1e6:.1f} ± {param_errors[3]*1e6:.1f} nM\n'
-              f'τ_rise = {tau_rise2_fit*1000:.1f} ± {param_errors[4]*1000:.1f} ms\n'
+              f'B = {B_fit:.3g} ± {param_errors[3]:.3g} mM\n'
+              f'τ_rise = {tau_rise2_fit:.1f} ± {param_errors[4]:.1f} s\n'
               f'τ_decay = {tau_decay2_fit:.2f} ± {param_errors[5]:.2f} s\n'
               f't₀ = {t0_fit:.2f} ± {param_errors[6]:.2f} s\n'
               f'R² = {r_squared:.4f}')
