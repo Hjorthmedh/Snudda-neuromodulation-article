@@ -3,7 +3,6 @@
 # This creates an example network
 
 import os
-import uuid
 import numpy as np
 
 from snudda.place.create_cube_mesh import create_cube_mesh
@@ -23,12 +22,12 @@ network_base_path = os.path.realpath("networks")
 random_seed = 1234
 
 n_scale = 1
-n_dspn = np.int(np.round(1000*n_scale))
-n_ispn = np.int(np.round(1000*n_scale))
-n_fs = np.int(np.round(40*n_scale))
+n_dspn = int(np.round(1000*n_scale))
+n_ispn = int(np.round(1000*n_scale))
+n_fs = int(np.round(40*n_scale))
 
 n_total = n_dspn + n_ispn + n_fs
-n_real = np.int(np.round(200*n_scale))
+n_real = int(np.round(200*n_scale))
 
 #sample_dt = 1e-3   # Write only every ms for voltage to data file, to save space
 sample_dt = None
@@ -67,7 +66,11 @@ snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["reaction_diffusion"
 snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["modulation"] = "modulation_parameters.json"
 snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["modulation_key"] = "abc"
 
-
+gaba_param_post_dspn = {"mod_pka_g_min": 1.2,
+                        "mod_pka_g_max": 0.8,
+                        "mod_pka_g_half": 3.6e-6,
+                        "mod_pka_g_slope": 3
+                        }
 
 gaba_param_post_ispn = { "mod_pka_g_min": 0.8,
                          "mod_pka_g_max": 1.2,
@@ -83,8 +86,7 @@ snd_init.network_data["regions"]["Cube"]["connectivity"]["iSPN,iSPN"]["GABA"]["c
 snd_init.network_data["regions"]["Cube"]["connectivity"]["FS,dSPN"]["GABA"]["channel_parameters"].update(gaba_param_post_dspn)
 snd_init.network_data["regions"]["Cube"]["connectivity"]["FS,iSPN"]["GABA"]["channel_parameters"].update(gaba_param_post_ispn)
 
-
-    snd_init.write_json()
+snd_init.write_json()
 
 
 
