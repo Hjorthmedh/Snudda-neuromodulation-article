@@ -44,7 +44,7 @@ create_cube_mesh(file_name=mesh_file,
                  centre_point=(0, 0, 0),
                  side_len=(n_total/80500.0)**(1/3)*0.001)  # 0.001 convert to meters
 
-network_path = os.path.join(network_base_path, "network_example")
+network_path = os.path.join(network_base_path, "striatum_with_dopamine")
 
 neuron_paths = [os.path.join(snudda_data, x) for x in neuron_path_list]
     
