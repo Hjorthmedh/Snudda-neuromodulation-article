@@ -1,0 +1,19 @@
+{
+    "dspn": {
+	"cortical": {
+	    "frequency": 10
+	}
+    },
+    
+    "ispn": {
+	"cortical": {
+	    "frequency": 10
+	}
+    },
+
+    "fs": {
+	"cortical": {
+	    "frequency": 10
+	}
+    }
+}
