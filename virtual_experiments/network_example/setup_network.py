@@ -21,7 +21,7 @@ network_base_path = os.path.realpath("networks")
 
 random_seed = 1234
 
-n_scale = 1
+n_scale = 0.1
 n_dspn = int(np.round(1000*n_scale))
 n_ispn = int(np.round(1000*n_scale))
 n_fs = int(np.round(40*n_scale))
@@ -58,12 +58,12 @@ snd_init = snd.init_tiny(neuron_paths=neuron_paths,
                          snudda_data=snudda_data,
                          random_seed=random_seed)
 
-snd_init.network_data["regions"]["Cube"]["neurons"]["dSPN"]["reaction_diffusion"] = "reaction_diffusion_D1_empty.json"
-snd_init.network_data["regions"]["Cube"]["neurons"]["dSPN"]["modulation"] = "modulation_parameters.json"
+snd_init.network_data["regions"]["Cube"]["neurons"]["dSPN"]["reaction_diffusion"] = "data/reaction_diffusion_D1_from_SBTab.json"
+snd_init.network_data["regions"]["Cube"]["neurons"]["dSPN"]["modulation"] = "data/modulation_parameters.json"
 snd_init.network_data["regions"]["Cube"]["neurons"]["dSPN"]["modulation_key"] = "abc"
 
-snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["reaction_diffusion"] = "reaction_diffusion_D2_empty.json"
-snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["modulation"] = "modulation_parameters.json"
+snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["reaction_diffusion"] = "data/reaction_diffusion_D2.json-updated"
+snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["modulation"] = "data/modulation_parameters.json"
 snd_init.network_data["regions"]["Cube"]["neurons"]["iSPN"]["modulation_key"] = "abc"
 
 gaba_param_post_dspn = {"mod_pka_g_min": 1.2,
