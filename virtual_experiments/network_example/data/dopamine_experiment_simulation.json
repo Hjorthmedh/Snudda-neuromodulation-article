@@ -11,23 +11,23 @@
     "record_density_mechanism": {	
 	"kir_ms.modulation_factor": {
 	    "neuron_id": [0, 1, 100, 101],
-	    "section_id": [-1, -1],
-	    "section_x": [0.5, 0.5]
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	},
 	"naf_ms.modulation_factor": {
 	    "neuron_id": [0, 1, 100, 101],
-	    "section_id": [-1, -1],
-	    "section_x": [0.5, 0.5]
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	},
 	"kaf_ms.modulation_factor_g": {
 	    "neuron_id": [0, 1, 100, 101],
-	    "section_id": [-1, -1],
-	    "section_x": [0.5, 0.5]
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	},
 	"kaf_ms.modulation_factor_shift": {
 	    "neuron_id": [0, 1, 100, 101],
-	    "section_id": [-1, -1],
-	    "section_x": [0.5, 0.5]
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	}	
     },
     "rxd_enable_extracellular": false,
