@@ -27,7 +27,7 @@ n_ispn = int(np.round(1000*n_scale))
 n_fs = int(np.round(40*n_scale))
 
 n_total = n_dspn + n_ispn + n_fs
-n_real = int(np.round(200*n_scale))
+# n_real = int(np.round(200*n_scale))
 
 #sample_dt = 1e-3   # Write only every ms for voltage to data file, to save space
 sample_dt = None

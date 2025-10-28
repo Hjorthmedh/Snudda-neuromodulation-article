@@ -7,25 +7,25 @@
     "time": 2.0,
     "record_all_soma": true,
     "use_rxd_neuromodulation": true,
-    "record_rxd_species_all": [0, 1],
+    "record_rxd_species_all": [0, 1, 100, 101],
     "record_density_mechanism": {	
 	"kir_ms.modulation_factor": {
-	    "neuron_id": [0, 1],
+	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1],
 	    "section_x": [0.5, 0.5]
 	},
 	"naf_ms.modulation_factor": {
-	    "neuron_id": [0, 1],
+	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1],
 	    "section_x": [0.5, 0.5]
 	},
 	"kaf_ms.modulation_factor_g": {
-	    "neuron_id": [0, 1],
+	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1],
 	    "section_x": [0.5, 0.5]
 	},
 	"kaf_ms.modulation_factor_shift": {
-	    "neuron_id": [0, 1],
+	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1],
 	    "section_x": [0.5, 0.5]
 	}	
