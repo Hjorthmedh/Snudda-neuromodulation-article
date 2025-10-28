@@ -31,10 +31,11 @@
 	}	
     },
     "rxd_enable_extracellular": false,
-    "bath_application": {
-	"DA": {
-	    "time": [0, 0.499, 0.5, 1, 1.001, 10],
-	    "concentration": [0, 0, 60e-3, 60e-3, 0, 0]
+    "bath_application": [
+	{
+	"species_name": "DA",
+	"time": [0, 0.499, 0.5, 1, 1.001, 10],
+	"concentration": [0, 0, 60e-3, 60e-3, 0, 0]
 	}
-    }    
+    ]    
 }
