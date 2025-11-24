@@ -19,6 +19,11 @@
 	    "section_id": [-1, -1, -1, -1],
 	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	},
+	"kas_ms.modulation_factor": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
 	"kaf_ms.modulation_factor_g": {
 	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1, -1, -1],
@@ -28,7 +33,35 @@
 	    "neuron_id": [0, 1, 100, 101],
 	    "section_id": [-1, -1, -1, -1],
 	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
+	"sk_ms.modulation_factor": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
+	"cal12_ms.modulation_factor": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
+	"cal13_ms.modulation_factor": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
+
+	"car_ms.modulation_factor": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
+	},
+	"car_ms.modulation_factor2": {
+	    "neuron_id": [0, 1, 100, 101],
+	    "section_id": [-1, -1, -1, -1],
+	    "section_x": [0.5, 0.5, 0.5, 0.5]
 	}	
+	
+	
     },
     "rxd_enable_extracellular": false,
     "bath_application": [
