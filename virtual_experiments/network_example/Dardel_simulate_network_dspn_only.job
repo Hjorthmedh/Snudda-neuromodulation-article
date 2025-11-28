@@ -22,7 +22,7 @@ export NO_ENGINES=1
 source dardel_environment.sh
 
 export network_path="networks/striatum_with_dopamine_dspn"
-export sim_config_file="data/dopamine_experiment_simulation.json"
+export sim_config_file="data/dopamine_experiment_simulation_dspn_only.json"
 export input_file="${network_path}/input-spikes.hdf5"
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
