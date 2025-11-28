@@ -21,7 +21,7 @@ network_base_path = os.path.realpath("networks")
 
 random_seed = 1234
 
-n_scale = 0.1
+n_scale = 0.128
 n_dspn = int(np.round(1000*n_scale))
 
 n_total = n_dspn
