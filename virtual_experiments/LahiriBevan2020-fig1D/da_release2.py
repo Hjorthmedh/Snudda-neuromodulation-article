@@ -13,11 +13,11 @@ def dopamine_release2(t, A, tau_rise, tau_decay,
     tau_decay: decay time constant (s) - slow component
     t0: stimulation onset time (s)
     """
-    # Create heaviside step function
-    heaviside = np.where(t >= t0, 1, 0)
     
     # Double exponential model
-    concentration = A * (np.exp(-(t-t0)/tau_decay) - np.exp(-(t-t0)/tau_rise)) * heaviside \
-        + B * (np.exp(-(t-t0)/tau_decay2) - np.exp(-(t-t0)/tau_rise2)) * heaviside \
+    concentration = A * (np.exp(-(t-t0)/tau_decay) - np.exp(-(t-t0)/tau_rise)) \
+        + B * (np.exp(-(t-t0)/tau_decay2) - np.exp(-(t-t0)/tau_rise2))
+
+    concentration[np.where(t < t0)] = 0
     
     return concentration
