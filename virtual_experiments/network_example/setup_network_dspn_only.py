@@ -21,8 +21,11 @@ network_base_path = os.path.realpath("networks")
 
 random_seed = 1234
 
-n_scale = 0.128
-n_dspn = int(np.round(1000*n_scale))
+if os.getenv("NUM_DSPN"):
+    n_dspn = int(os.getenv("NUM_DSPN"))
+else:
+    n_scale = 0.128
+    n_dspn = int(np.round(1000*n_scale))
 
 n_total = n_dspn
 
@@ -39,7 +42,10 @@ create_cube_mesh(file_name=mesh_file,
                  centre_point=(0, 0, 0),
                  side_len=(0.5*n_total/80500.0)**(1/3)*0.001)  # 0.001 convert to meters --- *0.5 since only dSPN
 
-network_path = os.path.join(network_base_path, "striatum_with_dopamine_dspn")
+if os.getenv("NETWORK_PATH"):
+    network_path = os.path.realpath(os.getenv("NETWORK_PATH"))
+else:
+    network_path = os.path.join(network_base_path, "striatum_with_dopamine_dspn")
 
 neuron_paths = [os.path.join(snudda_data, x) for x in neuron_path_list]
     

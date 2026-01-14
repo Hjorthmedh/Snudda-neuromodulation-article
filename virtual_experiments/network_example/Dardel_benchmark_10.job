@@ -1,0 +1,43 @@
+#!/bin/bash -l
+#SBATCH --partition=main
+#SBATCH -o log/runSnudda-%j-output.txt
+#SBATCH -e log/runSnudda-%j-error.txt
+#SBATCH -t 3:00:00
+#SBATCH -J DA_sim
+#SBATCH -A naiss2025-5-309
+#SBATCH --nodes=10
+#SBATCH -n 128
+#SBATCH --cpus-per-task=2
+#SBATCH --mem-per-cpu=930M
+#SBATCH --mail-type=ALL
+
+# REMEMBER TO CREATE THE "log" DIRECTORY
+
+export N_WORKERS=$SLURM_NTASKS
+export NUM_DSPN=1280
+export NETWORK_PATH="networks/benchmark_10"
+
+# The network is so small, no point doing parallel network setup
+export NO_ENGINES=1
+
+source dardel_environment.sh
+
+export network_path="networks/striatum_with_dopamine_dspn"
+export sim_config_file="data/dopamine_experiment_simulation_dspn_only.json"
+export input_file="${network_path}/input-spikes.hdf5"
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 -N 1 --exact --overlap --mem=0 python setup_network_dspn_only.py
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 -N 1 --exact --overlap --mem=0 snudda create $network_path --input data/dopamine_experiment_input.json
+
+# ipcluster stop
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+
+srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
+
+exit_code=$?
+echo "Exit code: $exit_code"
+
