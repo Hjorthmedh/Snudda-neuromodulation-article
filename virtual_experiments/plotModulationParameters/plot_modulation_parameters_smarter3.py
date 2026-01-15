@@ -126,10 +126,10 @@ for idx, data in enumerate(channel_data):
                 color=color,
                 linewidth=2.5)
 
-plt.xlabel("Concentration (nM)", size=24)
+plt.xlabel("PKAc (nM)", size=24)
 plt.ylabel("Modulation", size=24)
-plt.xticks(fontsize=18)
-plt.yticks(fontsize=18)
+plt.xticks(fontsize=20)
+plt.yticks(fontsize=20)
 ax = plt.gca()
 ax.xaxis.set_major_locator(plt.MaxNLocator(5))
 y_tick_spacing = 0.25
@@ -137,7 +137,7 @@ ax.yaxis.set_major_locator(MultipleLocator(y_tick_spacing))
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 plt.title("Modulation", size=30)
-plt.legend(loc="center left", bbox_to_anchor=(1, 0.5), fontsize=16)
+plt.legend(loc="center left", bbox_to_anchor=(1, 0.5), fontsize=18)
 plt.tight_layout()
 plt.savefig(f"ion_channel_modulation_curves.pdf")
 plt.ion()
