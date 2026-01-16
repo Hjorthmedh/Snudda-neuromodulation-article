@@ -6,8 +6,8 @@
 #SBATCH -J DA_sim
 #SBATCH -A naiss2025-5-309
 #SBATCH --nodes=6
-#SBATCH -n 128
-#SBATCH --cpus-per-task=2
+#SBATCH --ntasks-per-node=128
+#SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=930M
 #SBATCH --mail-type=ALL
 
