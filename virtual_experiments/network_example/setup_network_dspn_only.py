@@ -37,15 +37,17 @@ neuron_path_list = [os.path.join("neurons", "striatum", "dspn")]
 connectivity_info = os.path.join(snudda_data, "connectivity", "striatum", "striatum-connectivity.json")
 
 # Important that the mesh has the correct size, because distance dependent connectivity is dependent on the density
-mesh_file = os.path.join("mesh", "cube_mesh.obj")
-create_cube_mesh(file_name=mesh_file,
-                 centre_point=(0, 0, 0),
-                 side_len=(0.5*n_total/80500.0)**(1/3)*0.001)  # 0.001 convert to meters --- *0.5 since only dSPN
+# mesh_file = os.path.join("mesh", "cube_mesh.obj")
+# create_cube_mesh(file_name=mesh_file,
+#                  centre_point=(0, 0, 0),
+#                  side_len=(0.5*n_total/80500.0)**(1/3)*0.001)  # 0.001 convert to meters --- *0.5 since only dSPN
 
 if os.getenv("NETWORK_PATH"):
     network_path = os.path.realpath(os.getenv("NETWORK_PATH"))
 else:
     network_path = os.path.join(network_base_path, "striatum_with_dopamine_dspn")
+
+os.makedirs(network_path, exist_ok=True)
 
 neuron_paths = [os.path.join(snudda_data, x) for x in neuron_path_list]
     
