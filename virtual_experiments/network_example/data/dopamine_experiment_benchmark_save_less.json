@@ -1,0 +1,13 @@
+{
+    "time": 2.0,
+    "record_all_soma": true,
+    "use_rxd_neuromodulation": true,
+    "rxd_enable_extracellular": false,
+    "bath_application": [
+	{
+	"species_name": "DA",
+	"time": [0, 0.499, 0.5, 1, 1.001, 10],
+	"concentration": [0, 0, 60e-3, 60e-3, 0, 0]
+	}
+    ]    
+}
