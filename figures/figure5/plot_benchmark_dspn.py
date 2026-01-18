@@ -7,7 +7,7 @@ data = pd.read_csv(filename, skipinitialspace=True)
 
 # Extract columns
 nodes = data["number_of_nodes"]
-duration = data["duration_in_s"]
+duration = data["duration_in_s"] / 3600.0
 
 # Ideal linear scaling (strong scaling)
 T1 = duration[nodes == 1][0]
@@ -43,7 +43,7 @@ plt.yscale("log")
 
 # Labels and title
 plt.xlabel("Number of nodes", fontsize=12)
-plt.ylabel("Duration (s)", fontsize=12)
+plt.ylabel("Duration (hours)", fontsize=12)
 
 # Ticks
 plt.xticks(fontsize=10)
