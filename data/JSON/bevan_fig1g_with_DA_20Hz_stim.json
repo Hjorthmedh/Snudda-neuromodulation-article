@@ -1,8 +1,8 @@
 {
     "network_path": "networks/bevan_fig1g_bath_current",
     "network_file": "$network_path/network-synapses.hdf5",
-    "output_file": "$network_path/simulation/output_neuromodulation_OFF.hdf5",
-    "log_file": "$network_path/log/network-simulation-OFF.txt",
+    "output_file": "$network_path/simulation/output_neuromodulation_ON_20Hz.hdf5",
+    "log_file": "$network_path/log/network-simulation-ON_20Hz.txt",
     "time": 11,
     "!sim_dt": 0.005,
     "!sample_dt": 1e-3,
@@ -56,13 +56,18 @@
 	    "section_id": [-1, -1],
 	    "section_x": [0.5, 0.5]
 	}
-	
     },
     "rxd_enable_extracellular": false,
     "bath_application": {
 	"DA": {
-	    "time": [0, 20],
-	    "concentration": [20e-6, 20e-6],
+	    "time": [ 0,  1,  2,  2.1,  2.2,  2.3,  2.4,  2.5,  2.6,  2.7,  2.8,
+		      2.9,  3,  4,  5,  6,  7,  8,  9, 10, 11, 12,
+		      13, 14, 15, 16, 17, 18, 19, 20],
+	    "concentration": [-0.0e+00, -0.0e+00,  0.0e+00,  2.9e-04,  4.5e-04,  5.5e-04,
+			      5.9e-04,  6.0e-04,  5.9e-04,  5.7e-04,  5.4e-04,  5.1e-04,
+			      4.7e-04,  2.3e-04,  1.2e-04,  7.5e-05,  5.5e-05,  4.3e-05,
+			      3.6e-05,  3.0e-05,  2.6e-05,  2.2e-05,  1.9e-05,  1.6e-05,
+			      1.4e-05,  1.2e-05,  1.0e-05,  8.8e-06,  7.5e-06,  6.5e-06],
 	    "interpolate": true
 	}
     },
