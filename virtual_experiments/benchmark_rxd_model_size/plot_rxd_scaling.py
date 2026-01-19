@@ -30,28 +30,29 @@ ax.plot(
 )
 
 # Linear scaling reference line (O(N))
-ref = durations[0] * (sizes / sizes[0])
-ax.plot(
-    sizes,
-    ref,
-    linestyle="--",
-    linewidth=1.5,
-    label="Linear scaling"
-)
+if False:
+    ref = durations[0] * (sizes / sizes[0])
+    ax.plot(
+        sizes,
+        ref,
+        linestyle="--",
+        linewidth=1.5,
+        label="Linear scaling"
+    )
 
 # Log-log axes
 # ax.set_xscale("log")
 # ax.set_yscale("log")
 
 # Labels
-ax.set_xlabel("Network size")
+ax.set_xlabel("Number of RxD species")
 ax.set_ylabel("Runtime (s)")
 
 # Grid (subtle, publication-friendly)
 ax.grid(True, which="both", linestyle=":", linewidth=0.5)
 
 # Legend
-ax.legend(frameon=False)
+# ax.legend(frameon=False)
 
 # Tight layout
 fig.tight_layout()
