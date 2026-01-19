@@ -1,0 +1,1996 @@
+{
+    "species": {
+        "reactant_1": {
+            "initial_concentration": 0.01,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 0.01
+        },
+        "reactant_2": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_3": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_4": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_5": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_6": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_7": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_8": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_9": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_10": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_11": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_12": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_13": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_14": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_15": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_16": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_17": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_18": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_19": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_20": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_21": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_22": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_23": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_24": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_25": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_26": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_27": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_28": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_29": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_30": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_31": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_32": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_33": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_34": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_35": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_36": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_37": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_38": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_39": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_40": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_41": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_42": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_43": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_44": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_45": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_46": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_47": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_48": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_49": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_50": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_51": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_52": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_53": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_54": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_55": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_56": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_57": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_58": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_59": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_60": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_61": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_62": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_63": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_64": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_65": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_66": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_67": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_68": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_69": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_70": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_71": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_72": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_73": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_74": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_75": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_76": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_77": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_78": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_79": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_80": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_81": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_82": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_83": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_84": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_85": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_86": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_87": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_88": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_89": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_90": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_91": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_92": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_93": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_94": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_95": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_96": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_97": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_98": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_99": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_100": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        }
+    },
+    "reactions": {
+        "revreaction_1_2": {
+            "reactants": "reactant_1",
+            "products": "reactant_2",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_2_3": {
+            "reactants": "reactant_2",
+            "products": "reactant_3",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_3_4": {
+            "reactants": "reactant_3",
+            "products": "reactant_4",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_4_5": {
+            "reactants": "reactant_4",
+            "products": "reactant_5",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_5_6": {
+            "reactants": "reactant_5",
+            "products": "reactant_6",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_6_7": {
+            "reactants": "reactant_6",
+            "products": "reactant_7",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_7_8": {
+            "reactants": "reactant_7",
+            "products": "reactant_8",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_8_9": {
+            "reactants": "reactant_8",
+            "products": "reactant_9",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_9_10": {
+            "reactants": "reactant_9",
+            "products": "reactant_10",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_10_11": {
+            "reactants": "reactant_10",
+            "products": "reactant_11",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_11_12": {
+            "reactants": "reactant_11",
+            "products": "reactant_12",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_12_13": {
+            "reactants": "reactant_12",
+            "products": "reactant_13",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_13_14": {
+            "reactants": "reactant_13",
+            "products": "reactant_14",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_14_15": {
+            "reactants": "reactant_14",
+            "products": "reactant_15",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_15_16": {
+            "reactants": "reactant_15",
+            "products": "reactant_16",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_16_17": {
+            "reactants": "reactant_16",
+            "products": "reactant_17",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_17_18": {
+            "reactants": "reactant_17",
+            "products": "reactant_18",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_18_19": {
+            "reactants": "reactant_18",
+            "products": "reactant_19",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_19_20": {
+            "reactants": "reactant_19",
+            "products": "reactant_20",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_20_21": {
+            "reactants": "reactant_20",
+            "products": "reactant_21",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_21_22": {
+            "reactants": "reactant_21",
+            "products": "reactant_22",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_22_23": {
+            "reactants": "reactant_22",
+            "products": "reactant_23",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_23_24": {
+            "reactants": "reactant_23",
+            "products": "reactant_24",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_24_25": {
+            "reactants": "reactant_24",
+            "products": "reactant_25",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_25_26": {
+            "reactants": "reactant_25",
+            "products": "reactant_26",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_26_27": {
+            "reactants": "reactant_26",
+            "products": "reactant_27",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_27_28": {
+            "reactants": "reactant_27",
+            "products": "reactant_28",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_28_29": {
+            "reactants": "reactant_28",
+            "products": "reactant_29",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_29_30": {
+            "reactants": "reactant_29",
+            "products": "reactant_30",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_30_31": {
+            "reactants": "reactant_30",
+            "products": "reactant_31",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_31_32": {
+            "reactants": "reactant_31",
+            "products": "reactant_32",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_32_33": {
+            "reactants": "reactant_32",
+            "products": "reactant_33",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_33_34": {
+            "reactants": "reactant_33",
+            "products": "reactant_34",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_34_35": {
+            "reactants": "reactant_34",
+            "products": "reactant_35",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_35_36": {
+            "reactants": "reactant_35",
+            "products": "reactant_36",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_36_37": {
+            "reactants": "reactant_36",
+            "products": "reactant_37",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_37_38": {
+            "reactants": "reactant_37",
+            "products": "reactant_38",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_38_39": {
+            "reactants": "reactant_38",
+            "products": "reactant_39",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_39_40": {
+            "reactants": "reactant_39",
+            "products": "reactant_40",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_40_41": {
+            "reactants": "reactant_40",
+            "products": "reactant_41",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_41_42": {
+            "reactants": "reactant_41",
+            "products": "reactant_42",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_42_43": {
+            "reactants": "reactant_42",
+            "products": "reactant_43",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_43_44": {
+            "reactants": "reactant_43",
+            "products": "reactant_44",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_44_45": {
+            "reactants": "reactant_44",
+            "products": "reactant_45",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_45_46": {
+            "reactants": "reactant_45",
+            "products": "reactant_46",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_46_47": {
+            "reactants": "reactant_46",
+            "products": "reactant_47",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_47_48": {
+            "reactants": "reactant_47",
+            "products": "reactant_48",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_48_49": {
+            "reactants": "reactant_48",
+            "products": "reactant_49",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_49_50": {
+            "reactants": "reactant_49",
+            "products": "reactant_50",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_50_51": {
+            "reactants": "reactant_50",
+            "products": "reactant_51",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_51_52": {
+            "reactants": "reactant_51",
+            "products": "reactant_52",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_52_53": {
+            "reactants": "reactant_52",
+            "products": "reactant_53",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_53_54": {
+            "reactants": "reactant_53",
+            "products": "reactant_54",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_54_55": {
+            "reactants": "reactant_54",
+            "products": "reactant_55",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_55_56": {
+            "reactants": "reactant_55",
+            "products": "reactant_56",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_56_57": {
+            "reactants": "reactant_56",
+            "products": "reactant_57",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_57_58": {
+            "reactants": "reactant_57",
+            "products": "reactant_58",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_58_59": {
+            "reactants": "reactant_58",
+            "products": "reactant_59",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_59_60": {
+            "reactants": "reactant_59",
+            "products": "reactant_60",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_60_61": {
+            "reactants": "reactant_60",
+            "products": "reactant_61",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_61_62": {
+            "reactants": "reactant_61",
+            "products": "reactant_62",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_62_63": {
+            "reactants": "reactant_62",
+            "products": "reactant_63",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_63_64": {
+            "reactants": "reactant_63",
+            "products": "reactant_64",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_64_65": {
+            "reactants": "reactant_64",
+            "products": "reactant_65",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_65_66": {
+            "reactants": "reactant_65",
+            "products": "reactant_66",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_66_67": {
+            "reactants": "reactant_66",
+            "products": "reactant_67",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_67_68": {
+            "reactants": "reactant_67",
+            "products": "reactant_68",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_68_69": {
+            "reactants": "reactant_68",
+            "products": "reactant_69",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_69_70": {
+            "reactants": "reactant_69",
+            "products": "reactant_70",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_70_71": {
+            "reactants": "reactant_70",
+            "products": "reactant_71",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_71_72": {
+            "reactants": "reactant_71",
+            "products": "reactant_72",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_72_73": {
+            "reactants": "reactant_72",
+            "products": "reactant_73",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_73_74": {
+            "reactants": "reactant_73",
+            "products": "reactant_74",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_74_75": {
+            "reactants": "reactant_74",
+            "products": "reactant_75",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_75_76": {
+            "reactants": "reactant_75",
+            "products": "reactant_76",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_76_77": {
+            "reactants": "reactant_76",
+            "products": "reactant_77",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_77_78": {
+            "reactants": "reactant_77",
+            "products": "reactant_78",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_78_79": {
+            "reactants": "reactant_78",
+            "products": "reactant_79",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_79_80": {
+            "reactants": "reactant_79",
+            "products": "reactant_80",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_80_81": {
+            "reactants": "reactant_80",
+            "products": "reactant_81",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_81_82": {
+            "reactants": "reactant_81",
+            "products": "reactant_82",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_82_83": {
+            "reactants": "reactant_82",
+            "products": "reactant_83",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_83_84": {
+            "reactants": "reactant_83",
+            "products": "reactant_84",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_84_85": {
+            "reactants": "reactant_84",
+            "products": "reactant_85",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_85_86": {
+            "reactants": "reactant_85",
+            "products": "reactant_86",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_86_87": {
+            "reactants": "reactant_86",
+            "products": "reactant_87",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_87_88": {
+            "reactants": "reactant_87",
+            "products": "reactant_88",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_88_89": {
+            "reactants": "reactant_88",
+            "products": "reactant_89",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_89_90": {
+            "reactants": "reactant_89",
+            "products": "reactant_90",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_90_91": {
+            "reactants": "reactant_90",
+            "products": "reactant_91",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_91_92": {
+            "reactants": "reactant_91",
+            "products": "reactant_92",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_92_93": {
+            "reactants": "reactant_92",
+            "products": "reactant_93",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_93_94": {
+            "reactants": "reactant_93",
+            "products": "reactant_94",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_94_95": {
+            "reactants": "reactant_94",
+            "products": "reactant_95",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_95_96": {
+            "reactants": "reactant_95",
+            "products": "reactant_96",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_96_97": {
+            "reactants": "reactant_96",
+            "products": "reactant_97",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_97_98": {
+            "reactants": "reactant_97",
+            "products": "reactant_98",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_98_99": {
+            "reactants": "reactant_98",
+            "products": "reactant_99",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_99_100": {
+            "reactants": "reactant_99",
+            "products": "reactant_100",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        }
+    }
+}

@@ -22,7 +22,7 @@ n_dspn = 3
 neuron_path_list = [os.path.join(snudda_data, "neurons", "striatum", "dspn")]
 connectivity_info = os.path.join(snudda_data, "connectivity", "striatum", "striatum-connectivity.json")
 
-benchmark_size = [2, 4, 8, 16, 32, 64, 128]
+benchmark_size = [2, 4, 8, 16, 32, 64, 100, 128]
 
 run_time = {}
 
@@ -61,6 +61,8 @@ for bs in benchmark_size:
 
     # snd.simulate(use_rxd_neuromodulation=True, time=0.1, snudda_data=snudda_data)
 
+    # We run simulation in a shell, to avoid having to deal with NEURON
+    # memory issues when clearing old simulations
     run_time[bs]["start_time"] = timeit.default_timer() 
     os.system(f"snudda simulate {network_path} --time 0.1 --enable_rxd_neuromodulation")
     run_time[bs]["end_time"] = timeit.default_timer()

@@ -29,7 +29,8 @@ def generate_reaction_chain_json(n: int) -> dict:
 
 if __name__ == '__main__':
     lengths = [2**i for i in range(1,8)]
-
+    lengths.append(100)
+    
     for n in lengths:
         cfg = generate_reaction_chain_json(n=n)
 
