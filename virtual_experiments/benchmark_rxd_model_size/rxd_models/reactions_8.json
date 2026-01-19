@@ -1,0 +1,156 @@
+{
+    "species": {
+        "reactant_1": {
+            "initial_concentration": 0.01,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 0.01
+        },
+        "reactant_2": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_3": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_4": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_5": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_6": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_7": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_8": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        }
+    },
+    "reactions": {
+        "revreaction_1_2": {
+            "reactants": "reactant_1",
+            "products": "reactant_2",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_2_3": {
+            "reactants": "reactant_2",
+            "products": "reactant_3",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_3_4": {
+            "reactants": "reactant_3",
+            "products": "reactant_4",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_4_5": {
+            "reactants": "reactant_4",
+            "products": "reactant_5",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_5_6": {
+            "reactants": "reactant_5",
+            "products": "reactant_6",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_6_7": {
+            "reactants": "reactant_6",
+            "products": "reactant_7",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_7_8": {
+            "reactants": "reactant_7",
+            "products": "reactant_8",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        }
+    }
+}

@@ -1,0 +1,76 @@
+{
+    "species": {
+        "reactant_1": {
+            "initial_concentration": 0.01,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 0.01
+        },
+        "reactant_2": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_3": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        },
+        "reactant_4": {
+            "initial_concentration": 30,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ],
+            "concentration": 30
+        }
+    },
+    "reactions": {
+        "revreaction_1_2": {
+            "reactants": "reactant_1",
+            "products": "reactant_2",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_2_3": {
+            "reactants": "reactant_2",
+            "products": "reactant_3",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        },
+        "revreaction_3_4": {
+            "reactants": "reactant_3",
+            "products": "reactant_4",
+            "forward_rate": 0.05,
+            "backward_rate": 250.0,
+            "regions": [
+                "soma_internal",
+                "dend_internal"
+            ]
+        }
+    }
+}
