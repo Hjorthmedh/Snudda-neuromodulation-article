@@ -58,8 +58,12 @@ ax.spines["bottom"].set_linewidth(1.0)
 ax.tick_params(direction="out", width=1.0)
 
 # Labels
-ax.set_xlabel("Number of RxD species")
-ax.set_ylabel("Runtime (s)")
+ax.set_xlabel("Number of RxD species", fontsize=12)
+ax.set_ylabel("Runtime (s)", fontsize=12)
+
+plt.xticks(fontsize=10)
+plt.yticks(fontsize=10)
+
 
 # Grid (subtle, publication-friendly)
 # ax.grid(True, which="both", linestyle=":", linewidth=0.5)
