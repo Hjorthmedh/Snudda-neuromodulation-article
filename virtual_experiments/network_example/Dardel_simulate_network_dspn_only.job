@@ -14,7 +14,7 @@
 # REMEMBER TO CREATE THE "log" DIRECTORY
 
 export N_WORKERS=$SLURM_NTASKS
-export NUM_DSPN=1000
+export NUM_DSPN=1280
 
 # The network is so small, no point doing parallel network setup
 export NO_ENGINES=1
