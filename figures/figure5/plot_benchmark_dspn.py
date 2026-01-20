@@ -26,7 +26,7 @@ ideal_duration_no_rxd = T1 / nodes_no_rxd
 
 
 # Create figure
-plt.figure(figsize=(7, 4), dpi=300)
+plt.figure(figsize=(4.5, 3.5), dpi=300)
 
 # Plot
 plt.plot(
@@ -61,7 +61,8 @@ plt.plot(
     label="Linear"
 )
 
-plt.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5))
+# plt.legend(fontsize=10, loc='center left', bbox_to_anchor=(1, 0.5))
+plt.legend(fontsize=10, loc='best')
 
 
 plt.xscale("log")
@@ -76,11 +77,23 @@ plt.ylabel("Duration (hours)", fontsize=12)
 plt.xticks(fontsize=10)
 plt.yticks(fontsize=10)
 
+ax = plt.gca()
+
 # Grid
-plt.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
+# plt.grid(True, linestyle="--", linewidth=0.5, alpha=0.7)
+ax.grid(False)
+
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+ax.spines["left"].set_linewidth(1.0)
+ax.spines["bottom"].set_linewidth(1.0)
+ax.tick_params(direction="out", width=1.0)
+
+
 
 plt.title(
-    "Simulation of 1000 dSPN on HPE Cray EX supercomputer",
+    "Simulation of 1000 dSPN on HPE Cray EX",
     fontsize=13,
     pad=10
 )

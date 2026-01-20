@@ -40,16 +40,31 @@ if False:
         label="Linear scaling"
     )
 
+plt.title(
+    "Simulation of different system sizes",
+    fontsize=13,
+    pad=10
+)
+    
 # Log-log axes
-# ax.set_xscale("log")
-# ax.set_yscale("log")
+ax.set_xscale("log")
+ax.set_yscale("log")
+
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+ax.spines["left"].set_linewidth(1.0)
+ax.spines["bottom"].set_linewidth(1.0)
+ax.tick_params(direction="out", width=1.0)
 
 # Labels
 ax.set_xlabel("Number of RxD species")
 ax.set_ylabel("Runtime (s)")
 
 # Grid (subtle, publication-friendly)
-ax.grid(True, which="both", linestyle=":", linewidth=0.5)
+# ax.grid(True, which="both", linestyle=":", linewidth=0.5)
+ax.grid(False)
+
 
 # Legend
 # ax.legend(frameon=False)
