@@ -1,0 +1,3 @@
+mpirun -n 5 snudda simulate networks/bevan_fig1g_bath_current_short --time 2.2 --simulation_config ../../data/JSON/bevan_fig1g_with_DA_4Hz_stim_short.json --mechdir /home/hjorth/HBP/BasalGangliaData/data/neurons/mechanisms --enable_rxd_neuromodulation
+mpirun -n 5 snudda simulate networks/bevan_fig1g_bath_current_short --time 2.2 --simulation_config ../../data/JSON/bevan_fig1g_with_DA_20Hz_stim_short.json --mechdir /home/hjorth/HBP/BasalGangliaData/data/neurons/mechanisms --enable_rxd_neuromodulation
+mpirun -n 5 snudda simulate networks/bevan_fig1g_bath_current_short --time 2.2 --simulation_config ../../data/JSON/bevan_fig1g_no_DA_short.json --mechdir /home/hjorth/HBP/BasalGangliaData/data/neurons/mechanisms 
