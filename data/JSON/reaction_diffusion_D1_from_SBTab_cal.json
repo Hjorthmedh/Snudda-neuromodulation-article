@@ -291,7 +291,7 @@
         "cal": {
             "initial_concentration": 6.000000000000001e-05,
             "diffusion_constant": 0,
-            "charge": 0,
+            "charge": 2,
             "regions": [
                 "soma_internal",
                 "dend_internal"
