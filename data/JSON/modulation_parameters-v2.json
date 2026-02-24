@@ -259,6 +259,13 @@
             "sectionlist": ["soma", "basal"],
             "dist_type": "uniform",
             "value": 4
-        }
+        },
+	{
+	    "param_name": "use_rxd_caldyn_ms",
+	    "type": "range",
+	    "sectionlist": ["soma", "basal"],
+	    "dist_type": "uniform",
+	    "value": 1.0
+	}
     ]
 }
