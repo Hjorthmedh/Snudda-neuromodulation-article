@@ -6,6 +6,7 @@
     "log_file": "$network_path/log/network-simulation.txt",
     "time": 100,
     "!sim_dt": 0.005,
+    "sim_dt": 0.0005,
     "!sample_dt": 1e-3,
     "record_all_soma": true,
     "use_rxd_neuromodulation": true,

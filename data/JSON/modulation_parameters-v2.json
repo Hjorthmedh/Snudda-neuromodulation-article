@@ -266,6 +266,13 @@
 	    "sectionlist": ["soma", "basal"],
 	    "dist_type": "uniform",
 	    "value": 1.0
+	},
+	{
+	    "param_name": "depth_caldyn_ms",
+	    "type": "range",
+	    "sectionlist": ["soma", "basal"],
+	    "dist_type": "uniform",
+	    "value": 0.2	    
 	}
     ]
 }
