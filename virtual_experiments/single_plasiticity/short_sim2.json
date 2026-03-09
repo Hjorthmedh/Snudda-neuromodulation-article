@@ -59,6 +59,12 @@
 	    "section_x": [0.5, 0.5]
 	}
     },
+    "record_external_synapse": {
+	"cortical": {
+	    "neuron_id": [0, 1],
+	    "variable": ["modulation_factor_ampa", "modulation_factor_nmda"]
+	}
+    },
     
     "rxd_enable_extracellular": false,
     "bath_application": {

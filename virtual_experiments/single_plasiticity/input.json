@@ -11,7 +11,13 @@
 	},
 	"cortical": {
 	    "generator": "poisson",
-	    "frequency": 10
+	    "frequency": 10,
+	    "parameter_list": {
+		"plasticity_min": 0.5,
+		"plasticity_max": 2
+	    }
+	    
+	    
 	},
 	"thalamic": {
 	    "generator": "poisson",
