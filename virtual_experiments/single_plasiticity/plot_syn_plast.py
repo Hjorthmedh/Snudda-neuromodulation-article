@@ -5,18 +5,20 @@ import plotly.graph_objects as go
 import plotly.colors as pc
 from snudda.neurons.morphology_data import MorphologyData
 
-if len(sys.argv) != 2:
-    print(f"Usage {sys.argv[0]} <simulation file>")
+if len(sys.argv) != 3:
+    print(f"Usage {sys.argv[0]} <simulation file> <neuron_id>")
     sys.exit()
 
+    
 sim_name = sys.argv[1]
+cell_id = int(sys.argv[2])
 sf = h5py.File(sim_name, "r")
 
 t = sf["time"][()].copy()
-cal = sf["neurons"]["0"]["synapse_modulation_factor_ampa"][()].copy()
-sec_id = sf["neurons"]["0"]["synapse_modulation_factor_ampa"].attrs["sec_id"]
-sec_x = sf["neurons"]["0"]["synapse_modulation_factor_ampa"].attrs["sec_x"]
-morphology = sf["meta_data"]["morphology"][()][0].decode()
+cal = sf["neurons"][str(cell_id)]["synapse_modulation_factor_ampa"][()].copy()
+sec_id = sf["neurons"][str(cell_id)]["synapse_modulation_factor_ampa"].attrs["sec_id"]
+sec_x = sf["neurons"][str(cell_id)]["synapse_modulation_factor_ampa"].attrs["sec_x"]
+morphology = sf["meta_data"]["morphology"][()][cell_id].decode()
 print(f"{morphology = }")
 md = MorphologyData(swc_file=morphology)
 
@@ -93,6 +95,8 @@ fig.update_layout(
 )
 
 fig.show()
+
+print(f"Figure plotted")
 
 import pdb
 pdb.set_trace()

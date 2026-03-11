@@ -11,7 +11,7 @@
 	},
 	"cortical": {
 	    "generator": "poisson",
-	    "frequency": 10,
+	    "frequency": 5,
 	    "parameter_list": {
 		"plasticity_min": 0.5,
 		"plasticity_max": 2

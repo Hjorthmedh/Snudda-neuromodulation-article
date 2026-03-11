@@ -1,3 +1,5 @@
+TODO: Replicate figure 2 in Santos paper
+
 # Plasticity example
 
 We setup two dspn neurons with RxD implemented dopamine D1 cascade. Here both DA and Calcium (cal) are coupled between RxD biochemistry and NEURON electrophysiology. Furthermore the PKAc level and substrate level affect the ion channels, and glutamate channel parameters (conductance, half activation etc).

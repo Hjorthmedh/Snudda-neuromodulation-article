@@ -1,4 +1,5 @@
 *~
+*html
 *.cpp
 .ipynb_checkpoints
 iframe_figures
