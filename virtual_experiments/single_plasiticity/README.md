@@ -20,3 +20,24 @@ Presynaptic activation paired + dopamine, paired with postsynaptic activation
 5.
 Dopamine alone
 
+
+
+
+
+## Code to run:
+
+First setup network:
+
+```
+python single_dspn_plasticity.py
+```
+
+Run the simulation using the printed mpirun command (displayed by python script).
+
+Plot traces using:
+
+```
+plot_syn_plast.py
+```
+
+
