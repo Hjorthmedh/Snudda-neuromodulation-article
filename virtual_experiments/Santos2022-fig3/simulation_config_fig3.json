@@ -12,7 +12,8 @@
     "use_rxd_neuromodulation": true,
 
     "!record_rxd_species_soma": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-    "record_rxd_species_concentration_all_compartments": [["D1R", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+    "record_rxd_species_concentration_all_compartments": [["DA", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
+							  ["D1R", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
 							  ["pSubstrate", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
 							  ["PP1", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
 							  ["cal", [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]]],
