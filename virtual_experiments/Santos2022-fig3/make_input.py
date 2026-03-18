@@ -3,7 +3,7 @@ import csv
 
 # Internal parameters
 num_files = 10
-num_rows = 10
+num_rows = 1  # 10
 offset_start = -4  # can change
 base_start = 5     # starting number for offset 0
 base_end = 6       # ending number for offset 0

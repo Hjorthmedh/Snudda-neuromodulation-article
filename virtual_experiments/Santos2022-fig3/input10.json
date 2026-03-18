@@ -4,9 +4,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input--4.csv"
 	}
     },
@@ -16,9 +16,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input--3.csv"
 	}
     },
@@ -28,9 +28,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input--2.csv"
 	}
     },
@@ -40,9 +40,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input--1.csv"
 	}
     },
@@ -52,9 +52,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input-0.csv"
 	}
     },
@@ -64,9 +64,9 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
-	    "num_inputs": 1,
+	    "num_inputs": 10,
 	    "csv_file": "input/input-1.csv"
 	}
     },
@@ -76,7 +76,7 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
 	    "num_inputs": 10,
 	    "csv_file": "input/input-2.csv"
@@ -88,7 +88,7 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
 	    "num_inputs": 10,
 	    "csv_file": "input/input-3.csv"
@@ -100,7 +100,7 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
 	    "num_inputs": 10,
 	    "csv_file": "input/input-4.csv"
@@ -112,7 +112,7 @@
 	    "generator": "csv",
 	    "conductance": 0.5e-9,
 	    "mod_file": "tmGlut",
-	    "dendrite_location": [[10, 0.5]],
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
 	    "morphology_key": "m4a48752c",
 	    "num_inputs": 10,
 	    "csv_file": "input/input-0.csv"
