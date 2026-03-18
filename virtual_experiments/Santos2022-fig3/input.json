@@ -1,0 +1,122 @@
+{
+    "0": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input--4.csv"
+	}
+    },
+
+    "1": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input--3.csv"
+	}
+    },
+
+    "2": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input--2.csv"
+	}
+    },
+
+    "3": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input--1.csv"
+	}
+    },
+
+    "4": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-0.csv"
+	}
+    },
+
+    "5": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-1.csv"
+	}
+    },
+
+    "6": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-2.csv"
+	}
+    },
+
+    "7": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-3.csv"
+	}
+    },
+
+    "8": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-4.csv"
+	}
+    },
+
+    "9": {
+	"synaptic_drive": {
+	    "generator": "csv",
+	    "conductance": 0.5e-9,
+	    "mod_file": "tmGlut",
+	    "dendrite_location": [[10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5], [10, 0.5]],
+	    "morphology_key": "m4a48752c",
+	    "num_soma_synapses": 10,
+	    "csv_file": "input/input-0.csv"
+	}
+    }    
+    
+}

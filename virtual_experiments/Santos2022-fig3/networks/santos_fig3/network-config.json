@@ -1,0 +1,51 @@
+{
+    "network_path": "networks/santos_fig3",
+    "snudda_data": null,
+    "random_seed": {
+        "master_seed": 1234,
+        "init": 2906597030,
+        "place": 1602421836,
+        "detect": 216676975,
+        "project": 2698621808,
+        "prune": 507409703,
+        "input": 2825158027,
+        "simulate": 3613074
+    },
+    "regions": {
+        "Cube": {
+            "num_neurons": 10,
+            "volume": {
+                "type": "mesh",
+                "d_min": 1.5e-05,
+                "mesh_file": "networks/santos_fig3/mesh/Cube-cube-mesh-4.9896265262183514e-05.obj",
+                "n_putative_points": 50
+            },
+            "connectivity": {},
+            "neurons": {
+                "dspn": {
+                    "num_neurons": 10,
+                    "neuron_type": "neuron",
+                    "rotation_mode": "random",
+                    "volume_id": "Cube",
+                    "neuron_path": {
+                        "dspn_0": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_1": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_2": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_3": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_4": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_5": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_6": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_7": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_8": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/",
+                        "dspn_9": "../../snudda_data/neurons/striatum/dspn/str-dspn-e150602_c1_D1-mWT-0728MSN01-v20220620/"
+                    },
+                    "reaction_diffusion": "../../data/JSON/reaction_diffusion_D1_from_SBTab_cal.json",
+                    "modulation": "../../data/JSON/modulation_parameters-v2.json",
+                    "modulation_key": "abc",
+                    "parameter_key": "p06ae8d19",
+                    "morphology_key": "m4a48752c"
+                }
+            }
+        }
+    }
+}
