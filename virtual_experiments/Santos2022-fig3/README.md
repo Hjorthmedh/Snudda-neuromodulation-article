@@ -6,3 +6,11 @@ burst of synaptic input for 1 second.
 In addition the neurons receive dopamine input at different times in
 relationship to the synaptic input.
 
+
+Generate the plots using:
+
+snudda_plot_rxd networks/santos_fig3/ networks/santos_fig3/simulation/output.hdf5 --neuron_id 0 --compartment_id 10
+
+Where you vary neuron_id 0 to 8, to see different timelags between DA and synaptic input: -4, -3, -2, -1, -0, 1, 2, 3, 4
+neuron_id 9 is without DA application.
+
