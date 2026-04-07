@@ -3,8 +3,8 @@
 
 <svg
    width="411.50128mm"
-   height="155.77269mm"
-   viewBox="0 0 411.50128 155.77269"
+   height="153.88496mm"
+   viewBox="0 0 411.50128 153.88496"
    version="1.1"
    id="svg1"
    xml:space="preserve"
@@ -1286,7 +1286,7 @@
          id="path25-6" /></clipPath></defs><g
      id="g1-3"
      inkscape:label="1"
-     transform="matrix(0.26458333,0,0,0.26458333,208.30129,-3.8099999e-6)"><path
+     transform="matrix(0.26458333,0,0,0.26458333,208.30129,-3.6741666e-6)"><path
        id="path1-3"
        d="M 0,0 H 576 V 432 H 0 Z"
        style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -1541,7 +1541,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-0.13780393,-68.818876)"><g
+     transform="translate(-0.13780396,-68.818876)"><g
        id="g1"
        inkscape:label="1"
        transform="matrix(0.26458333,0,0,0.26458333,-2.2434459,66.437626)"><path
