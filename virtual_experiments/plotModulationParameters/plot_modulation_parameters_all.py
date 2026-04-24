@@ -64,10 +64,10 @@ kaf_shift_data = {'conc': conc, 'shift': shift}
 
 
 # --- Font sizes ---
-TITLE_SIZE  = 18
-LABEL_SIZE  = 16
-TICK_SIZE   = 14
-LEGEND_SIZE = 13
+TITLE_SIZE  = 30
+LABEL_SIZE  = 25
+TICK_SIZE   = 20
+LEGEND_SIZE = 20
 
 
 # --- Helper: style lookup ---
@@ -89,7 +89,7 @@ def get_style(name):
 # --- Two subplots sharing the x-axis ---
 fig, (ax1, ax2) = plt.subplots(
     2, 1,
-    figsize=(7, 9),
+    figsize=(10, 10),
     sharex=True,
     gridspec_kw={'height_ratios': [2, 1]}
 )
@@ -129,12 +129,12 @@ for k in sort_order:
         linewidth=linewidth
     )
 
-ax1.set_ylabel("Modulation", size=LABEL_SIZE)
+ax1.set_ylabel("Factor", size=LABEL_SIZE)
 ax1.tick_params(axis='y', labelsize=TICK_SIZE)
 ax1.yaxis.set_major_locator(MultipleLocator(0.25))
 ax1.spines['top'].set_visible(False)
 ax1.spines['right'].set_visible(False)
-ax1.set_title("Modulation", size=TITLE_SIZE, pad=8)
+ax1.set_title("Conductance change", size=TITLE_SIZE, pad=8)
 ax1.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=LEGEND_SIZE, frameon=False)
 
 # --- Bottom subplot: kaf shift ---
@@ -142,7 +142,7 @@ color, linestyle, linewidth = get_style("kaf_ms")
 ax2.plot(
     kaf_shift_data['conc'] * 1e6,
     kaf_shift_data['shift'],
-    label="kaf (shift)",
+    label="kaf",
     color=color,
     linestyle=linestyle,
     linewidth=linewidth
@@ -155,12 +155,12 @@ ax2.tick_params(axis='both', labelsize=TICK_SIZE)
 ax2.xaxis.set_major_locator(plt.MaxNLocator(5))
 ax2.spines['top'].set_visible(False)
 ax2.spines['right'].set_visible(False)
-ax2.set_title("kaf shift", size=TITLE_SIZE, pad=8)
+ax2.set_title("Half activation shift", size=TITLE_SIZE, pad=8)
 ax2.legend(loc="center left", bbox_to_anchor=(1.02, 0.5), fontsize=LEGEND_SIZE, frameon=False)
 
 # --- Output ---
-fig.subplots_adjust(left=0.15, right=0.72, top=0.95, bottom=0.08, hspace=0.35)
-plt.savefig("ion_channel_modulation_curves.pdf", bbox_inches='tight')
+fig.subplots_adjust(left=0.2, right=0.72, top=0.94, bottom=0.1, hspace=0.35)
+plt.savefig("ion_channel_modulation_curves_all.pdf", bbox_inches='tight')
 plt.ion()
 plt.show()
 
