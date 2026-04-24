@@ -12,7 +12,7 @@ virtual_experiments/plotModulationParameters
 
 Run
 
-python plot_modulation_parameters_smarter4.py ../network_example/data/modulation_parameters.json
+python plot_modulation_parameters_all.py ../network_example/data/modulation_parameters.json
 
 Figure we use is:
 ion_channel_modulation_curves.pdf
