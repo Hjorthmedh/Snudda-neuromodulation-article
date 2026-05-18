@@ -13,11 +13,8 @@ sls = SnuddaLoadSimulation(
     network_simulation_output_file=simulation_file
 )
 
-# neuron_id     = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8])
-# offset        = np.array([-3, -2, -1, 0, 1, 2, 3, 4, 5])
-
-neuron_id     = np.array([0, 1, 2, 3, 4, 5, 6, 7])
-offset        = np.array([-3, -2, -1, 0, 1, 2, 3, 4])
+neuron_id     = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8])
+offset        = np.array([-4, -3, -2, -1, 0, 1, 2, 3, 4])
 
 synapse_start = 4 + offset
 t_window      = 15

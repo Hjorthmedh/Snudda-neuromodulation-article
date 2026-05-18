@@ -5,8 +5,8 @@ import csv
 num_files = 10
 num_rows = 1  # 10
 offset_start = -4  # can change
-base_start = 5     # starting number for offset 0
-base_end = 6       # ending number for offset 0
+base_start = 5     # starting time for offset 0
+base_end = 6       # ending time for offset 0
 step = 0.1         # increment per column
 
 os.makedirs("input", exist_ok=True)

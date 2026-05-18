@@ -15,7 +15,7 @@ si.network_data["regions"]["Cube"]["neurons"]["dspn"]["reaction_diffusion"] = ".
 si.network_data["regions"]["Cube"]["neurons"]["dspn"]["modulation"] = "../../data/JSON/modulation_parameters-v2.json"
 si.network_data["regions"]["Cube"]["neurons"]["dspn"]["modulation_key"] = "abc"
 si.network_data["regions"]["Cube"]["neurons"]["dspn"]["parameter_key"] = "p06ae8d19"
-si.network_data["regions"]["Cube"]["neurons"]["dspn"]["morphology_key"] = "m4a48752c"
+si.network_data["regions"]["Cube"]["neurons"]["dspn"]["morphology_key"] = "mbb8e5b24"
 
 neuron_path_dict = {}
 for n in range(0, 10):
