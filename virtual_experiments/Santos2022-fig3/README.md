@@ -6,6 +6,12 @@ burst of synaptic input for 1 second.
 In addition the neurons receive dopamine input at different times in
 relationship to the synaptic input.
 
+Create network and run simulation:
+
+setup_simulation.py
+
+simulation config file defining what to record etc: simulation_config_fig3.json
+
 
 Generate the plots using:
 
@@ -24,7 +30,7 @@ snudda_plot_rxd networks/santos_fig3/ networks/santos_fig3/simulation/output.hdf
 
 
 ```
-plot_summary3.py
+plot_summary7.py
 ```
 
 Where you vary neuron_id 0 to 8, to see different timelags between DA and synaptic input: -4, -3, -2, -1, -0, 1, 2, 3, 4
