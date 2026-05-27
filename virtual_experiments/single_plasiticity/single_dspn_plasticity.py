@@ -6,10 +6,11 @@ neuron = "dspn"
 neuron_path = os.path.join("..", "..", "snudda_data", "neurons", "striatum", neuron)
 network_path = os.path.join("networks", "single_dspn")
 
+snudda_data = os.path.join("..", "..", "snudda_data")
 
 snudda = Snudda(network_path=network_path)
 si = snudda.init_tiny(neuron_paths=neuron_path, neuron_names=neuron, number_of_neurons=[2], 
-                      random_seed=1234)
+                      random_seed=1234, snudda_data=snudda_data)
 
 si.network_data["regions"]["Cube"]["neurons"]["dspn"]["reaction_diffusion"] = "../../data/JSON/reaction_diffusion_D1_from_SBTab_cal.json"
 
