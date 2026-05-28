@@ -39,7 +39,10 @@ Run the simulation using the printed mpirun command (displayed by python script)
 Plot traces using:
 
 ```
-plot_syn_plast.py
+snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 0 --compartment_id 1
+snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 1 --compartment_id 1
+
+# python plot_cal_alt4.py networks/single_dspn/simulation/output.hdf5 0
 ```
 
 

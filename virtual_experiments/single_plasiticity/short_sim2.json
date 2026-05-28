@@ -63,7 +63,7 @@
 	"cortical": {
 	    "neuron_id": [0, 1],
 	    "variable": ["modulation_factor_ampa", "modulation_factor_nmda",
-			 "modulation_factor_fail"]
+			 "modulation_factor_fail", "ltp_accumulated"]
 	}
     },
     

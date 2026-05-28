@@ -4,7 +4,7 @@
 	    "generator": "poisson",
 	    "frequency": 2,
 	    "correlation": 0,
-	    "mod_file": "tmGlutPlast",
+	    "mod_file": "tmGlutPlastAcc",
 	    "parameter_file": "../../data/JSON/synapse-param-plasticity.json"
 	},
 	"!thalamic_background": {
@@ -14,7 +14,7 @@
 	"cortical": {
 	    "generator": "poisson",
 	    "frequency": 5,
-	    "mod_file": "tmGlutPlast",
+	    "mod_file": "tmGlutPlastAcc",
 	    "parameter_file": "../../data/JSON/synapse-param-plasticity.json"
 	    
 	},

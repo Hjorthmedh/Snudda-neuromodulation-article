@@ -41,5 +41,5 @@ os.system("nrnivmodl ../../snudda_data/neurons/mechanisms/")
 run_str = f"mpirun -n {n_workers} snudda simulate {network_path} --time {sim_time} --simulation_config {sim_config} --mechdir {mech_dir} --enable_rxd_neuromodulation"
 print(run_str)
 
-print("snudda_plot_rxd  networks/single_dspn/ networks/single_dspn/simulation/output.hdf5 --neuron_id 0")
-print("snudda_plot_rxd  networks/single_dspn/ networks/single_dspn/simulation/output.hdf5 --neuron_id 1")
+print("snudda_plot_rxd  networks/single_dspn/ networks/single_dspn/simulation/output.hdf5 --neuron_id 0 --compartment_id 1")
+print("snudda_plot_rxd  networks/single_dspn/ networks/single_dspn/simulation/output.hdf5 --neuron_id 1 --compartment_id 1")

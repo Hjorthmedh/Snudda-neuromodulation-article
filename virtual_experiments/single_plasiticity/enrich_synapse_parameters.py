@@ -7,24 +7,20 @@ output_file = "../../data/JSON/synapse-param-plasticity.json"
 # FLAT PARAMETER VALUES (FINAL KEYS EXACTLY AS USED)
 # --------------------------------------------------
 PARAMS = {
-    "mod_psub_fail_min": 1,
-    "mod_psub_fail_max": 1.25,
-    "mod_psub_fail_half": 0.0007,
-    "mod_psub_fail_hill": 4,
 
-    "mod_psub_g_ampa_min": 1,
-    "mod_psub_g_ampa_max": 1.25,
-    "mod_psub_g_ampa_half": 0.0007,
-    "mod_psub_g_ampa_hill": 4,
+    "ltp_decay_tau": 10000000,
+    "ltp_onset_tau": 10000,
+    "ltp_psub_threshold": 0.0014,
+    "ltp_max": 1.25,
 
     "mod_da_g_ampa_min": 1,
     "mod_da_g_ampa_max": 1.25,
-    "mod_da_g_ampa_half": 300e-6,
+    "mod_da_g_ampa_half": 600e-6,
     "mod_da_g_ampa_hill": 4,
 
     "mod_da_g_nmda_min": 1,
     "mod_da_g_nmda_max": 1.25,
-    "mod_da_g_nmda_half": 300e-6,
+    "mod_da_g_nmda_half": 600e-6,
     "mod_da_g_nmda_hill": 4
 }
 
