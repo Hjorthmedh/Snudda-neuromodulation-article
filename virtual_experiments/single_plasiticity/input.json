@@ -1,6 +1,6 @@
 {
     "dspn": {
-	"cortical_background": {
+	"!cortical_background": {
 	    "generator": "poisson",
 	    "frequency": 2,
 	    "correlation": 0,
@@ -13,10 +13,11 @@
 	},
 	"cortical": {
 	    "generator": "poisson",
-	    "frequency": 5,
+	    "frequency": 3,
 	    "mod_file": "tmGlutPlastAcc",
-	    "parameter_file": "../../data/JSON/synapse-param-plasticity.json"
-	    
+	    "parameter_file": "../../data/JSON/synapse-param-plasticity.json",
+	    "start": [0.5, 25.0],
+	    "end": [1.0, 26.0]
 	},
 	"!thalamic": {
 	    "generator": "poisson",
