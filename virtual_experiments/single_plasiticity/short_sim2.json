@@ -7,7 +7,7 @@
     "time": 100,
     "!sim_dt": 0.005,
     "!sim_dt": 0.0005,
-    "!sample_dt": 1e-3,
+    "sample_dt": 1e-3,
     "record_all_soma": true,
     "use_rxd_neuromodulation": true,
 
@@ -63,7 +63,9 @@
 	"cortical": {
 	    "neuron_id": [0, 1],
 	    "variable": ["modulation_factor_ampa", "modulation_factor_nmda",
-			 "modulation_factor_fail", "ltp_accumulated"]
+			 "modulation_factor_fail", "ltp_accumulated"],
+	    "section_id": [4,5],
+	    "max_synapses": 10
 	}
     },
     
