@@ -39,10 +39,18 @@ Run the simulation using the printed mpirun command (displayed by python script)
 Plot traces using:
 
 ```
-snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 0 --compartment_id 1
-snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 1 --compartment_id 1
+snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 0 --compartment_id 5
+snudda_plot_rxd networks/single_dspn networks/single_dspn/simulation/output.hdf5 --neuron_id 1 --compartment_id 5
 
 # python plot_cal_alt4.py networks/single_dspn/simulation/output.hdf5 0
 ```
 
 
+
+If you want to change the parameters, then you can use ```enrich_synapse_parameters.py``` then run the ```single_dspn_plasticity.py``` and the rest as before.
+
+Additional note, if you want to run the steady state run with larger timestep, then replace simulation config with ```short_sim2-check-steady-state.json```, ie run:
+
+mpirun -n 2 snudda simulate networks/single_dspn --time 100 --simulation_config short_sim2-check-steady-state.json --mechdir ../../snudda_data/neurons/mechanisms --enable_rxd_neuromodulation
+
+This takes around 1200 seconds on a M1 Mac laptop.

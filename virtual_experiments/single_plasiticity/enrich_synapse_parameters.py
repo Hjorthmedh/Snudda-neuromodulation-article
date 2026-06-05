@@ -7,8 +7,8 @@ PARAMS = {
 
     "ltp_decay_tau": 10000000,
     "ltp_onset_tau": 10000,
-    "ltp_psub_threshold": 0.0003,
-    "ltp_max": 1.25,
+    "ltp_psub_threshold": 0.0008,
+    "ltp_max": 1,
 
     "mod_da_g_ampa_min": 1,
     "mod_da_g_ampa_max": 1.25,

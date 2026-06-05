@@ -16,8 +16,8 @@
 	    "frequency": 3,
 	    "mod_file": "tmGlutPlastAcc",
 	    "parameter_file": "../../data/JSON/synapse-param-plasticity.json",
-	    "start": [0.5, 25.0],
-	    "end": [1.0, 26.0]
+	    "start": [1.0, 25.0],
+	    "end": [1.5, 25.5]
 	},
 	"!thalamic": {
 	    "generator": "poisson",

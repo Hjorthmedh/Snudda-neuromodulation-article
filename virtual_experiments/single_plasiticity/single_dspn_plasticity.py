@@ -1,6 +1,9 @@
 import os
 from snudda import Snudda
 
+sim_time = 100 # 30
+
+
 neuron = "dspn"
 
 neuron_path = os.path.join("..", "..", "snudda_data", "neurons", "striatum", neuron)
@@ -19,7 +22,7 @@ si.network_data["regions"]["Cube"]["neurons"][neuron]["modulation_key"] = "abc"
 
 si.write_json()
 
-snudda.create_network(input_config="input.json")
+snudda.create_network(input_config="input.json", input_time=sim_time)
 
 # Free memory
 snudda = None
@@ -32,7 +35,6 @@ sim_config = "short_sim2.json"
 sim_output = os.path.join(network_path, "simulation", "output.hdf5")
 
 
-sim_time = 30
 n_workers = 2
 
 
