@@ -1,7 +1,7 @@
 import os
 from snudda import Snudda
 
-sim_time = 100 # 30
+sim_time = 30 # 100 # 30
 
 
 neuron = "dspn"
