@@ -77,8 +77,8 @@ ax.plot(
 # Labels
 ax.set_xticks(x)
 ax.set_xticklabels([
-    'First pulse\n(at 1 s)',
-    'Second pulse\n(at 25 s)'
+    'First input\n(at 1 s)',
+    'Second input\n(at 25 s)'
 ])
 
 ax.set_ylabel('Frequency (Hz)', fontsize=12)
