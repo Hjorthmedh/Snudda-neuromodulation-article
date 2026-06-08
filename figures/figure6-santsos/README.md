@@ -18,3 +18,17 @@ plot_experiment.ipynb
 Summary:
 plot_summary5.py (or possibly a later number)
 
+
+
+Also for the frequency change plots:
+
+In folder:
+virtual_experiments/single_plasiticity
+
+run:
+single_dspn_plasticity.py
+plot_frequency_single_dspn_plasticity.py
+
+to generate:
+
+figures/da_plasticity.pdf
