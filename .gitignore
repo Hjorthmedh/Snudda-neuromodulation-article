@@ -5,3 +5,6 @@
 iframe_figures
 __pycache__
 aarch64
+.DS_Store
+*.tar
+*.so
