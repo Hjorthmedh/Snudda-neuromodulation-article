@@ -1,0 +1,24 @@
+{
+    "species": {
+        "DA": {
+            "initial_concentration": 2e-05,
+            "diffusion_constant": 0,
+            "charge": 0,
+            "regions": ["soma_internal", "dend_internal"],
+            "concentration": 2e-05,
+            "boundary_condition": true,
+            "unit": "mM"
+        },
+        "cal": {
+            "initial_concentration": 6e-05,
+            "diffusion_constant": 0,
+            "charge": 2,
+            "regions": ["soma_internal", "dend_internal"],
+            "concentration": 6e-05,
+            "boundary_condition": true,
+            "unit": "mM"
+        }
+    },
+    "rates": {},
+    "reactions": {}
+}

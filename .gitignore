@@ -9,3 +9,6 @@ aarch64
 *.tar
 *.so
 arm64
+mechanisms/
+networks/
+*.tar.gz

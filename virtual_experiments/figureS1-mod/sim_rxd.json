@@ -1,0 +1,27 @@
+{
+    "network_path": "networks/rxd",
+    "network_file": "$network_path/network-synapses.hdf5",
+    "output_file": "$network_path/simulation/output.hdf5",
+    "log_file": "$network_path/log/network-simulation.txt",
+    "time": 1.0,
+    "sim_dt": 0.00005,
+    "sample_dt": 1e-3,
+    "record_all_soma": true,
+    "use_rxd_neuromodulation": true,
+    "rxd_enable_extracellular": false,
+
+    "record_rxd_species_soma": [0],
+    "record_density_mechanism": {
+        "sk_ms.modulation_factor":      {"neuron_id": [0], "section_id": [-1], "section_x": [0.5]},
+        "naf_ms.modulation_factor":     {"neuron_id": [0], "section_id": [-1], "section_x": [0.5]}
+    },
+
+    "bath_application": {
+        "DA": {
+            "neuron_id": [0],
+            "time":          [0.0,  0.01,   0.1],
+            "concentration": [0.0,  6e-4,  6e-4],
+            "interpolate": true
+        }
+    }
+}
