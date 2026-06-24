@@ -8,3 +8,4 @@ aarch64
 .DS_Store
 *.tar
 *.so
+arm64
