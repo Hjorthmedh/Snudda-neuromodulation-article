@@ -10,9 +10,9 @@ from snudda import Snudda
 SNUDDA_DATA = os.path.join("..", "..", "snudda_data")
 NEURON_PATH = os.path.join(SNUDDA_DATA, "neurons", "striatum", "dspn")
 RXD_CASCADE = "../../data/JSON/reaction_diffusion_D1_from_SBTab_cal.json"
-RXD_DA_ONLY = "../../figures/figureS1-mod/reaction_diffusion_DA_only.json"
+RXD_DA_ONLY = "reaction_diffusion_DA_only.json"
 MOD_PARAMS_RXD = "../../data/JSON/modulation_parameters-v2.json"
-MOD_PARAMS_MOD = "../../figures/figureS1-mod/modulation_parameters_mod.json"
+MOD_PARAMS_MOD = "modulation_parameters_mod.json"
 
 
 def build(network_dir, modulation_json, rxd_config, extra_mechanisms=None):
@@ -38,10 +38,10 @@ if __name__ == "__main__":
 
     mech_dir = "mechanisms"
     print()
-    print(f"# Prep mechanisms (copies snudda_data mech + figureS1 overrides)")
+    print(f"# Prep mechanisms (copies snudda_data mech + local overrides)")
     print(f"mkdir -p {mech_dir}")
     print(f"cp ../../snudda_data/neurons/mechanisms/*.mod {mech_dir}/")
-    print(f"cp ../../figures/figureS1-mod/*.mod {mech_dir}/")
+    print(f"cp *.mod {mech_dir}/")
     print(f"nrnivmodl {mech_dir}/")
     print()
     print(f"# Run")
