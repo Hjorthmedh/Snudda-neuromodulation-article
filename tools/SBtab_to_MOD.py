@@ -118,7 +118,6 @@ def get_constants(sbtab_dict: dict) -> pd.DataFrame:
 
 def get_compounds(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict["Compound"]
-    # Handle optional mapping columns cleanly
     names = df["!Name"].astype(str) if "!Name" in df.columns else df.index.astype(str)
     clean_iv = df["!InitialValue"].astype(str).str.replace("−", "-")
     
@@ -273,8 +272,19 @@ def get_law_text(laws: np.ndarray, compound_names: list[str], initial_values: li
         l = laws[:, j]
         p, n = l > 0, l < 0
         def _append(mask, sep):
-            return sep.join([f"{abs(l[idx])}*{compound_names[idx]}" if abs(l[idx]) != 1 else compound_names[idx] for idx in np.where(mask)[0]])
-        law_text = f"{_append(p, '+')}-{_append(n, '-')}" if _append(n, '-') else _append(p, '+')
+            parts = [f"{abs(l[idx])}*{compound_names[idx]}" if abs(l[idx]) != 1 else compound_names[idx] for idx in np.where(mask)[0]]
+            return sep.join(parts) if parts else ""
+
+        pos_str = _append(p, '+')
+        neg_str = _append(n, '-')
+        
+        if pos_str and neg_str:
+            law_text = f"{pos_str}-{neg_str}"
+        elif pos_str:
+            law_text = pos_str
+        else:
+            law_text = f"-{neg_str}" if neg_str else "0"
+
         if not any((p | n) & allowed): continue
         indices = np.where((p | n) & allowed)[0]
         k = indices[np.argmax([initial_values[idx] for idx in indices])]
@@ -282,8 +292,18 @@ def get_law_text(laws: np.ndarray, compound_names: list[str], initial_values: li
         const_name = f"{compound_names[k]}_ConservedConst"
         con_law["ConstantName"].append(const_name)
         con_law["Text"].append(f"{const_name} = {law_text.replace('1*', '')}")
+        
         m = np.arange(n_c) != k
-        formula = f"{_append(p & m, '+')}-{_append(n & m, '-')}" if _append(n & m, '-') else _append(p & m, '+')
+        pos_m_str = _append(p & m, '+')
+        neg_m_str = _append(n & m, '-')
+        
+        if pos_m_str and neg_m_str:
+            formula = f"{pos_m_str}-{neg_m_str}"
+        elif pos_m_str:
+            formula = pos_m_str
+        else:
+            formula = f"-{neg_m_str}" if neg_m_str else "0"
+
         con_law["Formula"].append(formula.replace("1*", ""))
         con_law["Constant"].append(float(np.dot(l, initial_values)))
         con_law["Eliminates"].append(k + 1)
@@ -343,6 +363,12 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     mod["NEURON"] = ["NEURON {", f"\tSUFFIX {H}"] + range_lines + ion_lines + ["}"]
 
+    # Collect known symbols to prevent declaring them as rogue values later
+    known_symbols = set(list(compound.index))
+    if constant is not None: known_symbols.update(list(constant.index))
+    if expression is not None: known_symbols.update(list(expression.index))
+    if input_df is not None: known_symbols.update(list(input_df.index))
+
     conservation_law, conservation_input, c_name_law, n_laws = [], [], [], 0
     if con_law is not None and not con_law.empty:
         n_laws = len(con_law)
@@ -350,7 +376,10 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             c_name = compound_clean.index[int(row_cl["Eliminates"]) - 1]
             c_name_law.append(c_name)
             conservation_input.append(fmt["total"].format(row_cl["ConstantName"], row_cl["Constant"]))
-            conservation_law.append(fmt["ConservationLaw"].format(c_name, f"{row_cl['ConstantName']} - ({row_cl['Formula']})"))
+            known_symbols.add(str(row_cl["ConstantName"]))
+            
+            formula_part = f" - ({row_cl['Formula']})" if row_cl['Formula'] != "0" else ""
+            conservation_law.append(fmt["ConservationLaw"].format(c_name, f"{row_cl['ConstantName']}{formula_part}"))
 
     constant_lines = ["CONSTANT {"]
     if constant is not None and not constant.empty:
@@ -360,6 +389,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     mod["CONSTANT"] = constant_lines
 
     parameter_lines = ["PARAMETER {"]
+    added_parameters = set()
+
     if parameter is not None and not parameter.empty:
         parameter_cp = parameter.copy()
         for idx, row in parameter_cp.iterrows():
@@ -368,18 +399,62 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
                 parameter_cp.at[idx, "Unit"] = re.sub(r"\bsecond\b", "millisecond", unit_str)
                 parameter_cp.at[idx, "Value"] = float(row["Value"]) / 1e3
         for idx, row in parameter_cp.iterrows():
+            p_name = str(idx)
             r_of_k = "does not appear in reactions."
             if reaction is not None and not reaction.empty:
-                matches = [str(r_row["Flux"]) for _, r_row in reaction.iterrows() if re.search(rf"\b{re.escape(str(idx))}\b", str(r_row["Flux"]))]
+                matches = [str(r_row["Flux"]) for _, r_row in reaction.iterrows() if re.search(rf"\b{re.escape(p_name)}\b", str(r_row["Flux"]))]
                 if matches: r_of_k = ", ".join(matches)
-            parameter_lines.append(fmt["par"].format(idx, row["Value"], neuron_unit(str(row.get("Unit", ""))), r_of_k))
+            parameter_lines.append(fmt["par"].format(p_name, row["Value"], neuron_unit(str(row.get("Unit", ""))), r_of_k))
+            added_parameters.add(p_name)
+            known_symbols.add(p_name)
+
+    # Auto-register missing rate constant parameters (e.g., kf_*, kr_*) found in reactions
+    if reaction is not None and not reaction.empty:
+        for _, r_row in reaction.iterrows():
+            flux_str = str(r_row["Flux"])
+            implicit_rates = re.findall(r"\b(k[fr]_\w+)\b", flux_str)
+            for rate in implicit_rates:
+                if rate not in added_parameters:
+                    parameter_lines.append(f"\t{rate} = 1.0 (1) : implicitly declared missing rate constant")
+                    added_parameters.add(rate)
+                    known_symbols.add(rate)
 
     if input_df is not None and not input_df.empty:
         for idx, row in input_df.iterrows():
             parameter_lines.append(fmt["input"].format(idx, row["DefaultValue"], neuron_unit(str(row.get("Unit", "")))))
+            known_symbols.add(str(idx))
     parameter_lines.extend(conservation_input)
     parameter_lines.append("}")
     mod["PARAMETER"] = parameter_lines
+
+    # --- UPDATED STRUCTURAL ASSIGNED SAFETY SCAN ---
+    # Now comprehensively scans BOTH Reaction AND Expression formula strings 
+    # to catch every floating parameter (e.g., DA_basal, tau_DA1) missing from sheets.
+    rogue_assigned = set()
+    
+    # 1. Scan Reaction Fluxes
+    if reaction is not None and not reaction.empty:
+        for idx, r_row in reaction.iterrows():
+            known_symbols.add(str(idx))
+            flux_str = str(r_row["Flux"])
+            tokens = re.findall(r"\b([a-zA-Z_]\w*)\b", flux_str)
+            for token in tokens:
+                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]:
+                    continue
+                if token not in known_symbols and token not in added_parameters:
+                    rogue_assigned.add(token)
+
+    # 2. Scan Expression Formulas
+    if expression is not None and not expression.empty:
+        for idx, e_row in expression.iterrows():
+            known_symbols.add(str(idx))
+            formula_str = str(e_row["Formula"])
+            tokens = re.findall(r"\b([a-zA-Z_]\w*)\b", formula_str)
+            for token in tokens:
+                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]:
+                    continue
+                if token not in known_symbols and token not in added_parameters:
+                    rogue_assigned.add(token)
 
     assigned_lines = ["ASSIGNED {", "\ttime (millisecond) : alias for t"]
     if expression is not None and not expression.empty:
@@ -387,12 +462,17 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     if reaction is not None and not reaction.empty:
         for idx in reaction.index: assigned_lines.append(fmt["flux"].format(idx))
     for name in c_name_law: assigned_lines.append(f"\t{name} : computed from conservation law")
+    
+    # Inject dynamically protected variables so NEURON compilation environment clears
+    for rogue in sorted(list(rogue_assigned)):
+        assigned_lines.append(f"\t{rogue} : catch-all baseline fallback tracking structural bounds")
     assigned_lines.append("}")
     mod["ASSIGNED"] = assigned_lines
 
     state_block, derivative_block, ivp_block = [], [], []
     eliminates_list = [int(x) for x in con_law["Eliminates"]] if n_laws > 0 else []
 
+    has_active_odes = False
     for i in range(1, len(compound_clean) + 1):
         idx_0 = i - 1
         c_name = compound_clean.index[idx_0]
@@ -404,6 +484,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             derivative_block.append(fmt["comment"].format(c_name, row_comp.get("InitialValue", "0"), ode_expr))
             ivp_block.append(f"\t: {c_name} cannot have initial values as it is determined by conservation law")
         else:
+            has_active_odes = True
             state_block.append(fmt["state"].format(c_name, neuron_unit(str(row_comp.get("Unit", "")))))
             derivative_block.append(fmt["ode"].format(c_name, re.sub(r"^\s*\+", "", str(ode_expr)), c_name))
             ivp_block.append(f"\t {c_name} = {row_comp.get('InitialValue', '0')} : initial condition")
@@ -419,8 +500,12 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     mod["EXPRESSION"] = expression_lines
     mod["STATE"] = ["STATE {"] + state_block + ["}"]
     mod["INITIAL"] = ["INITIAL {"] + ivp_block + ["}"]
-    mod["BREAKPOINT"] = ["BREAKPOINT {", "\tSOLVE ode METHOD cnexp", "\tassign_calculated_values() : procedure", "}"]
-    mod["DERIVATIVE"] = ["DERIVATIVE ode {"] + derivative_block + ["}"]
+    
+    if has_active_odes:
+        mod["BREAKPOINT"] = ["BREAKPOINT {", "\tSOLVE ode METHOD cnexp", "\tassign_calculated_values() : procedure", "}"]
+        mod["DERIVATIVE"] = ["DERIVATIVE ode {"] + derivative_block + ["}"]
+    else:
+        mod["BREAKPOINT"] = ["BREAKPOINT {", "\tassign_calculated_values() : completely algebraic system loop", "}"]
 
     return mod
 
@@ -452,7 +537,6 @@ def main():
     print(f"[*] Analyzing folder contents: {folder_path}")
     raw_sbtab = parse_sbtab_folder(folder_path)
 
-    # Convert table sets into standard layouts
     reaction = get_reactions(raw_sbtab)
     constant = get_constants(raw_sbtab)
     expression = get_expressions(raw_sbtab)
@@ -460,27 +544,28 @@ def main():
     parameter = get_parameters(raw_sbtab)
     input_df = get_inputs(raw_sbtab)
 
-    # Apply safe state variable suffix mapping to protect NEURON's namespace compiler
-    # E.g., 'AC5' -> 'AC5_st' to avoid internal generation collisions like 'AC50'
     safe_suffix = "_st"
     
-    # 1. Remap compound indices
+    # Track original IDs before suffixing
+    original_compound_ids = list(compound.index)
+    
+    # Sort descending by length so complex IDs are replaced before shorter substrings
+    sorted_original_ids = sorted(original_compound_ids, key=len, reverse=True)
+    
     compound.index = [f"{idx}{safe_suffix}" for idx in compound.index]
     
-    # 2. Remap reaction expressions and formulas to reference new safe names
+    # Regular expression transformation loops
     if reaction is not None and not reaction.empty:
-        for orig_id in raw_sbtab["Compound"].index:
+        for orig_id in sorted_original_ids:
             pattern = rf"\b{re.escape(str(orig_id))}\b"
             reaction["Flux"] = reaction["Flux"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
             reaction["Formula"] = reaction["Formula"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
 
-    # 3. Remap expressions formulas
     if expression is not None and not expression.empty:
-        for orig_id in raw_sbtab["Compound"].index:
+        for orig_id in sorted_original_ids:
             pattern = rf"\b{re.escape(str(orig_id))}\b"
             expression["Formula"] = expression["Formula"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
 
-    # IsConstant dynamic variable reductions
     if "IsConstant" in compound.columns and compound["IsConstant"].any():
         cc = compound[compound["IsConstant"]]
         new_expr = pd.DataFrame({"Formula": cc["InitialValue"], "Unit": cc["Unit"]}, index=cc.index)

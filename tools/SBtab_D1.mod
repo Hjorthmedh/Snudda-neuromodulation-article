@@ -2,7 +2,7 @@ TITLE SBtab_D1
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Sat Jun 27 11:32:10 2026
+	date: Sun Jun 28 10:23:07 2026
 ENDCOMMENT
 
 NEURON {
@@ -340,6 +340,233 @@ PARAMETER {
 	K224 = 1.0 (liter/nanomole-millisecond): does not appear in reactions.
 	K225 = 1.0 (/millisecond): does not appear in reactions.
 	K226 = 1.0 (/millisecond): does not appear in reactions.
+	kf_R0 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R1 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R2 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R2 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R3 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R3 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R4 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R4 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R5 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R5 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R6 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R6 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R7 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R7 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R8 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R8 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R9 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R10 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R10 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R11 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R12 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R12 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R13 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R13 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R14 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R15 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R15 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R16 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R16 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R17 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R17 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R18 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R18 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R19 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R19 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R20 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R21 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R22 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R23 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R23 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R24 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R24 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R25 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R25 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R26 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R26 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R27 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R27 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R28 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R28 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R29 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R29 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R30 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R30 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R31 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R32 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R33 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R34 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R34 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R35 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R35 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R36 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R37 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R38 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R38 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R39 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R39 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R40 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R40 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R41 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R41 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R42 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R43 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R43 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R44 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R45 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R45 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R46 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R47 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R48 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R48 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R49 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R49 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R50 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R50 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R51 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R51 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R52 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R52 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R53 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R53 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R54 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R54 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R55 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R56 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R57 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R58 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R59 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R60 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R61 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R62 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R63 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R64 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R65 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R66 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R67 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R67 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R68 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R68 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R69 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R69 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R70 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R70 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R71 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R71 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R72 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R72 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R73 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R73 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R74 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R74 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R75 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R75 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R76 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R76 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R77 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R77 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R78 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R78 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R79 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R79 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R80 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R80 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R81 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R82 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R82 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R83 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R84 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R84 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R85 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R86 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R86 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R87 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R88 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R88 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R89 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R90 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R90 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R91 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R91 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R92 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R93 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R93 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R94 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R95 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R96 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R96 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R97 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R98 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R98 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R99 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R100 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R100 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R101 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R102 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R102 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R103 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R104 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R104 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R105 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R106 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R106 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R107 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R108 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R108 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R109 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R109 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R110 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R110 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R111 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R111 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R112 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R112 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R113 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R113 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R114 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R114 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R115 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R115 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R116 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R116 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R117 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R117 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R118 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R119 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R120 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R120 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R121 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R121 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R122 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R122 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R123 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R123 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R124 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R124 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R125 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R125 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R126 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R126 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R127 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R127 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R128 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R128 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R129 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R129 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R130 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R130 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R131 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R132 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R132 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R133 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R134 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R134 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R135 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R136 = 1.0 (1) : implicitly declared missing rate constant
+	kr_R136 = 1.0 (1) : implicitly declared missing rate constant
+	kf_R137 = 1.0 (1) : implicitly declared missing rate constant
 	S98_st_ConservedConst = 0.0 : the total amount of a conserved sub-set of states
 	S97_st_ConservedConst = 0.0 : the total amount of a conserved sub-set of states
 	S96_st_ConservedConst = 0.0 : the total amount of a conserved sub-set of states
@@ -679,6 +906,109 @@ ASSIGNED {
 	S2_st : computed from conservation law
 	S1_st : computed from conservation law
 	S0_st : computed from conservation law
+	AC5 : catch-all baseline fallback tracking structural bounds
+	AC5_ATP : catch-all baseline fallback tracking structural bounds
+	AC5_Ca : catch-all baseline fallback tracking structural bounds
+	AC5_Ca_ATP : catch-all baseline fallback tracking structural bounds
+	AC5_Ca_GaolfGTP : catch-all baseline fallback tracking structural bounds
+	AC5_Ca_GaolfGTP_ATP : catch-all baseline fallback tracking structural bounds
+	AC5_GaolfGTP : catch-all baseline fallback tracking structural bounds
+	AC5_GaolfGTP_ATP : catch-all baseline fallback tracking structural bounds
+	ARPP21 : catch-all baseline fallback tracking structural bounds
+	ATP : catch-all baseline fallback tracking structural bounds
+	B56PP2A : catch-all baseline fallback tracking structural bounds
+	B56PP2A_D32p75 : catch-all baseline fallback tracking structural bounds
+	B56PP2A_pARPP21 : catch-all baseline fallback tracking structural bounds
+	B56PP2Ap : catch-all baseline fallback tracking structural bounds
+	B56PP2Ap_D32p75 : catch-all baseline fallback tracking structural bounds
+	B56PP2Ap_pARPP21 : catch-all baseline fallback tracking structural bounds
+	B72PP2A : catch-all baseline fallback tracking structural bounds
+	B72PP2A_Ca : catch-all baseline fallback tracking structural bounds
+	B72PP2A_Ca_D32p34 : catch-all baseline fallback tracking structural bounds
+	B72PP2A_Ca_D32p75 : catch-all baseline fallback tracking structural bounds
+	B72PP2A_Ca_pARPP21 : catch-all baseline fallback tracking structural bounds
+	B72PP2A_D32p34 : catch-all baseline fallback tracking structural bounds
+	B72PP2A_D32p75 : catch-all baseline fallback tracking structural bounds
+	B72PP2A_pARPP21 : catch-all baseline fallback tracking structural bounds
+	CDK5 : catch-all baseline fallback tracking structural bounds
+	CDK5_D32 : catch-all baseline fallback tracking structural bounds
+	Ca : catch-all baseline fallback tracking structural bounds
+	CaM : catch-all baseline fallback tracking structural bounds
+	CaMKII : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca2 : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca2_psd : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca2_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca4 : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca4_CaMKII_CaM_Ca4 : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca4_psd : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_Ca4_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_psd : catch-all baseline fallback tracking structural bounds
+	CaMKII_CaM_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	CaMKII_psd : catch-all baseline fallback tracking structural bounds
+	CaM_Ca2 : catch-all baseline fallback tracking structural bounds
+	CaM_Ca4 : catch-all baseline fallback tracking structural bounds
+	CaM_Ca4_pARPP21 : catch-all baseline fallback tracking structural bounds
+	D1R : catch-all baseline fallback tracking structural bounds
+	D1R_DA : catch-all baseline fallback tracking structural bounds
+	D1R_Golf : catch-all baseline fallback tracking structural bounds
+	D1R_Golf_DA : catch-all baseline fallback tracking structural bounds
+	D32 : catch-all baseline fallback tracking structural bounds
+	D32p34 : catch-all baseline fallback tracking structural bounds
+	D32p75 : catch-all baseline fallback tracking structural bounds
+	DA : catch-all baseline fallback tracking structural bounds
+	DA_basal : catch-all baseline fallback tracking structural bounds
+	DA_max : catch-all baseline fallback tracking structural bounds
+	DA_start : catch-all baseline fallback tracking structural bounds
+	GaolfGDP : catch-all baseline fallback tracking structural bounds
+	GaolfGTP : catch-all baseline fallback tracking structural bounds
+	Gbgolf : catch-all baseline fallback tracking structural bounds
+	Golf : catch-all baseline fallback tracking structural bounds
+	PDE10c : catch-all baseline fallback tracking structural bounds
+	PDE10c_cAMP : catch-all baseline fallback tracking structural bounds
+	PDE10r : catch-all baseline fallback tracking structural bounds
+	PDE10r_cAMP : catch-all baseline fallback tracking structural bounds
+	PDE4 : catch-all baseline fallback tracking structural bounds
+	PDE4_cAMP : catch-all baseline fallback tracking structural bounds
+	PKA : catch-all baseline fallback tracking structural bounds
+	PKA_Ca2MP : catch-all baseline fallback tracking structural bounds
+	PKA_Ca4MP : catch-all baseline fallback tracking structural bounds
+	PKAc : catch-all baseline fallback tracking structural bounds
+	PKAc_ARPP21 : catch-all baseline fallback tracking structural bounds
+	PKAc_B56PP2A : catch-all baseline fallback tracking structural bounds
+	PKAc_D32 : catch-all baseline fallback tracking structural bounds
+	PKAc_D32p75 : catch-all baseline fallback tracking structural bounds
+	PKAreg : catch-all baseline fallback tracking structural bounds
+	PP1 : catch-all baseline fallback tracking structural bounds
+	PP1_D32p34 : catch-all baseline fallback tracking structural bounds
+	PP1_pCaMKII_psd : catch-all baseline fallback tracking structural bounds
+	PP1_pSubstrate : catch-all baseline fallback tracking structural bounds
+	PP2B : catch-all baseline fallback tracking structural bounds
+	PP2B_CaM : catch-all baseline fallback tracking structural bounds
+	PP2B_CaM_Ca2 : catch-all baseline fallback tracking structural bounds
+	PP2Bc : catch-all baseline fallback tracking structural bounds
+	PP2Bc_D32p34 : catch-all baseline fallback tracking structural bounds
+	Substrate : catch-all baseline fallback tracking structural bounds
+	cAMP : catch-all baseline fallback tracking structural bounds
+	pARPP21 : catch-all baseline fallback tracking structural bounds
+	pCaMKII : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca2 : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca2_psd : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca2_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca4 : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca4_CaMKII_CaM_Ca4 : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca4_psd : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_Ca4_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_psd : catch-all baseline fallback tracking structural bounds
+	pCaMKII_CaM_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	pCaMKII_psd : catch-all baseline fallback tracking structural bounds
+	pCaMKII_psd_Substrate : catch-all baseline fallback tracking structural bounds
+	pSubstrate : catch-all baseline fallback tracking structural bounds
+	tau_DA1 : catch-all baseline fallback tracking structural bounds
+	tau_DA2 : catch-all baseline fallback tracking structural bounds
 }
 
 STATE {
@@ -878,205 +1208,106 @@ INITIAL {
 }
 
 BREAKPOINT {
-	SOLVE ode METHOD cnexp
-	assign_calculated_values() : procedure
-}
-
-DERIVATIVE ode {
-	: Compound S0_st with initial condition 700 had derivative 0, but is calculated by conservation law.
-	: Compound S1_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S2_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S3_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S4_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S5_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S6_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S7_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S10_st with initial condition 2000 had derivative 0, but is calculated by conservation law.
-	: Compound S11_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S12_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S13_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S14_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S15_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S16_st with initial condition 2000 had derivative 0, but is calculated by conservation law.
-	: Compound S17_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S18_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S19_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S20_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S21_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S22_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S23_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S25_st with initial condition 9000 had derivative 0, but is calculated by conservation law.
-	: Compound S26_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S27_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S28_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S29_st with initial condition 20000 had derivative 0, but is calculated by conservation law.
-	: Compound S30_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S31_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S32_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S33_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S34_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S35_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S36_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S37_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S38_st with initial condition 3000 had derivative 0, but is calculated by conservation law.
-	: Compound S39_st with initial condition 1800 had derivative 0, but is calculated by conservation law.
-	: Compound S40_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S41_st with initial condition 2000 had derivative 0, but is calculated by conservation law.
-	: Compound S42_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S43_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S44_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S45_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S46_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S47_st with initial condition 50000 had derivative 0, but is calculated by conservation law.
-	: Compound S49_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S50_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S51_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S52_st with initial condition 2000 had derivative 0, but is calculated by conservation law.
-	: Compound S53_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S54_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S55_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S56_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S57_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S58_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S59_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S60_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S61_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S62_st with initial condition 2000 had derivative 0, but is calculated by conservation law.
-	: Compound S63_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S64_st with initial condition 700 had derivative 0, but is calculated by conservation law.
-	: Compound S65_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S66_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S67_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S68_st with initial condition 1200 had derivative 0, but is calculated by conservation law.
-	: Compound S69_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S70_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S71_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S72_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S73_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S74_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S75_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S76_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S77_st with initial condition 3000 had derivative 0, but is calculated by conservation law.
-	: Compound S78_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S79_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S80_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S81_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S82_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S83_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S84_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S85_st with initial condition 4000 had derivative 0, but is calculated by conservation law.
-	: Compound S86_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S87_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S88_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S89_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S90_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S91_st with initial condition 20000 had derivative 0, but is calculated by conservation law.
-	: Compound S92_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S93_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S94_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S95_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S96_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S97_st with initial condition 0 had derivative 0, but is calculated by conservation law.
-	: Compound S98_st with initial condition 0 had derivative 0, but is calculated by conservation law.
+	assign_calculated_values() : completely algebraic system loop
 }
 
 PROCEDURE assign_calculated_values() {
 	time = t : an alias for the time variable, if needed.
-	S98_st = S98_st_ConservedConst - () : conservation law
-	S97_st = S97_st_ConservedConst - () : conservation law
-	S96_st = S96_st_ConservedConst - () : conservation law
-	S95_st = S95_st_ConservedConst - () : conservation law
-	S94_st = S94_st_ConservedConst - () : conservation law
-	S93_st = S93_st_ConservedConst - () : conservation law
-	S92_st = S92_st_ConservedConst - () : conservation law
-	S91_st = S91_st_ConservedConst - () : conservation law
-	S90_st = S90_st_ConservedConst - () : conservation law
-	S89_st = S89_st_ConservedConst - () : conservation law
-	S88_st = S88_st_ConservedConst - () : conservation law
-	S87_st = S87_st_ConservedConst - () : conservation law
-	S86_st = S86_st_ConservedConst - () : conservation law
-	S85_st = S85_st_ConservedConst - () : conservation law
-	S84_st = S84_st_ConservedConst - () : conservation law
-	S83_st = S83_st_ConservedConst - () : conservation law
-	S82_st = S82_st_ConservedConst - () : conservation law
-	S81_st = S81_st_ConservedConst - () : conservation law
-	S80_st = S80_st_ConservedConst - () : conservation law
-	S79_st = S79_st_ConservedConst - () : conservation law
-	S78_st = S78_st_ConservedConst - () : conservation law
-	S77_st = S77_st_ConservedConst - () : conservation law
-	S76_st = S76_st_ConservedConst - () : conservation law
-	S75_st = S75_st_ConservedConst - () : conservation law
-	S74_st = S74_st_ConservedConst - () : conservation law
-	S73_st = S73_st_ConservedConst - () : conservation law
-	S72_st = S72_st_ConservedConst - () : conservation law
-	S71_st = S71_st_ConservedConst - () : conservation law
-	S70_st = S70_st_ConservedConst - () : conservation law
-	S69_st = S69_st_ConservedConst - () : conservation law
-	S68_st = S68_st_ConservedConst - () : conservation law
-	S67_st = S67_st_ConservedConst - () : conservation law
-	S66_st = S66_st_ConservedConst - () : conservation law
-	S65_st = S65_st_ConservedConst - () : conservation law
-	S64_st = S64_st_ConservedConst - () : conservation law
-	S63_st = S63_st_ConservedConst - () : conservation law
-	S62_st = S62_st_ConservedConst - () : conservation law
-	S61_st = S61_st_ConservedConst - () : conservation law
-	S60_st = S60_st_ConservedConst - () : conservation law
-	S59_st = S59_st_ConservedConst - () : conservation law
-	S58_st = S58_st_ConservedConst - () : conservation law
-	S57_st = S57_st_ConservedConst - () : conservation law
-	S56_st = S56_st_ConservedConst - () : conservation law
-	S55_st = S55_st_ConservedConst - () : conservation law
-	S54_st = S54_st_ConservedConst - () : conservation law
-	S53_st = S53_st_ConservedConst - () : conservation law
-	S52_st = S52_st_ConservedConst - () : conservation law
-	S51_st = S51_st_ConservedConst - () : conservation law
-	S50_st = S50_st_ConservedConst - () : conservation law
-	S49_st = S49_st_ConservedConst - () : conservation law
-	S47_st = S47_st_ConservedConst - () : conservation law
-	S46_st = S46_st_ConservedConst - () : conservation law
-	S45_st = S45_st_ConservedConst - () : conservation law
-	S44_st = S44_st_ConservedConst - () : conservation law
-	S43_st = S43_st_ConservedConst - () : conservation law
-	S42_st = S42_st_ConservedConst - () : conservation law
-	S41_st = S41_st_ConservedConst - () : conservation law
-	S40_st = S40_st_ConservedConst - () : conservation law
-	S39_st = S39_st_ConservedConst - () : conservation law
-	S38_st = S38_st_ConservedConst - () : conservation law
-	S37_st = S37_st_ConservedConst - () : conservation law
-	S36_st = S36_st_ConservedConst - () : conservation law
-	S35_st = S35_st_ConservedConst - () : conservation law
-	S34_st = S34_st_ConservedConst - () : conservation law
-	S33_st = S33_st_ConservedConst - () : conservation law
-	S32_st = S32_st_ConservedConst - () : conservation law
-	S31_st = S31_st_ConservedConst - () : conservation law
-	S30_st = S30_st_ConservedConst - () : conservation law
-	S29_st = S29_st_ConservedConst - () : conservation law
-	S28_st = S28_st_ConservedConst - () : conservation law
-	S27_st = S27_st_ConservedConst - () : conservation law
-	S26_st = S26_st_ConservedConst - () : conservation law
-	S25_st = S25_st_ConservedConst - () : conservation law
-	S23_st = S23_st_ConservedConst - () : conservation law
-	S22_st = S22_st_ConservedConst - () : conservation law
-	S21_st = S21_st_ConservedConst - () : conservation law
-	S20_st = S20_st_ConservedConst - () : conservation law
-	S19_st = S19_st_ConservedConst - () : conservation law
-	S18_st = S18_st_ConservedConst - () : conservation law
-	S17_st = S17_st_ConservedConst - () : conservation law
-	S16_st = S16_st_ConservedConst - () : conservation law
-	S15_st = S15_st_ConservedConst - () : conservation law
-	S14_st = S14_st_ConservedConst - () : conservation law
-	S13_st = S13_st_ConservedConst - () : conservation law
-	S12_st = S12_st_ConservedConst - () : conservation law
-	S11_st = S11_st_ConservedConst - () : conservation law
-	S10_st = S10_st_ConservedConst - () : conservation law
-	S7_st = S7_st_ConservedConst - () : conservation law
-	S6_st = S6_st_ConservedConst - () : conservation law
-	S5_st = S5_st_ConservedConst - () : conservation law
-	S4_st = S4_st_ConservedConst - () : conservation law
-	S3_st = S3_st_ConservedConst - () : conservation law
-	S2_st = S2_st_ConservedConst - () : conservation law
-	S1_st = S1_st_ConservedConst - () : conservation law
-	S0_st = S0_st_ConservedConst - () : conservation law
+	S98_st = S98_st_ConservedConst : conservation law
+	S97_st = S97_st_ConservedConst : conservation law
+	S96_st = S96_st_ConservedConst : conservation law
+	S95_st = S95_st_ConservedConst : conservation law
+	S94_st = S94_st_ConservedConst : conservation law
+	S93_st = S93_st_ConservedConst : conservation law
+	S92_st = S92_st_ConservedConst : conservation law
+	S91_st = S91_st_ConservedConst : conservation law
+	S90_st = S90_st_ConservedConst : conservation law
+	S89_st = S89_st_ConservedConst : conservation law
+	S88_st = S88_st_ConservedConst : conservation law
+	S87_st = S87_st_ConservedConst : conservation law
+	S86_st = S86_st_ConservedConst : conservation law
+	S85_st = S85_st_ConservedConst : conservation law
+	S84_st = S84_st_ConservedConst : conservation law
+	S83_st = S83_st_ConservedConst : conservation law
+	S82_st = S82_st_ConservedConst : conservation law
+	S81_st = S81_st_ConservedConst : conservation law
+	S80_st = S80_st_ConservedConst : conservation law
+	S79_st = S79_st_ConservedConst : conservation law
+	S78_st = S78_st_ConservedConst : conservation law
+	S77_st = S77_st_ConservedConst : conservation law
+	S76_st = S76_st_ConservedConst : conservation law
+	S75_st = S75_st_ConservedConst : conservation law
+	S74_st = S74_st_ConservedConst : conservation law
+	S73_st = S73_st_ConservedConst : conservation law
+	S72_st = S72_st_ConservedConst : conservation law
+	S71_st = S71_st_ConservedConst : conservation law
+	S70_st = S70_st_ConservedConst : conservation law
+	S69_st = S69_st_ConservedConst : conservation law
+	S68_st = S68_st_ConservedConst : conservation law
+	S67_st = S67_st_ConservedConst : conservation law
+	S66_st = S66_st_ConservedConst : conservation law
+	S65_st = S65_st_ConservedConst : conservation law
+	S64_st = S64_st_ConservedConst : conservation law
+	S63_st = S63_st_ConservedConst : conservation law
+	S62_st = S62_st_ConservedConst : conservation law
+	S61_st = S61_st_ConservedConst : conservation law
+	S60_st = S60_st_ConservedConst : conservation law
+	S59_st = S59_st_ConservedConst : conservation law
+	S58_st = S58_st_ConservedConst : conservation law
+	S57_st = S57_st_ConservedConst : conservation law
+	S56_st = S56_st_ConservedConst : conservation law
+	S55_st = S55_st_ConservedConst : conservation law
+	S54_st = S54_st_ConservedConst : conservation law
+	S53_st = S53_st_ConservedConst : conservation law
+	S52_st = S52_st_ConservedConst : conservation law
+	S51_st = S51_st_ConservedConst : conservation law
+	S50_st = S50_st_ConservedConst : conservation law
+	S49_st = S49_st_ConservedConst : conservation law
+	S47_st = S47_st_ConservedConst : conservation law
+	S46_st = S46_st_ConservedConst : conservation law
+	S45_st = S45_st_ConservedConst : conservation law
+	S44_st = S44_st_ConservedConst : conservation law
+	S43_st = S43_st_ConservedConst : conservation law
+	S42_st = S42_st_ConservedConst : conservation law
+	S41_st = S41_st_ConservedConst : conservation law
+	S40_st = S40_st_ConservedConst : conservation law
+	S39_st = S39_st_ConservedConst : conservation law
+	S38_st = S38_st_ConservedConst : conservation law
+	S37_st = S37_st_ConservedConst : conservation law
+	S36_st = S36_st_ConservedConst : conservation law
+	S35_st = S35_st_ConservedConst : conservation law
+	S34_st = S34_st_ConservedConst : conservation law
+	S33_st = S33_st_ConservedConst : conservation law
+	S32_st = S32_st_ConservedConst : conservation law
+	S31_st = S31_st_ConservedConst : conservation law
+	S30_st = S30_st_ConservedConst : conservation law
+	S29_st = S29_st_ConservedConst : conservation law
+	S28_st = S28_st_ConservedConst : conservation law
+	S27_st = S27_st_ConservedConst : conservation law
+	S26_st = S26_st_ConservedConst : conservation law
+	S25_st = S25_st_ConservedConst : conservation law
+	S23_st = S23_st_ConservedConst : conservation law
+	S22_st = S22_st_ConservedConst : conservation law
+	S21_st = S21_st_ConservedConst : conservation law
+	S20_st = S20_st_ConservedConst : conservation law
+	S19_st = S19_st_ConservedConst : conservation law
+	S18_st = S18_st_ConservedConst : conservation law
+	S17_st = S17_st_ConservedConst : conservation law
+	S16_st = S16_st_ConservedConst : conservation law
+	S15_st = S15_st_ConservedConst : conservation law
+	S14_st = S14_st_ConservedConst : conservation law
+	S13_st = S13_st_ConservedConst : conservation law
+	S12_st = S12_st_ConservedConst : conservation law
+	S11_st = S11_st_ConservedConst : conservation law
+	S10_st = S10_st_ConservedConst : conservation law
+	S7_st = S7_st_ConservedConst : conservation law
+	S6_st = S6_st_ConservedConst : conservation law
+	S5_st = S5_st_ConservedConst : conservation law
+	S4_st = S4_st_ConservedConst : conservation law
+	S3_st = S3_st_ConservedConst : conservation law
+	S2_st = S2_st_ConservedConst : conservation law
+	S1_st = S1_st_ConservedConst : conservation law
+	S0_st = S0_st_ConservedConst : conservation law
 	EX0 = 5000000 : assignment for expression EX0
 	EX1 = 1 : assignment for expression EX1
 	EX2 = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-exp(-(time-DA_start)/tau_DA2)))) : assignment for expression EX2
