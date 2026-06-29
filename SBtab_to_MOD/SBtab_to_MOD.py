@@ -106,7 +106,6 @@ def _sbtab_quantity_with_name(df: pd.DataFrame) -> tuple[pd.Series, str]:
     """
     Locates the numeric quantity column in an SBtab table by matching exact headers,
     partial extensions (e.g., '!Value:linspace'), or fallback default columns.
-    Returns both the values series and the matched column name string.
     """
     col = None
     for c in df.columns:
@@ -370,7 +369,6 @@ def wrap_expression(expr: str, max_len: int = 100, indent: str = "\t\t") -> str:
     for i, char in enumerate(expr):
         current_line += char
         if char in ('+', '-') and len(current_line) >= max_len:
-            # Avoid breaking inside scientific notations (e.g., 1e-5 or 1e+5)
             if i > 0 and expr[i-1].lower() == 'e':
                 continue
             lines.append(current_line)
@@ -398,13 +396,32 @@ def one_or_more_lines(prefix: str, table: pd.DataFrame, suffix: str, name_map: d
     else:
         return [f"{prefix} {name} {suffix}" for name in names_list]
 
+def standard_clean_unit(unit_str: str) -> str:
+    """Standardizes full text variations into abbreviations recognized by the quantities library."""
+    if not isinstance(unit_str, str) or pd.isna(unit_str):
+        return ""
+    s = unit_str.strip().replace("−", "-")
+    # Convert full words to standard pq abbreviations
+    s = re.sub(r'\bnanomole\b', 'nmol', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bmicromole\b', 'umol', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bmillimole\b', 'mmol', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bmole\b', 'mol', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bliter\b', 'L', s, flags=re.IGNORECASE)
+    s = re.sub(r'\bsecond\b', 's', s, flags=re.IGNORECASE)
+    # Handle shorthand concentration variations
+    s = re.sub(r'\bnM\b', 'nmol/L', s)
+    s = re.sub(r'\buM\b', 'umol/L', s)
+    s = re.sub(r'\bmM\b', 'mmol/L', s)
+    return s
+
 
 def neuron_unit(unit_str: str) -> str:
     """Uses the quantities package to safely parse and format NMODL friendly unit symbols."""
+    
     if not isinstance(unit_str, str) or pd.isna(unit_str) or unit_str.strip() in ["", "1", "dimensionless"]:
         return ""
     try:
-        clean_str = unit_str.replace("−", "-").replace("M", "mol/L")
+        clean_str = standard_clean_unit(unit_str).replace("M", "mol/L")
         q_unit = pq.Quantity(1.0, clean_str).units
         formatted = str(q_unit.dimensionality).strip()
         formatted = re.sub(r"^\(1/([a-zA-Z_]+)\)$", r"/\1", formatted)
@@ -415,22 +432,73 @@ def neuron_unit(unit_str: str) -> str:
 
 
 def process_unit_and_value(value: float, unit_str: str) -> tuple[float, str]:
-    """Handles unit updates to standard NEURON time-bounds and concentration terms."""
+    """Uses native physical dimensionality to scale values automatically to NEURON conventions."""
     if not isinstance(unit_str, str) or pd.isna(unit_str) or unit_str.strip() in ["", "1", "dimensionless"]:
         return value, ""
+    
+    clean_str = standard_clean_unit(unit_str)
+    
     try:
-        clean_str = unit_str.replace("−", "-")
-        
-        if "nanomole" in clean_str and "millimole" not in clean_str:
-            clean_str = clean_str.replace("nanomole", "millimole")
-            value = value * 1e6
-            
         q = value * pq.Quantity(1.0, clean_str)
-        return float(q.magnitude), neuron_unit(clean_str)
+        
+        # Match physical dimensions to target NEURON types automatically
+        # 1. Concentrations (Base: mol/L) -> Target: millimole/liter
+        if q.simplifies.dimensionality == pq.Quantity(1.0, 'mol/L').simplifies.dimensionality:
+            q_rescaled = q.rescale('mmol/L')
+            return float(q_rescaled.magnitude), "millimole/liter"
+            
+        # 2. Time constants (Base: s) -> Target: ms
+        elif q.simplifies.dimensionality == pq.Quantity(1.0, 's').simplifies.dimensionality:
+            q_rescaled = q.rescale('ms')
+            return float(q_rescaled.magnitude), "ms"
+            
+        # 3. 1st order rates (Base: 1/s) -> Target: 1/ms
+        elif q.simplifies.dimensionality == pq.Quantity(1.0, '1/s').simplifies.dimensionality:
+            q_rescaled = q.rescale('1/ms')
+            return float(q_rescaled.magnitude), "/ms"
+            
+        # 4. 2nd order rates (Base: L/(mol*s)) -> Target: L/(mmol*ms)
+        elif q.simplifies.dimensionality == pq.Quantity(1.0, 'L/(mol*s)').simplifies.dimensionality:
+            q_rescaled = q.rescale('L/(mmol*ms)')
+            return float(q_rescaled.magnitude), "liter/millimole/ms"
+            
+        # 5. 3rd order rates (Base: L^2/(mol^2*s)) -> Target: L^2/(mmol^2*ms)
+        elif q.simplifies.dimensionality == pq.Quantity(1.0, 'L**2/(mol**2*s)').simplifies.dimensionality:
+            q_rescaled = q.rescale('L**2/(mmol**2*ms)')
+            return float(q_rescaled.magnitude), "liter2/millimole2/ms"
+            
     except Exception:
         pass
-    return value, neuron_unit(unit_str)
 
+
+    # Safety Manual Fallback if quantities layout parsing fails completely
+    try:
+        lower_unit = unit_str.lower()
+        if "nanomole" in lower_unit or "nm" in lower_unit:
+            # Check if it's explicitly a rate (per millisecond/second) or just a concentration division
+            if "ms" in lower_unit or "s" in lower_unit or "per" in lower_unit:
+                if "2" in lower_unit:
+                    return value * 1e12, "liter2/millimole2/ms"
+                return value * 1e6, "liter/millimole/ms"
+            else:
+                # Catching standard concentrations like nanomole/liter or nmol/L safely
+                return value * 1e-6, "millimole/liter"
+                
+        elif "micromole" in lower_unit or "um" in lower_unit:
+            if "ms" in lower_unit or "s" in lower_unit or "per" in lower_unit:
+                if "2" in lower_unit:
+                    return value * 1e6, "liter2/millimole2/ms"
+                return value * 1e3, "liter/millimole/ms"
+            else:
+                # Catching standard concentrations like micromole/liter or umol/L safely
+                return value * 1e-3, "millimole/liter"
+    except Exception:
+        pass
+    
+    
+    return value, neuron_unit(unit_str)    
+
+    
 
 def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, name_map, con_law=None, config=None):
     if config is None:
@@ -444,7 +512,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     mod = {}
     fmt = {
         "const": "\t{} = {} ({}) : a constant ({})",
-        "par": "\t{} = {} ({}): {} ({})",
+        "par": "\t{} = {} ({}) : {} ({})",
         "input": "\t{}  = {} ({}) : an input ({})",
         "total": "\t{} = {} : total amount for subset ({})",
         "ConservationLaw": "\t{} = {} : conservation law for ({})",
@@ -516,15 +584,30 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     pointer_compounds = set()
 
     for orig_name, p_info in pointers_config.items():
-        p_name = tr(p_info.get("pointer_name"))
-        p_unit = p_info.get("unit", "millimole/liter")
-        pointer_neuron_lines.append(f"\tPOINTER {p_name}")
-        pointer_assigned_declarations.append(f"\t{p_name} ({neuron_unit(p_unit)})")
-        pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({neuron_unit(p_unit)}/ms)")
+        if orig_name.upper() == "CA":
+            ion_lines.append("\tUSEION cal READ cali VALENCE 2")
+            pointer_assigned_declarations.append("\tcali (millimole/liter)")
+            if orig_name in compound.index:
+                pointer_compounds.add(orig_name)
+                pointer_assignments.append(f"\t{tr(orig_name)} = cali : natively mapped to intracellular calcium")
         
-        if orig_name in compound.index:
-            pointer_compounds.add(orig_name)
-            pointer_assignments.append(f"\t{tr(orig_name)} = {p_name} : driven directly via RxD node tracking")
+        elif orig_name.upper() == "DA":
+            ion_lines.append("\tUSEION DA READ DAi VALENCE 0")
+            pointer_assigned_declarations.append("\tDAi (millimole/liter)")
+            if orig_name in compound.index:
+                pointer_compounds.add(orig_name)
+                pointer_assignments.append(f"\t{tr(orig_name)} = DAi : natively mapped to extracellular dopamine")
+                
+        else:
+            p_name = tr(p_info.get("pointer_name"))
+            p_unit = p_info.get("unit", "millimole/liter")
+            pointer_neuron_lines.append(f"\tPOINTER {p_name}")
+            pointer_assigned_declarations.append(f"\t{p_name} ({neuron_unit(p_unit)})")
+            pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({neuron_unit(p_unit)}/ms)")
+            
+            if orig_name in compound.index:
+                pointer_compounds.add(orig_name)
+                pointer_assignments.append(f"\t{tr(orig_name)} = {p_name} : driven directly via external pointer")
 
     mod["NEURON"] = [f"NEURON {{", f"\tSUFFIX {safe_suffix_name}"] + range_lines + ion_lines + pointer_neuron_lines + ["}"]
 
@@ -534,8 +617,9 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     if input_df is not None: known_symbols.update(list(input_df.index))
 
     for orig_name, p_info in pointers_config.items():
-        known_symbols.add(p_info.get("pointer_name"))
-        known_symbols.add(f"{orig_name}_rate")
+        if orig_name.upper() not in ["CA", "DA"]:
+            known_symbols.add(p_info.get("pointer_name"))
+            known_symbols.add(f"{orig_name}_rate")
 
     conservation_law, conservation_input, c_name_law, n_laws = [], [], [], 0
     if con_law is not None and not con_law.empty:
@@ -830,7 +914,8 @@ def main():
             register_safe_name(str(cl_row["ConstantName"]), "CONS")
             
     for orig_name in neuron_config.get("pointers", {}).keys():
-        register_safe_name(f"{orig_name}_rate", "PR")
+        if orig_name.upper() not in ["CA", "DA"]:
+            register_safe_name(f"{orig_name}_rate", "PR")
 
     if reaction is not None and not reaction.empty:
         for _, r_row in reaction.iterrows():
