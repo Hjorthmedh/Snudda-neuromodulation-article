@@ -47,7 +47,7 @@ def parse_tsv_file(file_path: str) -> pd.DataFrame:
 
 
 def parse_sbtab_folder(folder_path: str) -> dict[str, pd.DataFrame]:
-    """Scans a directory for TSV files and maps them to their SBtab equivalents."""
+    """Scans a directory for TSV files and maps them to standard SBtab equivalents."""
     if not os.path.isdir(folder_path):
         raise FileNotFoundError(f"Provided path is not a directory: {folder_path}")
 
@@ -63,15 +63,24 @@ def parse_sbtab_folder(folder_path: str) -> dict[str, pd.DataFrame]:
         if df is None:
             continue
 
-        # Standardize table keys based on file naming conventions
-        if base_name in ["Reaction", "Reactions-conv"]:
+        # Standardize table keys via flexible string matching
+        lower_base = base_name.lower()
+        if "reaction" in lower_base:
             tables["Reaction"] = df
+        elif "compound" in lower_base:
+            tables["Compound"] = df
+        elif "constant" in lower_base:
+            tables["Constant"] = df
+        elif "parameter" in lower_base:
+            tables["Parameter"] = df
+        elif "expression" in lower_base:
+            tables["Expression"] = df
+        elif "input" in lower_base:
+            tables["Input"] = df
+        elif "output" in lower_base:
+            tables["Output"] = df
         else:
             tables[base_name] = df
-
-    # Double check if reaction variant mapping fallback is necessary
-    if "Reaction" not in tables and "Reactions-conv" in tables:
-        tables["Reaction"] = tables["Reactions-conv"]
 
     return tables
 
@@ -118,7 +127,10 @@ def get_constants(sbtab_dict: dict) -> pd.DataFrame:
 
 
 def get_compounds(sbtab_dict: dict) -> pd.DataFrame:
-    df = sbtab_dict["Compound"]
+    df = sbtab_dict.get("Compound")
+    if df is None or df.empty:
+        raise KeyError("Could not locate a valid 'Compound' TSV data block in the specified folder.")
+        
     names = df["!Name"].astype(str) if "!Name" in df.columns else df.index.astype(str)
     clean_iv = df["!InitialValue"].astype(str).str.replace("−", "-")
     
@@ -290,7 +302,7 @@ def get_law_text(laws: np.ndarray, compound_names: list[str], initial_values: li
         indices = np.where((p | n) & allowed)[0]
         k = indices[np.argmax([initial_values[idx] for idx in indices])]
         allowed[k] = False
-        const_name = f"{compound_names[k]}_ConservedConst"
+        const_name = f"{compound_names[k]}_cc"
         con_law["ConstantName"].append(const_name)
         con_law["Text"].append(f"{const_name} = {law_text.replace('1*', '')}")
         
@@ -314,11 +326,22 @@ def get_law_text(laws: np.ndarray, compound_names: list[str], initial_values: li
 # ==========================================
 # 4. MOD WRITER LAYOUT ENGINE
 # ==========================================
-def one_or_more_lines(prefix: str, table: pd.DataFrame, suffix: str) -> list[str]:
+def one_or_more_lines(prefix: str, table: pd.DataFrame, suffix: str, name_map: dict = None) -> list[str]:
     if table is None or table.empty: return []
-    names_list = [str(idx) for idx in table.index]
-    single_line = f"{prefix} {', '.join(names_list)} {suffix}"
-    return [single_line] if len(single_line) < 76 else [f"{prefix} {name} {suffix}" for name in names_list]
+    raw_names = [str(idx) for idx in table.index]
+    names_list = []
+    for name in raw_names:
+        mapped_name = name_map.get(name, name) if name_map else name
+        if mapped_name != name:
+            names_list.append(f"{mapped_name} : original name: {name}")
+        else:
+            names_list.append(mapped_name)
+            
+    single_line = f"{prefix} {', '.join([n.split(':')[0].strip() for n in names_list])} {suffix}"
+    if len(single_line) < 76:
+        return [single_line]
+    else:
+        return [f"{prefix} {name} {suffix}" for name in names_list]
 
 
 def neuron_unit(unit: str) -> str:
@@ -326,41 +349,45 @@ def neuron_unit(unit: str) -> str:
     return re.sub(r"\s*\*\s*", "-", re.sub(r"[()]", "", re.sub(r"^\s*1/", "/", unit)))
 
 
-def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, con_law=None, config=None):
+def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, name_map, con_law=None, config=None):
     if config is None:
         config = {}
     pointers_config = config.get("pointers", {})
     ions_config = config.get("ions", {})
 
+    def tr(name):
+        return name_map.get(str(name), str(name))
+
     mod = {}
     fmt = {
-        "const": "\t{} = {} ({}) : a constant",
-        "par": "\t{} = {} ({}): {}",
-        "input": "\t{}  = {} ({}) : an input",
-        "total": "\t{} = {} : the total amount of a conserved sub-set of states",
-        "ConservationLaw": "\t{} = {} : conservation law",
-        "expression": "\t{} : a pre-defined algebraic expression",
-        "flux": "\t{} : a flux, for use in DERIVATIVE mechanism",
-        "comment": "\t: Compound {} with initial condition {} had derivative {}, but is calculated by conservation law.",
-        "state": "\t{} ({}) : a state variable",
-        "ode": "\t{}' = {} : affects compound {}",
-        "assignment": "\t{} = {} : assignment for expression {}",
+        "const": "\t{} = {} ({}) : a constant ({})",
+        "par": "\t{} = {} ({}): {} ({})",
+        "input": "\t{}  = {} ({}) : an input ({})",
+        "total": "\t{} = {} : total amount for subset ({})",
+        "ConservationLaw": "\t{} = {} : conservation law for ({})",
+        "expression": "\t{} : pre-defined algebraic expression ({})",
+        "flux": "\t{} : reaction flux ({})",
+        "comment": "\t: Compound {} with initial condition {} had derivative {}, but uses conservation law.",
+        "state": "\t{} ({}) : state variable ({})",
+        "ode": "\t{}' = {} : affects compound ({})",
+        "assignment": "\t{} = {} : assignment for expression ({})",
         "ion": "\tUSEION {} {} {} VALENCE {:d}",
     }
+
+    safe_suffix_name = H[:25] if len(H) > 25 else H
 
     mod["TITLE"] = [f"TITLE {H}"]
     mod["COMMENT"] = [f"COMMENT\n\tautomatically generated from separate SBtab TSV files\n\tdate: {datetime.now().strftime('%c')}\nENDCOMMENT"]
 
     range_lines = []
-    range_lines.extend(one_or_more_lines("\tRANGE", input_df, ": input"))
-    range_lines.extend(one_or_more_lines("\tRANGE", expression, ": assigned"))
-    range_lines.extend(one_or_more_lines("\tRANGE", compound, ": compound"))
+    range_lines.extend(one_or_more_lines("\tRANGE", input_df, ": input", name_map))
+    range_lines.extend(one_or_more_lines("\tRANGE", expression, ": assigned", name_map))
+    range_lines.extend(one_or_more_lines("\tRANGE", compound, ": compound", name_map))
 
-    # Tracking list to capture all ion READ/WRITE dependencies for ASSIGNED block safety inclusion
     ion_variables = set()
-
-    # Process USEION configuration from tabular parameters
     ion_lines = []
+    explicit_ion_writebacks = []  # Tracks bindings needed for WRITE nodes
+
     if "USEION" in compound.columns:
         ion_mask = compound["USEION"].astype(str).str.strip().str.len() > 0
         compound_ion = compound[ion_mask]
@@ -369,55 +396,62 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             r_var = str(row.get("READ", "")).strip() if pd.notna(row.get("READ")) else ""
             w_var = str(row.get("WRITE", "")).strip() if pd.notna(row.get("WRITE")) else ""
             
-            if r_var and r_var.lower() != "none": ion_variables.add(r_var)
-            if w_var and w_var.lower() != "none": ion_variables.add(w_var)
+            if r_var and r_var.lower() != "none": ion_variables.add(tr(r_var))
+            if w_var and w_var.lower() != "none": 
+                ion_variables.add(tr(w_var))
+                explicit_ion_writebacks.append((tr(w_var), tr(idx)))
             
-            r_str = f"READ {r_var}" if r_var and r_var.lower() != "none" else ""
-            w_str = f"WRITE {w_var}" if w_var and w_var.lower() != "none" else ""
+            r_str = f"READ {tr(r_var)}" if r_var and r_var.lower() != "none" else ""
+            w_str = f"WRITE {tr(w_var)}" if w_var and w_var.lower() != "none" else ""
             ion_lines.append(fmt["ion"].format(row.get("USEION", ""), r_str, w_str, val))
 
-    # Incorporate Ion configuration from external JSON layout map
-    for orig_name, ion_info in ions_config.items():
-        ion_name = orig_name
+    for orig_ion_name, ion_info in ions_config.items():
         r_var = ion_info.get("read", "").strip()
         w_var = ion_info.get("write", "").strip()
         valence = ion_info.get("valence", 0)
         
-        if r_var: ion_variables.add(r_var)
-        if w_var: ion_variables.add(w_var)
+        if r_var: ion_variables.add(tr(r_var))
+        if w_var: 
+            ion_variables.add(tr(w_var))
+            # Match config file references directly against compound base names
+            matched_compound = None
+            for c_idx in compound.index:
+                if str(c_idx).startswith(orig_ion_name):
+                    matched_compound = c_idx
+                    break
+            if matched_compound:
+                explicit_ion_writebacks.append((tr(w_var), tr(matched_compound)))
+            else:
+                explicit_ion_writebacks.append((tr(w_var), tr(orig_ion_name)))
         
-        r_str = f"READ {r_var}" if r_var else ""
-        w_str = f"WRITE {w_var}" if w_var else ""
-        ion_lines.append(fmt["ion"].format(ion_name, r_str, w_str, valence))
+        r_str = f"READ {tr(r_var)}" if r_var else ""
+        w_str = f"WRITE {tr(w_var)}" if w_var else ""
+        ion_lines.append(fmt["ion"].format(orig_ion_name, r_str, w_str, valence))
 
-    # Process POINTER configuration tags
     pointer_neuron_lines = []
     pointer_assignments = []
     pointer_assigned_declarations = []
     pointer_compounds = set()
 
     for orig_name, p_info in pointers_config.items():
-        p_name = p_info.get("pointer_name")
+        p_name = tr(p_info.get("pointer_name"))
         p_unit = p_info.get("unit", "millimole/liter")
         pointer_neuron_lines.append(f"\tPOINTER {p_name}")
         pointer_assigned_declarations.append(f"\t{p_name} ({p_unit})")
-        pointer_assigned_declarations.append(f"\t{orig_name}_rate ({p_unit}/millisecond)")
+        pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({p_unit}/millisecond)")
         
-        # Track the suffixed form of the pointer compound
         suffixed_name = f"{orig_name}_st"
         if suffixed_name in compound.index:
             pointer_compounds.add(suffixed_name)
-            pointer_assignments.append(f"\t{suffixed_name} = {p_name} : driven directly via RxD node tracking")
+            pointer_assignments.append(f"\t{tr(suffixed_name)} = {p_name} : driven directly via RxD node tracking")
 
-    mod["NEURON"] = ["NEURON {", f"\tSUFFIX {H}"] + range_lines + ion_lines + pointer_neuron_lines + ["}"]
+    mod["NEURON"] = [f"NEURON {{", f"\tSUFFIX {safe_suffix_name}"] + range_lines + ion_lines + pointer_neuron_lines + ["}"]
 
-    # Collect known symbols to prevent declaring them as rogue values later
     known_symbols = set(list(compound.index))
     if constant is not None: known_symbols.update(list(constant.index))
     if expression is not None: known_symbols.update(list(expression.index))
     if input_df is not None: known_symbols.update(list(input_df.index))
 
-    # Safe-register pointer variables so structural scanners skip them
     for orig_name, p_info in pointers_config.items():
         known_symbols.add(p_info.get("pointer_name"))
         known_symbols.add(f"{orig_name}_rate")
@@ -427,18 +461,22 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         n_laws = len(con_law)
         for _, row_cl in con_law.iterrows():
             c_name = compound.index[int(row_cl["Eliminates"]) - 1]
-            if c_name in pointer_compounds: continue # Pointers bypass conservation reduction loops
+            if c_name in pointer_compounds: continue 
             c_name_law.append(c_name)
-            conservation_input.append(fmt["total"].format(row_cl["ConstantName"], row_cl["Constant"]))
+            conservation_input.append(fmt["total"].format(tr(row_cl["ConstantName"]), row_cl["Constant"], row_cl["ConstantName"]))
             known_symbols.add(str(row_cl["ConstantName"]))
             
             formula_part = f" - ({row_cl['Formula']})" if row_cl['Formula'] != "0" else ""
-            conservation_law.append(fmt["ConservationLaw"].format(c_name, f"{row_cl['ConstantName']}{formula_part}"))
+            trans_formula = formula_part
+            for k_id, v_id in name_map.items():
+                trans_formula = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_formula)
+                
+            conservation_law.append(fmt["ConservationLaw"].format(tr(c_name), f"{tr(row_cl['ConstantName'])}{trans_formula}", c_name))
 
     constant_lines = ["CONSTANT {"]
     if constant is not None and not constant.empty:
         for idx, row in constant.iterrows():
-            constant_lines.append(fmt["const"].format(idx, row["Value"], neuron_unit(str(row.get("Unit", "")))))
+            constant_lines.append(fmt["const"].format(tr(idx), row["Value"], neuron_unit(str(row.get("Unit", ""))), idx))
     constant_lines.append("}")
     mod["CONSTANT"] = constant_lines
 
@@ -457,8 +495,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             r_of_k = "does not appear in reactions."
             if reaction is not None and not reaction.empty:
                 matches = [str(r_row["Flux"]) for _, r_row in reaction.iterrows() if re.search(rf"\b{re.escape(p_name)}\b", str(r_row["Flux"]))]
-                if matches: r_of_k = ", ".join(matches)
-            parameter_lines.append(fmt["par"].format(p_name, row["Value"], neuron_unit(str(row.get("Unit", ""))), r_of_k))
+                if matches: r_of_k = "used in flux formulas"
+            parameter_lines.append(fmt["par"].format(tr(p_name), row["Value"], neuron_unit(str(row.get("Unit", ""))), r_of_k, p_name))
             added_parameters.add(p_name)
             known_symbols.add(p_name)
 
@@ -468,19 +506,18 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             implicit_rates = re.findall(r"\b(k[fr]_\w+)\b", flux_str)
             for rate in implicit_rates:
                 if rate not in added_parameters:
-                    parameter_lines.append(f"\t{rate} = 1.0 (1) : implicitly declared missing rate constant")
+                    parameter_lines.append(f"\t{tr(rate)} = 1.0 (1) : implicitly declared missing rate constant ({rate})")
                     added_parameters.add(rate)
                     known_symbols.add(rate)
 
     if input_df is not None and not input_df.empty:
         for idx, row in input_df.iterrows():
-            parameter_lines.append(fmt["input"].format(idx, row["DefaultValue"], neuron_unit(str(row.get("Unit", "")))))
+            parameter_lines.append(fmt["input"].format(tr(idx), row["DefaultValue"], neuron_unit(str(row.get("Unit", ""))), idx))
             known_symbols.add(str(idx))
     parameter_lines.extend(conservation_input)
     parameter_lines.append("}")
     mod["PARAMETER"] = parameter_lines
 
-    # --- STRUCTURAL ASSIGNED SAFETY SCAN ---
     rogue_assigned = set()
     if reaction is not None and not reaction.empty:
         for idx, r_row in reaction.iterrows():
@@ -502,22 +539,20 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     assigned_lines = ["ASSIGNED {", "\ttime (millisecond) : alias for t"]
     if expression is not None and not expression.empty:
-        for idx in expression.index: assigned_lines.append(fmt["expression"].format(idx))
+        for idx in expression.index: assigned_lines.append(fmt["expression"].format(tr(idx), idx))
     if reaction is not None and not reaction.empty:
-        for idx in reaction.index: assigned_lines.append(fmt["flux"].format(idx))
-    for name in c_name_law: assigned_lines.append(f"\t{name} : computed from conservation law")
+        for idx in reaction.index: assigned_lines.append(fmt["flux"].format(tr(idx), idx))
+    for name in c_name_law: assigned_lines.append(f"\t{tr(name)} : computed from conservation law ({name})")
     
-    # Move pointer-driven compounds out of STATE and into ASSIGNED block space
     for c_name in sorted(list(pointer_compounds)):
-        assigned_lines.append(f"\t{c_name} : variable assigned externally via pointer mapping")
+        assigned_lines.append(f"\t{tr(c_name)} : variable assigned externally via pointer mapping ({c_name})")
     assigned_lines.extend(pointer_assigned_declarations)
 
-    # CRITICAL INCLUSION: Append all registered internal/external concentration ion variables
     for ion_var in sorted(list(ion_variables)):
         assigned_lines.append(f"\t{ion_var} (millimole/liter) : ion variable registered for internal scope linkage")
 
     for rogue in sorted(list(rogue_assigned)):
-        assigned_lines.append(f"\t{rogue} : catch-all baseline fallback tracking structural bounds")
+        assigned_lines.append(f"\t{tr(rogue)} : catch-all baseline fallback tracking structural bounds ({rogue})")
     assigned_lines.append("}")
     mod["ASSIGNED"] = assigned_lines
 
@@ -532,30 +567,52 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         ode_expr = ode[idx_0] if idx_0 < len(ode) else ""
 
         if c_name in pointer_compounds:
-            # Trap total consumption network fluxes into pointer writeback metrics instead of defining STATE variables
             clean_ode = re.sub(r"^\s*\+", "", str(ode_expr))
             if not clean_ode or clean_ode.isspace(): clean_ode = "0"
-            pointer_assignments.append(f"\t{c_name[:-3]}_rate = {clean_ode} : writeback consumption rate matrix element")
+            for k_id, v_id in name_map.items():
+                clean_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, clean_ode)
+            pointer_assignments.append(f"\t{tr(c_name[:-3] + '_rate')} = {clean_ode} : writeback consumption rate matrix element")
             continue
 
         if n_laws > 0 and i in eliminates_list:
-            state_block.append(f"\t: {c_name} is calculated via Conservation Law")
-            derivative_block.append(fmt["comment"].format(c_name, row_comp.get("InitialValue", "0"), ode_expr))
-            ivp_block.append(f"\t: {c_name} cannot have initial values as it is determined by conservation law")
+            state_block.append(f"\t: {tr(c_name)} is calculated via Conservation Law")
+            trans_ode = ode_expr
+            for k_id, v_id in name_map.items():
+                trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
+            derivative_block.append(fmt["comment"].format(tr(c_name), row_comp.get("InitialValue", "0"), trans_ode))
+            ivp_block.append(f"\t: {tr(c_name)} cannot have initial values as it is determined by conservation law")
         else:
             has_active_odes = True
-            state_block.append(fmt["state"].format(c_name, neuron_unit(str(row_comp.get("Unit", "")))))
-            derivative_block.append(fmt["ode"].format(c_name, re.sub(r"^\s*\+", "", str(ode_expr)), c_name))
-            ivp_block.append(f"\t {c_name} = {row_comp.get('InitialValue', '0')} : initial condition")
+            state_block.append(fmt["state"].format(tr(c_name), neuron_unit(str(row_comp.get("Unit", ""))), c_name))
+            trans_ode = re.sub(r"^\s*\+", "", str(ode_expr))
+            for k_id, v_id in name_map.items():
+                trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
+            derivative_block.append(fmt["ode"].format(tr(c_name), trans_ode, c_name))
+            ivp_block.append(f"\t {tr(c_name)} = {row_comp.get('InitialValue', '0')} : initial condition")
 
     expression_lines = ["PROCEDURE assign_calculated_values() {", "\ttime = t : an alias for the time variable, if needed."]
     expression_lines.extend(conservation_law)
     expression_lines.extend(pointer_assignments)
     
+    # Critical Fix: Inject assignments to satisfy WRITE requirement for non-STATE ion variables
+    if explicit_ion_writebacks:
+        expression_lines.append("\t: Ion WRITE variable value updates")
+        for ion_w_var, source_var in explicit_ion_writebacks:
+            expression_lines.append(f"\t{ion_w_var} = {source_var}")
+
     if expression is not None and not expression.empty:
-        for idx, row in expression.iterrows(): expression_lines.append(fmt["assignment"].format(idx, row["Formula"], idx))
+        for idx, row in expression.iterrows(): 
+            trans_form = row["Formula"]
+            for k_id, v_id in name_map.items():
+                trans_form = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_form)
+            expression_lines.append(fmt["assignment"].format(tr(idx), trans_form, idx))
+            
     if reaction is not None and not reaction.empty:
-        for idx, row in reaction.iterrows(): expression_lines.append(f"\t{idx} = {row['Flux']} : flux expression {idx}")
+        for idx, row in reaction.iterrows(): 
+            trans_flux = row["Flux"]
+            for k_id, v_id in name_map.items():
+                trans_flux = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_flux)
+            expression_lines.append(f"\t{tr(idx)} = {trans_flux} : flux expression {idx}")
     expression_lines.append("}")
 
     mod["EXPRESSION"] = expression_lines
@@ -649,6 +706,34 @@ def main():
             ivs = pd.to_numeric(compound["InitialValue"], errors="coerce").fillna(0.0).tolist()
             con_law_df = get_law_text(laws, list(compound.index), ivs)
 
+    # Deterministic short name maps
+    name_translations = {}
+    
+    def register_safe_name(long_name, class_prefix):
+        if len(long_name) <= 28: 
+            return long_name
+        if long_name not in name_translations:
+            idx = len([v for v in name_translations.values() if v.startswith(class_prefix)]) + 1
+            name_translations[long_name] = f"{class_prefix}_{idx}"
+        return name_translations[long_name]
+
+    for c_id in compound.index: register_safe_name(str(c_id), "C")
+    if constant is not None:
+        for cst_id in constant.index: register_safe_name(str(cst_id), "K")
+    if parameter is not None:
+        for p_id in parameter.index: register_safe_name(str(p_id), "P")
+    if expression is not None:
+        for e_id in expression.index: register_safe_name(str(e_id), "E")
+    if reaction is not None:
+        for r_id in reaction.index: register_safe_name(str(r_id), "R")
+    if input_df is not None:
+        for i_id in input_df.index: register_safe_name(str(i_id), "IN")
+    if con_law_df is not None:
+        for cl_idx, cl_row in con_law_df.iterrows():
+            register_safe_name(str(cl_row["ConstantName"]), "CONS")
+
+    print(f"[*] Shortened {len(name_translations)} variables to comply with NMODL string lengths.")
+
     print("[*] Structuring block files...")
     mod_blocks = make_mod(
         H=model_name,
@@ -659,6 +744,7 @@ def main():
         reaction=reaction,
         compound=compound,
         ode=ode_list,
+        name_map=name_translations,
         con_law=con_law_df,
         config=neuron_config,
     )
