@@ -6,7 +6,7 @@ from datetime import datetime
 import numpy as np
 import pandas as pd
 import sympy
-
+import quantities as pq
 
 # ==========================================
 # 1. PARSER LAYER FOR SEPARATE TSV FILES
@@ -102,9 +102,27 @@ def _optional_column(df: pd.DataFrame, col_name: str, mode: str = "logical") -> 
     return df[col_name].astype(str).fillna("")
 
 
+def _sbtab_quantity_with_name(df: pd.DataFrame) -> tuple[pd.Series, str]:
+    """
+    Locates the numeric quantity column in an SBtab table by matching exact headers,
+    partial extensions (e.g., '!Value:linspace'), or fallback default columns.
+    Returns both the values series and the matched column name string.
+    """
+    col = None
+    for c in df.columns:
+        if str(c).startswith("!Value"):
+            col = c
+            break
+    if col is None and "!DefaultValue" in df.columns:
+        col = "!DefaultValue"
+    if col is None:
+        col = df.columns[0]
+    return pd.to_numeric(df[col], errors="coerce").fillna(0.0), str(col)
+
+
 def _sbtab_quantity(df: pd.DataFrame) -> pd.Series:
-    col = "!Value" if "!Value" in df.columns else df.columns[0]
-    return pd.to_numeric(df[col], errors="coerce").fillna(0.0)
+    vals, _ = _sbtab_quantity_with_name(df)
+    return vals
 
 
 def get_reactions(sbtab_dict: dict) -> pd.DataFrame:
@@ -120,7 +138,10 @@ def get_reactions(sbtab_dict: dict) -> pd.DataFrame:
 
 def get_constants(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict.get("Constant")
-    return None if df is None or df.empty else pd.DataFrame({"Value": _sbtab_quantity(df), "Unit": df.get("!Unit", "1")}, index=df.index)
+    if df is None or df.empty: return None
+    if "!Name" in df.columns:
+        df = df.copy().set_index("!Name")
+    return pd.DataFrame({"Value": _sbtab_quantity(df), "Unit": df.get("!Unit", "1")}, index=df.index)
 
 
 def get_compounds(sbtab_dict: dict) -> pd.DataFrame:
@@ -148,21 +169,33 @@ def get_compounds(sbtab_dict: dict) -> pd.DataFrame:
 
 def get_expressions(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict.get("Expression")
-    return None if df is None or df.empty else pd.DataFrame({"Formula": df.get("!Formula", ""), "Unit": df.get("!Unit", "1")}, index=df.index)
+    if df is None or df.empty: return None
+    if "!Name" in df.columns:
+        df = df.copy().set_index("!Name")
+    return pd.DataFrame({"Formula": df.get("!Formula", ""), "Unit": df.get("!Unit", "1")}, index=df.index)
 
 
 def get_parameters(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict.get("Parameter")
     if df is None or df.empty:
         return pd.DataFrame(columns=["Value", "Unit"])
+    
+    df = df.copy()
+    if "!Name" in df.columns:
+        df.set_index("!Name", inplace=True)
+        
     scale = _optional_column(df, "!Scale", "character")
-    values = _sbtab_quantity(df).copy()
-    for idx, s in scale.items():
-        if "log" in str(s).lower() or str(s).lower() == "ln":
-            if re.search(r"((natural|base-e)?\s*log(arithm)?|ln)", str(s), re.IGNORECASE):
-                values.at[idx] = np.exp(values.at[idx])
-            elif re.search(r"((decadic|base-10)\s*logarithm|log10)", str(s), re.IGNORECASE):
+    values, target_col = _sbtab_quantity_with_name(df)
+    values = values.copy()
+
+    if ":" not in target_col:
+        for idx, s in scale.items():
+            s_str = str(s).lower().strip()
+            if "log10" in s_str or "base-10" in s_str:
                 values.at[idx] = 10 ** values.at[idx]
+            elif "ln" in s_str or "log" in s_str or "natural" in s_str:
+                values.at[idx] = np.exp(values.at[idx])
+                
     return pd.DataFrame({"Value": values, "Unit": df.get("!Unit", "1")}, index=df.index)
 
 
@@ -170,6 +203,8 @@ def get_outputs(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict.get("Output")
     if df is None or df.empty:
         return pd.DataFrame(columns=["Formula", "Unit"])
+    if "!Name" in df.columns:
+        df = df.copy().set_index("!Name")
     return pd.DataFrame({"Formula": df.get("!Formula", ""), "Unit": df.get("!Unit", "1")}, index=df.index)
 
 
@@ -177,6 +212,9 @@ def get_inputs(sbtab_dict: dict) -> pd.DataFrame:
     df = sbtab_dict.get("Input")
     if df is None or df.empty:
         return None
+    df = df.copy()
+    if "!Name" in df.columns:
+        df.set_index("!Name", inplace=True)
     mask = ~_optional_column(df, "!ConservationLaw", "logical")
     filtered_df = df[mask]
     return None if filtered_df.empty else pd.DataFrame({"DefaultValue": _sbtab_quantity(filtered_df), "Unit": filtered_df.get("!Unit", "1")}, index=filtered_df.index)
@@ -339,9 +377,37 @@ def one_or_more_lines(prefix: str, table: pd.DataFrame, suffix: str, name_map: d
         return [f"{prefix} {name} {suffix}" for name in names_list]
 
 
-def neuron_unit(unit: str) -> str:
-    if not isinstance(unit, str) or pd.isna(unit): return ""
-    return re.sub(r"\s*\*\s*", "-", re.sub(r"[()]", "", re.sub(r"^\s*1/", "/", unit)))
+def neuron_unit(unit_str: str) -> str:
+    """Uses the quantities package to safely parse and format NMODL friendly unit symbols."""
+    if not isinstance(unit_str, str) or pd.isna(unit_str) or unit_str.strip() in ["", "1", "dimensionless"]:
+        return ""
+    try:
+        clean_str = unit_str.replace("−", "-").replace("M", "mol/L")
+        q_unit = pq.Quantity(1.0, clean_str).units
+        formatted = str(q_unit.dimensionality).strip()
+        formatted = re.sub(r"^\(1/([a-zA-Z_]+)\)$", r"/\1", formatted)
+        formatted = formatted.replace("(", "").replace(")", "").replace("**", "")
+        return formatted
+    except Exception:
+        return re.sub(r"\s*\*\s*", "-", re.sub(r"[()]", "", re.sub(r"^\s*1/", "/", unit_str)))
+
+
+def process_unit_and_value(value: float, unit_str: str) -> tuple[float, str]:
+    """Handles unit updates to standard NEURON time-bounds and concentration terms."""
+    if not isinstance(unit_str, str) or pd.isna(unit_str) or unit_str.strip() in ["", "1", "dimensionless"]:
+        return value, ""
+    try:
+        clean_str = unit_str.replace("−", "-")
+        
+        if "nanomole" in clean_str and "millimole" not in clean_str:
+            clean_str = clean_str.replace("nanomole", "millimole")
+            value = value * 1e6
+            
+        q = value * pq.Quantity(1.0, clean_str)
+        return float(q.magnitude), neuron_unit(clean_str)
+    except Exception:
+        pass
+    return value, neuron_unit(unit_str)
 
 
 def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, name_map, con_law=None, config=None):
@@ -431,8 +497,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         p_name = tr(p_info.get("pointer_name"))
         p_unit = p_info.get("unit", "millimole/liter")
         pointer_neuron_lines.append(f"\tPOINTER {p_name}")
-        pointer_assigned_declarations.append(f"\t{p_name} ({p_unit})")
-        pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({p_unit}/millisecond)")
+        pointer_assigned_declarations.append(f"\t{p_name} ({neuron_unit(p_unit)})")
+        pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({neuron_unit(p_unit)}/ms)")
         
         if orig_name in compound.index:
             pointer_compounds.add(orig_name)
@@ -469,7 +535,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     constant_lines = ["CONSTANT {"]
     if constant is not None and not constant.empty:
         for idx, row in constant.iterrows():
-            constant_lines.append(fmt["const"].format(tr(idx), row["Value"], neuron_unit(str(row.get("Unit", ""))), idx))
+            v_scaled, u_name = process_unit_and_value(float(row["Value"]), str(row.get("Unit", "")))
+            constant_lines.append(fmt["const"].format(tr(idx), v_scaled, u_name, idx))
     constant_lines.append("}")
     mod["CONSTANT"] = constant_lines
 
@@ -477,19 +544,11 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     added_parameters = set()
 
     if parameter is not None and not parameter.empty:
-        parameter_cp = parameter.copy()
-        for idx, row in parameter_cp.iterrows():
-            unit_str = str(row.get("Unit", ""))
-            if re.search(r"/.*\bsecond\b", unit_str):
-                parameter_cp.at[idx, "Unit"] = re.sub(r"\bsecond\b", "millisecond", unit_str)
-                parameter_cp.at[idx, "Value"] = float(row["Value"]) / 1e3
-        for idx, row in parameter_cp.iterrows():
+        for idx, row in parameter.iterrows():
             p_name = str(idx)
-            r_of_k = "does not appear in reactions."
-            if reaction is not None and not reaction.empty:
-                matches = [str(r_row["Flux"]) for _, r_row in reaction.iterrows() if re.search(rf"\b{re.escape(p_name)}\b", str(r_row["Flux"]))]
-                if matches: r_of_k = "used in flux formulas"
-            parameter_lines.append(fmt["par"].format(tr(p_name), row["Value"], neuron_unit(str(row.get("Unit", ""))), r_of_k, p_name))
+            r_of_k = "a kinetic parameter"
+            v_scaled, u_name = process_unit_and_value(float(row["Value"]), str(row.get("Unit", "")))
+            parameter_lines.append(fmt["par"].format(tr(p_name), v_scaled, u_name, r_of_k, p_name))
             added_parameters.add(p_name)
             known_symbols.add(p_name)
 
@@ -505,7 +564,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     if input_df is not None and not input_df.empty:
         for idx, row in input_df.iterrows():
-            parameter_lines.append(fmt["input"].format(tr(idx), row["DefaultValue"], neuron_unit(str(row.get("Unit", ""))), idx))
+            v_scaled, u_name = process_unit_and_value(float(row["DefaultValue"]), str(row.get("Unit", "")))
+            parameter_lines.append(fmt["input"].format(tr(idx), v_scaled, u_name, idx))
             known_symbols.add(str(idx))
     parameter_lines.extend(conservation_input)
     parameter_lines.append("}")
@@ -530,7 +590,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
                 if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]: continue
                 if token not in known_symbols and token not in added_parameters: rogue_assigned.add(token)
 
-    assigned_lines = ["ASSIGNED {", "\ttime (millisecond) : alias for t"]
+    assigned_lines = ["ASSIGNED {", "\ttime (ms) : alias for t"]
     if expression is not None and not expression.empty:
         for idx in expression.index: assigned_lines.append(fmt["expression"].format(tr(idx), idx))
     if reaction is not None and not reaction.empty:
@@ -542,7 +602,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     assigned_lines.extend(pointer_assigned_declarations)
 
     for ion_var in sorted(list(ion_variables)):
-        assigned_lines.append(f"\t{ion_var} (millimole/liter) : ion variable registered for internal scope linkage")
+        assigned_lines.append(f"\t{ion_var} (mol/L) : ion variable registered for internal scope linkage")
 
     for rogue in sorted(list(rogue_assigned)):
         assigned_lines.append(f"\t{tr(rogue)} : catch-all baseline fallback tracking structural bounds ({rogue})")
@@ -673,7 +733,6 @@ def main():
     parameter = get_parameters(raw_sbtab)
     input_df = get_inputs(raw_sbtab)
 
-    # 1. FIXED LOGIC: Clean compound names ONLY if they start with numbers
     cleaned_compound_indices = []
     for idx in compound.index:
         name_str = str(idx)
@@ -681,11 +740,10 @@ def main():
             cleaned_compound_indices.append(name_str)
         else:
             if re.match(r"^\d", name_str):
-                # Prefix numeric-first variables cleanly with a valid alphabetic character
                 name_str = f"comp_{name_str}"
+            # Logic adding '_st' suffix has been removed here
             cleaned_compound_indices.append(name_str)
     
-    # Map from old layout coordinates to target clean syntax coordinates
     compound_rename_map = dict(zip(compound.index, cleaned_compound_indices))
     compound.index = cleaned_compound_indices
     
@@ -722,7 +780,6 @@ def main():
             ivs = pd.to_numeric(compound["InitialValue"], errors="coerce").fillna(0.0).tolist()
             con_law_df = get_law_text(laws, list(compound.index), ivs)
 
-    # 2. Targeted translation maps for variables exceeding NMODL's length limits
     name_translations = {}
     
     def register_safe_name(long_name, class_prefix):
@@ -750,11 +807,9 @@ def main():
         for cl_idx, cl_row in con_law_df.iterrows():
             register_safe_name(str(cl_row["ConstantName"]), "CONS")
             
-    # Track external configuration pointer rates
     for orig_name in neuron_config.get("pointers", {}).keys():
         register_safe_name(f"{orig_name}_rate", "PR")
 
-    # Scan for long implicit rate constants found in reaction fluxes
     if reaction is not None and not reaction.empty:
         for _, r_row in reaction.iterrows():
             flux_str = str(r_row["Flux"])
