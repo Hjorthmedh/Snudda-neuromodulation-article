@@ -2,107 +2,107 @@ TITLE SBtab_D1
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Mon Jun 29 13:44:45 2026
+	date: Mon Jun 29 14:58:15 2026
 ENDCOMMENT
 
 NEURON {
 	SUFFIX SBtab_D1
-	RANGE EX0, EX1, EX2, S8_st, S9_st, S24_st, S48_st : assigned
-	RANGE S0_st : compound
-	RANGE S1_st : compound
-	RANGE S2_st : compound
-	RANGE S3_st : compound
-	RANGE S4_st : compound
-	RANGE S5_st : compound
-	RANGE S6_st : compound
-	RANGE S7_st : compound
-	RANGE S10_st : compound
-	RANGE S11_st : compound
-	RANGE S12_st : compound
-	RANGE S13_st : compound
-	RANGE S14_st : compound
-	RANGE S15_st : compound
-	RANGE S16_st : compound
-	RANGE S17_st : compound
-	RANGE S18_st : compound
-	RANGE S19_st : compound
-	RANGE S20_st : compound
-	RANGE S21_st : compound
-	RANGE S22_st : compound
-	RANGE S23_st : compound
-	RANGE S25_st : compound
-	RANGE S26_st : compound
-	RANGE S27_st : compound
-	RANGE S28_st : compound
-	RANGE S29_st : compound
-	RANGE S30_st : compound
-	RANGE S31_st : compound
-	RANGE S32_st : compound
-	RANGE S33_st : compound
-	RANGE S34_st : compound
-	RANGE S35_st : compound
-	RANGE S36_st : compound
-	RANGE S37_st : compound
-	RANGE S38_st : compound
-	RANGE S39_st : compound
-	RANGE S40_st : compound
-	RANGE S41_st : compound
-	RANGE S42_st : compound
-	RANGE S43_st : compound
-	RANGE S44_st : compound
-	RANGE S45_st : compound
-	RANGE S46_st : compound
-	RANGE S47_st : compound
-	RANGE S49_st : compound
-	RANGE S50_st : compound
-	RANGE S51_st : compound
-	RANGE S52_st : compound
-	RANGE S53_st : compound
-	RANGE S54_st : compound
-	RANGE S55_st : compound
-	RANGE S56_st : compound
-	RANGE S57_st : compound
-	RANGE S58_st : compound
-	RANGE S59_st : compound
-	RANGE S60_st : compound
-	RANGE S61_st : compound
-	RANGE S62_st : compound
-	RANGE S63_st : compound
-	RANGE S64_st : compound
-	RANGE S65_st : compound
-	RANGE S66_st : compound
-	RANGE S67_st : compound
-	RANGE S68_st : compound
-	RANGE S69_st : compound
-	RANGE S70_st : compound
-	RANGE S71_st : compound
-	RANGE S72_st : compound
-	RANGE S73_st : compound
-	RANGE S74_st : compound
-	RANGE S75_st : compound
-	RANGE S76_st : compound
-	RANGE S77_st : compound
-	RANGE S78_st : compound
-	RANGE S79_st : compound
-	RANGE S80_st : compound
-	RANGE S81_st : compound
-	RANGE S82_st : compound
-	RANGE S83_st : compound
-	RANGE S84_st : compound
-	RANGE S85_st : compound
-	RANGE S86_st : compound
-	RANGE S87_st : compound
-	RANGE S88_st : compound
-	RANGE S89_st : compound
-	RANGE S90_st : compound
-	RANGE S91_st : compound
-	RANGE S92_st : compound
-	RANGE S93_st : compound
-	RANGE S94_st : compound
-	RANGE S95_st : compound
-	RANGE S96_st : compound
-	RANGE S97_st : compound
-	RANGE S98_st : compound
+	RANGE EX0, EX1, EX2, S8, S9, S24, S48 : assigned
+	RANGE S0 : compound
+	RANGE S1 : compound
+	RANGE S2 : compound
+	RANGE S3 : compound
+	RANGE S4 : compound
+	RANGE S5 : compound
+	RANGE S6 : compound
+	RANGE S7 : compound
+	RANGE S10 : compound
+	RANGE S11 : compound
+	RANGE S12 : compound
+	RANGE S13 : compound
+	RANGE S14 : compound
+	RANGE S15 : compound
+	RANGE S16 : compound
+	RANGE S17 : compound
+	RANGE S18 : compound
+	RANGE S19 : compound
+	RANGE S20 : compound
+	RANGE S21 : compound
+	RANGE S22 : compound
+	RANGE S23 : compound
+	RANGE S25 : compound
+	RANGE S26 : compound
+	RANGE S27 : compound
+	RANGE S28 : compound
+	RANGE S29 : compound
+	RANGE S30 : compound
+	RANGE S31 : compound
+	RANGE S32 : compound
+	RANGE S33 : compound
+	RANGE S34 : compound
+	RANGE S35 : compound
+	RANGE S36 : compound
+	RANGE S37 : compound
+	RANGE S38 : compound
+	RANGE S39 : compound
+	RANGE S40 : compound
+	RANGE S41 : compound
+	RANGE S42 : compound
+	RANGE S43 : compound
+	RANGE S44 : compound
+	RANGE S45 : compound
+	RANGE S46 : compound
+	RANGE S47 : compound
+	RANGE S49 : compound
+	RANGE S50 : compound
+	RANGE S51 : compound
+	RANGE S52 : compound
+	RANGE S53 : compound
+	RANGE S54 : compound
+	RANGE S55 : compound
+	RANGE S56 : compound
+	RANGE S57 : compound
+	RANGE S58 : compound
+	RANGE S59 : compound
+	RANGE S60 : compound
+	RANGE S61 : compound
+	RANGE S62 : compound
+	RANGE S63 : compound
+	RANGE S64 : compound
+	RANGE S65 : compound
+	RANGE S66 : compound
+	RANGE S67 : compound
+	RANGE S68 : compound
+	RANGE S69 : compound
+	RANGE S70 : compound
+	RANGE S71 : compound
+	RANGE S72 : compound
+	RANGE S73 : compound
+	RANGE S74 : compound
+	RANGE S75 : compound
+	RANGE S76 : compound
+	RANGE S77 : compound
+	RANGE S78 : compound
+	RANGE S79 : compound
+	RANGE S80 : compound
+	RANGE S81 : compound
+	RANGE S82 : compound
+	RANGE S83 : compound
+	RANGE S84 : compound
+	RANGE S85 : compound
+	RANGE S86 : compound
+	RANGE S87 : compound
+	RANGE S88 : compound
+	RANGE S89 : compound
+	RANGE S90 : compound
+	RANGE S91 : compound
+	RANGE S92 : compound
+	RANGE S93 : compound
+	RANGE S94 : compound
+	RANGE S95 : compound
+	RANGE S96 : compound
+	RANGE S97 : compound
+	RANGE S98 : compound
 	USEION pSubstrate  WRITE pSubstratei VALENCE 0
 	USEION PKAc  WRITE PKAci VALENCE 0
 	POINTER ca_ref
@@ -571,101 +571,101 @@ PARAMETER {
 	kf_R136 = 1.0 (1) : implicitly declared missing rate constant (kf_R136)
 	kr_R136 = 1.0 (1) : implicitly declared missing rate constant (kr_R136)
 	kf_R137 = 1.0 (1) : implicitly declared missing rate constant (kf_R137)
-	S98_st_cc = 0.0 : total amount for subset (S98_st_cc)
-	S97_st_cc = 0.0 : total amount for subset (S97_st_cc)
-	S96_st_cc = 0.0 : total amount for subset (S96_st_cc)
-	S95_st_cc = 0.0 : total amount for subset (S95_st_cc)
-	S94_st_cc = 0.0 : total amount for subset (S94_st_cc)
-	S93_st_cc = 0.0 : total amount for subset (S93_st_cc)
-	S92_st_cc = 0.0 : total amount for subset (S92_st_cc)
-	S91_st_cc = 20000.0 : total amount for subset (S91_st_cc)
-	S90_st_cc = 0.0 : total amount for subset (S90_st_cc)
-	S89_st_cc = 0.0 : total amount for subset (S89_st_cc)
-	S88_st_cc = 0.0 : total amount for subset (S88_st_cc)
-	S87_st_cc = 0.0 : total amount for subset (S87_st_cc)
-	S86_st_cc = 0.0 : total amount for subset (S86_st_cc)
-	S85_st_cc = 4000.0 : total amount for subset (S85_st_cc)
-	S84_st_cc = 0.0 : total amount for subset (S84_st_cc)
-	S83_st_cc = 0.0 : total amount for subset (S83_st_cc)
-	S82_st_cc = 0.0 : total amount for subset (S82_st_cc)
-	S81_st_cc = 0.0 : total amount for subset (S81_st_cc)
-	S80_st_cc = 0.0 : total amount for subset (S80_st_cc)
-	S79_st_cc = 0.0 : total amount for subset (S79_st_cc)
-	S78_st_cc = 0.0 : total amount for subset (S78_st_cc)
-	S77_st_cc = 3000.0 : total amount for subset (S77_st_cc)
-	S76_st_cc = 0.0 : total amount for subset (S76_st_cc)
-	S75_st_cc = 0.0 : total amount for subset (S75_st_cc)
-	S74_st_cc = 0.0 : total amount for subset (S74_st_cc)
-	S73_st_cc = 0.0 : total amount for subset (S73_st_cc)
-	S72_st_cc = 0.0 : total amount for subset (S72_st_cc)
-	S71_st_cc = 0.0 : total amount for subset (S71_st_cc)
-	S70_st_cc = 0.0 : total amount for subset (S70_st_cc)
-	S69_st_cc = 0.0 : total amount for subset (S69_st_cc)
-	S68_st_cc = 1200.0 : total amount for subset (S68_st_cc)
-	S67_st_cc = 0.0 : total amount for subset (S67_st_cc)
-	S66_st_cc = 0.0 : total amount for subset (S66_st_cc)
-	S65_st_cc = 0.0 : total amount for subset (S65_st_cc)
-	S64_st_cc = 700.0 : total amount for subset (S64_st_cc)
-	S63_st_cc = 0.0 : total amount for subset (S63_st_cc)
-	S62_st_cc = 2000.0 : total amount for subset (S62_st_cc)
-	S61_st_cc = 0.0 : total amount for subset (S61_st_cc)
-	S60_st_cc = 0.0 : total amount for subset (S60_st_cc)
-	S59_st_cc = 0.0 : total amount for subset (S59_st_cc)
-	S58_st_cc = 0.0 : total amount for subset (S58_st_cc)
-	S57_st_cc = 0.0 : total amount for subset (S57_st_cc)
-	S56_st_cc = 0.0 : total amount for subset (S56_st_cc)
-	S55_st_cc = 0.0 : total amount for subset (S55_st_cc)
-	S54_st_cc = 0.0 : total amount for subset (S54_st_cc)
-	S53_st_cc = 0.0 : total amount for subset (S53_st_cc)
-	S52_st_cc = 2000.0 : total amount for subset (S52_st_cc)
-	S51_st_cc = 0.0 : total amount for subset (S51_st_cc)
-	S50_st_cc = 0.0 : total amount for subset (S50_st_cc)
-	S49_st_cc = 0.0 : total amount for subset (S49_st_cc)
-	S47_st_cc = 50000.0 : total amount for subset (S47_st_cc)
-	S46_st_cc = 0.0 : total amount for subset (S46_st_cc)
-	S45_st_cc = 0.0 : total amount for subset (S45_st_cc)
-	S44_st_cc = 0.0 : total amount for subset (S44_st_cc)
-	S43_st_cc = 0.0 : total amount for subset (S43_st_cc)
-	S42_st_cc = 0.0 : total amount for subset (S42_st_cc)
-	S41_st_cc = 2000.0 : total amount for subset (S41_st_cc)
-	S40_st_cc = 0.0 : total amount for subset (S40_st_cc)
-	S39_st_cc = 1800.0 : total amount for subset (S39_st_cc)
-	S38_st_cc = 3000.0 : total amount for subset (S38_st_cc)
-	S37_st_cc = 0.0 : total amount for subset (S37_st_cc)
-	S36_st_cc = 0.0 : total amount for subset (S36_st_cc)
-	S35_st_cc = 0.0 : total amount for subset (S35_st_cc)
-	S34_st_cc = 0.0 : total amount for subset (S34_st_cc)
-	S33_st_cc = 0.0 : total amount for subset (S33_st_cc)
-	S32_st_cc = 0.0 : total amount for subset (S32_st_cc)
-	S31_st_cc = 0.0 : total amount for subset (S31_st_cc)
-	S30_st_cc = 0.0 : total amount for subset (S30_st_cc)
-	S29_st_cc = 20000.0 : total amount for subset (S29_st_cc)
-	S28_st_cc = 0.0 : total amount for subset (S28_st_cc)
-	S27_st_cc = 0.0 : total amount for subset (S27_st_cc)
-	S26_st_cc = 0.0 : total amount for subset (S26_st_cc)
-	S25_st_cc = 9000.0 : total amount for subset (S25_st_cc)
-	S23_st_cc = 0.0 : total amount for subset (S23_st_cc)
-	S22_st_cc = 0.0 : total amount for subset (S22_st_cc)
-	S21_st_cc = 0.0 : total amount for subset (S21_st_cc)
-	S20_st_cc = 0.0 : total amount for subset (S20_st_cc)
-	S19_st_cc = 0.0 : total amount for subset (S19_st_cc)
-	S18_st_cc = 0.0 : total amount for subset (S18_st_cc)
-	S17_st_cc = 0.0 : total amount for subset (S17_st_cc)
-	S16_st_cc = 2000.0 : total amount for subset (S16_st_cc)
-	S15_st_cc = 0.0 : total amount for subset (S15_st_cc)
-	S14_st_cc = 0.0 : total amount for subset (S14_st_cc)
-	S13_st_cc = 0.0 : total amount for subset (S13_st_cc)
-	S12_st_cc = 0.0 : total amount for subset (S12_st_cc)
-	S11_st_cc = 0.0 : total amount for subset (S11_st_cc)
-	S10_st_cc = 2000.0 : total amount for subset (S10_st_cc)
-	S7_st_cc = 0.0 : total amount for subset (S7_st_cc)
-	S6_st_cc = 0.0 : total amount for subset (S6_st_cc)
-	S5_st_cc = 0.0 : total amount for subset (S5_st_cc)
-	S4_st_cc = 0.0 : total amount for subset (S4_st_cc)
-	S3_st_cc = 0.0 : total amount for subset (S3_st_cc)
-	S2_st_cc = 0.0 : total amount for subset (S2_st_cc)
-	S1_st_cc = 0.0 : total amount for subset (S1_st_cc)
-	S0_st_cc = 700.0 : total amount for subset (S0_st_cc)
+	S98_cc = 0.0 : total amount for subset (S98_cc)
+	S97_cc = 0.0 : total amount for subset (S97_cc)
+	S96_cc = 0.0 : total amount for subset (S96_cc)
+	S95_cc = 0.0 : total amount for subset (S95_cc)
+	S94_cc = 0.0 : total amount for subset (S94_cc)
+	S93_cc = 0.0 : total amount for subset (S93_cc)
+	S92_cc = 0.0 : total amount for subset (S92_cc)
+	S91_cc = 20000.0 : total amount for subset (S91_cc)
+	S90_cc = 0.0 : total amount for subset (S90_cc)
+	S89_cc = 0.0 : total amount for subset (S89_cc)
+	S88_cc = 0.0 : total amount for subset (S88_cc)
+	S87_cc = 0.0 : total amount for subset (S87_cc)
+	S86_cc = 0.0 : total amount for subset (S86_cc)
+	S85_cc = 4000.0 : total amount for subset (S85_cc)
+	S84_cc = 0.0 : total amount for subset (S84_cc)
+	S83_cc = 0.0 : total amount for subset (S83_cc)
+	S82_cc = 0.0 : total amount for subset (S82_cc)
+	S81_cc = 0.0 : total amount for subset (S81_cc)
+	S80_cc = 0.0 : total amount for subset (S80_cc)
+	S79_cc = 0.0 : total amount for subset (S79_cc)
+	S78_cc = 0.0 : total amount for subset (S78_cc)
+	S77_cc = 3000.0 : total amount for subset (S77_cc)
+	S76_cc = 0.0 : total amount for subset (S76_cc)
+	S75_cc = 0.0 : total amount for subset (S75_cc)
+	S74_cc = 0.0 : total amount for subset (S74_cc)
+	S73_cc = 0.0 : total amount for subset (S73_cc)
+	S72_cc = 0.0 : total amount for subset (S72_cc)
+	S71_cc = 0.0 : total amount for subset (S71_cc)
+	S70_cc = 0.0 : total amount for subset (S70_cc)
+	S69_cc = 0.0 : total amount for subset (S69_cc)
+	S68_cc = 1200.0 : total amount for subset (S68_cc)
+	S67_cc = 0.0 : total amount for subset (S67_cc)
+	S66_cc = 0.0 : total amount for subset (S66_cc)
+	S65_cc = 0.0 : total amount for subset (S65_cc)
+	S64_cc = 700.0 : total amount for subset (S64_cc)
+	S63_cc = 0.0 : total amount for subset (S63_cc)
+	S62_cc = 2000.0 : total amount for subset (S62_cc)
+	S61_cc = 0.0 : total amount for subset (S61_cc)
+	S60_cc = 0.0 : total amount for subset (S60_cc)
+	S59_cc = 0.0 : total amount for subset (S59_cc)
+	S58_cc = 0.0 : total amount for subset (S58_cc)
+	S57_cc = 0.0 : total amount for subset (S57_cc)
+	S56_cc = 0.0 : total amount for subset (S56_cc)
+	S55_cc = 0.0 : total amount for subset (S55_cc)
+	S54_cc = 0.0 : total amount for subset (S54_cc)
+	S53_cc = 0.0 : total amount for subset (S53_cc)
+	S52_cc = 2000.0 : total amount for subset (S52_cc)
+	S51_cc = 0.0 : total amount for subset (S51_cc)
+	S50_cc = 0.0 : total amount for subset (S50_cc)
+	S49_cc = 0.0 : total amount for subset (S49_cc)
+	S47_cc = 50000.0 : total amount for subset (S47_cc)
+	S46_cc = 0.0 : total amount for subset (S46_cc)
+	S45_cc = 0.0 : total amount for subset (S45_cc)
+	S44_cc = 0.0 : total amount for subset (S44_cc)
+	S43_cc = 0.0 : total amount for subset (S43_cc)
+	S42_cc = 0.0 : total amount for subset (S42_cc)
+	S41_cc = 2000.0 : total amount for subset (S41_cc)
+	S40_cc = 0.0 : total amount for subset (S40_cc)
+	S39_cc = 1800.0 : total amount for subset (S39_cc)
+	S38_cc = 3000.0 : total amount for subset (S38_cc)
+	S37_cc = 0.0 : total amount for subset (S37_cc)
+	S36_cc = 0.0 : total amount for subset (S36_cc)
+	S35_cc = 0.0 : total amount for subset (S35_cc)
+	S34_cc = 0.0 : total amount for subset (S34_cc)
+	S33_cc = 0.0 : total amount for subset (S33_cc)
+	S32_cc = 0.0 : total amount for subset (S32_cc)
+	S31_cc = 0.0 : total amount for subset (S31_cc)
+	S30_cc = 0.0 : total amount for subset (S30_cc)
+	S29_cc = 20000.0 : total amount for subset (S29_cc)
+	S28_cc = 0.0 : total amount for subset (S28_cc)
+	S27_cc = 0.0 : total amount for subset (S27_cc)
+	S26_cc = 0.0 : total amount for subset (S26_cc)
+	S25_cc = 9000.0 : total amount for subset (S25_cc)
+	S23_cc = 0.0 : total amount for subset (S23_cc)
+	S22_cc = 0.0 : total amount for subset (S22_cc)
+	S21_cc = 0.0 : total amount for subset (S21_cc)
+	S20_cc = 0.0 : total amount for subset (S20_cc)
+	S19_cc = 0.0 : total amount for subset (S19_cc)
+	S18_cc = 0.0 : total amount for subset (S18_cc)
+	S17_cc = 0.0 : total amount for subset (S17_cc)
+	S16_cc = 2000.0 : total amount for subset (S16_cc)
+	S15_cc = 0.0 : total amount for subset (S15_cc)
+	S14_cc = 0.0 : total amount for subset (S14_cc)
+	S13_cc = 0.0 : total amount for subset (S13_cc)
+	S12_cc = 0.0 : total amount for subset (S12_cc)
+	S11_cc = 0.0 : total amount for subset (S11_cc)
+	S10_cc = 2000.0 : total amount for subset (S10_cc)
+	S7_cc = 0.0 : total amount for subset (S7_cc)
+	S6_cc = 0.0 : total amount for subset (S6_cc)
+	S5_cc = 0.0 : total amount for subset (S5_cc)
+	S4_cc = 0.0 : total amount for subset (S4_cc)
+	S3_cc = 0.0 : total amount for subset (S3_cc)
+	S2_cc = 0.0 : total amount for subset (S2_cc)
+	S1_cc = 0.0 : total amount for subset (S1_cc)
+	S0_cc = 700.0 : total amount for subset (S0_cc)
 }
 
 ASSIGNED {
@@ -673,10 +673,10 @@ ASSIGNED {
 	EX0 : pre-defined algebraic expression (EX0)
 	EX1 : pre-defined algebraic expression (EX1)
 	EX2 : pre-defined algebraic expression (EX2)
-	S8_st : pre-defined algebraic expression (S8_st)
-	S9_st : pre-defined algebraic expression (S9_st)
-	S24_st : pre-defined algebraic expression (S24_st)
-	S48_st : pre-defined algebraic expression (S48_st)
+	S8 : pre-defined algebraic expression (S8)
+	S9 : pre-defined algebraic expression (S9)
+	S24 : pre-defined algebraic expression (S24)
+	S48 : pre-defined algebraic expression (S48)
 	R0 : reaction flux (R0)
 	R1 : reaction flux (R1)
 	R2 : reaction flux (R2)
@@ -815,101 +815,101 @@ ASSIGNED {
 	R135 : reaction flux (R135)
 	R136 : reaction flux (R136)
 	R137 : reaction flux (R137)
-	S98_st : computed from conservation law (S98_st)
-	S97_st : computed from conservation law (S97_st)
-	S96_st : computed from conservation law (S96_st)
-	S95_st : computed from conservation law (S95_st)
-	S94_st : computed from conservation law (S94_st)
-	S93_st : computed from conservation law (S93_st)
-	S92_st : computed from conservation law (S92_st)
-	S91_st : computed from conservation law (S91_st)
-	S90_st : computed from conservation law (S90_st)
-	S89_st : computed from conservation law (S89_st)
-	S88_st : computed from conservation law (S88_st)
-	S87_st : computed from conservation law (S87_st)
-	S86_st : computed from conservation law (S86_st)
-	S85_st : computed from conservation law (S85_st)
-	S84_st : computed from conservation law (S84_st)
-	S83_st : computed from conservation law (S83_st)
-	S82_st : computed from conservation law (S82_st)
-	S81_st : computed from conservation law (S81_st)
-	S80_st : computed from conservation law (S80_st)
-	S79_st : computed from conservation law (S79_st)
-	S78_st : computed from conservation law (S78_st)
-	S77_st : computed from conservation law (S77_st)
-	S76_st : computed from conservation law (S76_st)
-	S75_st : computed from conservation law (S75_st)
-	S74_st : computed from conservation law (S74_st)
-	S73_st : computed from conservation law (S73_st)
-	S72_st : computed from conservation law (S72_st)
-	S71_st : computed from conservation law (S71_st)
-	S70_st : computed from conservation law (S70_st)
-	S69_st : computed from conservation law (S69_st)
-	S68_st : computed from conservation law (S68_st)
-	S67_st : computed from conservation law (S67_st)
-	S66_st : computed from conservation law (S66_st)
-	S65_st : computed from conservation law (S65_st)
-	S64_st : computed from conservation law (S64_st)
-	S63_st : computed from conservation law (S63_st)
-	S62_st : computed from conservation law (S62_st)
-	S61_st : computed from conservation law (S61_st)
-	S60_st : computed from conservation law (S60_st)
-	S59_st : computed from conservation law (S59_st)
-	S58_st : computed from conservation law (S58_st)
-	S57_st : computed from conservation law (S57_st)
-	S56_st : computed from conservation law (S56_st)
-	S55_st : computed from conservation law (S55_st)
-	S54_st : computed from conservation law (S54_st)
-	S53_st : computed from conservation law (S53_st)
-	S52_st : computed from conservation law (S52_st)
-	S51_st : computed from conservation law (S51_st)
-	S50_st : computed from conservation law (S50_st)
-	S49_st : computed from conservation law (S49_st)
-	S47_st : computed from conservation law (S47_st)
-	S46_st : computed from conservation law (S46_st)
-	S45_st : computed from conservation law (S45_st)
-	S44_st : computed from conservation law (S44_st)
-	S43_st : computed from conservation law (S43_st)
-	S42_st : computed from conservation law (S42_st)
-	S41_st : computed from conservation law (S41_st)
-	S40_st : computed from conservation law (S40_st)
-	S39_st : computed from conservation law (S39_st)
-	S38_st : computed from conservation law (S38_st)
-	S37_st : computed from conservation law (S37_st)
-	S36_st : computed from conservation law (S36_st)
-	S35_st : computed from conservation law (S35_st)
-	S34_st : computed from conservation law (S34_st)
-	S33_st : computed from conservation law (S33_st)
-	S32_st : computed from conservation law (S32_st)
-	S31_st : computed from conservation law (S31_st)
-	S30_st : computed from conservation law (S30_st)
-	S29_st : computed from conservation law (S29_st)
-	S28_st : computed from conservation law (S28_st)
-	S27_st : computed from conservation law (S27_st)
-	S26_st : computed from conservation law (S26_st)
-	S25_st : computed from conservation law (S25_st)
-	S23_st : computed from conservation law (S23_st)
-	S22_st : computed from conservation law (S22_st)
-	S21_st : computed from conservation law (S21_st)
-	S20_st : computed from conservation law (S20_st)
-	S19_st : computed from conservation law (S19_st)
-	S18_st : computed from conservation law (S18_st)
-	S17_st : computed from conservation law (S17_st)
-	S16_st : computed from conservation law (S16_st)
-	S15_st : computed from conservation law (S15_st)
-	S14_st : computed from conservation law (S14_st)
-	S13_st : computed from conservation law (S13_st)
-	S12_st : computed from conservation law (S12_st)
-	S11_st : computed from conservation law (S11_st)
-	S10_st : computed from conservation law (S10_st)
-	S7_st : computed from conservation law (S7_st)
-	S6_st : computed from conservation law (S6_st)
-	S5_st : computed from conservation law (S5_st)
-	S4_st : computed from conservation law (S4_st)
-	S3_st : computed from conservation law (S3_st)
-	S2_st : computed from conservation law (S2_st)
-	S1_st : computed from conservation law (S1_st)
-	S0_st : computed from conservation law (S0_st)
+	S98 : computed from conservation law (S98)
+	S97 : computed from conservation law (S97)
+	S96 : computed from conservation law (S96)
+	S95 : computed from conservation law (S95)
+	S94 : computed from conservation law (S94)
+	S93 : computed from conservation law (S93)
+	S92 : computed from conservation law (S92)
+	S91 : computed from conservation law (S91)
+	S90 : computed from conservation law (S90)
+	S89 : computed from conservation law (S89)
+	S88 : computed from conservation law (S88)
+	S87 : computed from conservation law (S87)
+	S86 : computed from conservation law (S86)
+	S85 : computed from conservation law (S85)
+	S84 : computed from conservation law (S84)
+	S83 : computed from conservation law (S83)
+	S82 : computed from conservation law (S82)
+	S81 : computed from conservation law (S81)
+	S80 : computed from conservation law (S80)
+	S79 : computed from conservation law (S79)
+	S78 : computed from conservation law (S78)
+	S77 : computed from conservation law (S77)
+	S76 : computed from conservation law (S76)
+	S75 : computed from conservation law (S75)
+	S74 : computed from conservation law (S74)
+	S73 : computed from conservation law (S73)
+	S72 : computed from conservation law (S72)
+	S71 : computed from conservation law (S71)
+	S70 : computed from conservation law (S70)
+	S69 : computed from conservation law (S69)
+	S68 : computed from conservation law (S68)
+	S67 : computed from conservation law (S67)
+	S66 : computed from conservation law (S66)
+	S65 : computed from conservation law (S65)
+	S64 : computed from conservation law (S64)
+	S63 : computed from conservation law (S63)
+	S62 : computed from conservation law (S62)
+	S61 : computed from conservation law (S61)
+	S60 : computed from conservation law (S60)
+	S59 : computed from conservation law (S59)
+	S58 : computed from conservation law (S58)
+	S57 : computed from conservation law (S57)
+	S56 : computed from conservation law (S56)
+	S55 : computed from conservation law (S55)
+	S54 : computed from conservation law (S54)
+	S53 : computed from conservation law (S53)
+	S52 : computed from conservation law (S52)
+	S51 : computed from conservation law (S51)
+	S50 : computed from conservation law (S50)
+	S49 : computed from conservation law (S49)
+	S47 : computed from conservation law (S47)
+	S46 : computed from conservation law (S46)
+	S45 : computed from conservation law (S45)
+	S44 : computed from conservation law (S44)
+	S43 : computed from conservation law (S43)
+	S42 : computed from conservation law (S42)
+	S41 : computed from conservation law (S41)
+	S40 : computed from conservation law (S40)
+	S39 : computed from conservation law (S39)
+	S38 : computed from conservation law (S38)
+	S37 : computed from conservation law (S37)
+	S36 : computed from conservation law (S36)
+	S35 : computed from conservation law (S35)
+	S34 : computed from conservation law (S34)
+	S33 : computed from conservation law (S33)
+	S32 : computed from conservation law (S32)
+	S31 : computed from conservation law (S31)
+	S30 : computed from conservation law (S30)
+	S29 : computed from conservation law (S29)
+	S28 : computed from conservation law (S28)
+	S27 : computed from conservation law (S27)
+	S26 : computed from conservation law (S26)
+	S25 : computed from conservation law (S25)
+	S23 : computed from conservation law (S23)
+	S22 : computed from conservation law (S22)
+	S21 : computed from conservation law (S21)
+	S20 : computed from conservation law (S20)
+	S19 : computed from conservation law (S19)
+	S18 : computed from conservation law (S18)
+	S17 : computed from conservation law (S17)
+	S16 : computed from conservation law (S16)
+	S15 : computed from conservation law (S15)
+	S14 : computed from conservation law (S14)
+	S13 : computed from conservation law (S13)
+	S12 : computed from conservation law (S12)
+	S11 : computed from conservation law (S11)
+	S10 : computed from conservation law (S10)
+	S7 : computed from conservation law (S7)
+	S6 : computed from conservation law (S6)
+	S5 : computed from conservation law (S5)
+	S4 : computed from conservation law (S4)
+	S3 : computed from conservation law (S3)
+	S2 : computed from conservation law (S2)
+	S1 : computed from conservation law (S1)
+	S0 : computed from conservation law (S0)
 	ca_ref (millimole/liter)
 	Ca_rate (millimole/liter/millisecond)
 	da_ref (millimole/liter)
@@ -1022,199 +1022,199 @@ ASSIGNED {
 }
 
 STATE {
-	: S0_st is calculated via Conservation Law
-	: S1_st is calculated via Conservation Law
-	: S2_st is calculated via Conservation Law
-	: S3_st is calculated via Conservation Law
-	: S4_st is calculated via Conservation Law
-	: S5_st is calculated via Conservation Law
-	: S6_st is calculated via Conservation Law
-	: S7_st is calculated via Conservation Law
-	: S10_st is calculated via Conservation Law
-	: S11_st is calculated via Conservation Law
-	: S12_st is calculated via Conservation Law
-	: S13_st is calculated via Conservation Law
-	: S14_st is calculated via Conservation Law
-	: S15_st is calculated via Conservation Law
-	: S16_st is calculated via Conservation Law
-	: S17_st is calculated via Conservation Law
-	: S18_st is calculated via Conservation Law
-	: S19_st is calculated via Conservation Law
-	: S20_st is calculated via Conservation Law
-	: S21_st is calculated via Conservation Law
-	: S22_st is calculated via Conservation Law
-	: S23_st is calculated via Conservation Law
-	: S25_st is calculated via Conservation Law
-	: S26_st is calculated via Conservation Law
-	: S27_st is calculated via Conservation Law
-	: S28_st is calculated via Conservation Law
-	: S29_st is calculated via Conservation Law
-	: S30_st is calculated via Conservation Law
-	: S31_st is calculated via Conservation Law
-	: S32_st is calculated via Conservation Law
-	: S33_st is calculated via Conservation Law
-	: S34_st is calculated via Conservation Law
-	: S35_st is calculated via Conservation Law
-	: S36_st is calculated via Conservation Law
-	: S37_st is calculated via Conservation Law
-	: S38_st is calculated via Conservation Law
-	: S39_st is calculated via Conservation Law
-	: S40_st is calculated via Conservation Law
-	: S41_st is calculated via Conservation Law
-	: S42_st is calculated via Conservation Law
-	: S43_st is calculated via Conservation Law
-	: S44_st is calculated via Conservation Law
-	: S45_st is calculated via Conservation Law
-	: S46_st is calculated via Conservation Law
-	: S47_st is calculated via Conservation Law
-	: S49_st is calculated via Conservation Law
-	: S50_st is calculated via Conservation Law
-	: S51_st is calculated via Conservation Law
-	: S52_st is calculated via Conservation Law
-	: S53_st is calculated via Conservation Law
-	: S54_st is calculated via Conservation Law
-	: S55_st is calculated via Conservation Law
-	: S56_st is calculated via Conservation Law
-	: S57_st is calculated via Conservation Law
-	: S58_st is calculated via Conservation Law
-	: S59_st is calculated via Conservation Law
-	: S60_st is calculated via Conservation Law
-	: S61_st is calculated via Conservation Law
-	: S62_st is calculated via Conservation Law
-	: S63_st is calculated via Conservation Law
-	: S64_st is calculated via Conservation Law
-	: S65_st is calculated via Conservation Law
-	: S66_st is calculated via Conservation Law
-	: S67_st is calculated via Conservation Law
-	: S68_st is calculated via Conservation Law
-	: S69_st is calculated via Conservation Law
-	: S70_st is calculated via Conservation Law
-	: S71_st is calculated via Conservation Law
-	: S72_st is calculated via Conservation Law
-	: S73_st is calculated via Conservation Law
-	: S74_st is calculated via Conservation Law
-	: S75_st is calculated via Conservation Law
-	: S76_st is calculated via Conservation Law
-	: S77_st is calculated via Conservation Law
-	: S78_st is calculated via Conservation Law
-	: S79_st is calculated via Conservation Law
-	: S80_st is calculated via Conservation Law
-	: S81_st is calculated via Conservation Law
-	: S82_st is calculated via Conservation Law
-	: S83_st is calculated via Conservation Law
-	: S84_st is calculated via Conservation Law
-	: S85_st is calculated via Conservation Law
-	: S86_st is calculated via Conservation Law
-	: S87_st is calculated via Conservation Law
-	: S88_st is calculated via Conservation Law
-	: S89_st is calculated via Conservation Law
-	: S90_st is calculated via Conservation Law
-	: S91_st is calculated via Conservation Law
-	: S92_st is calculated via Conservation Law
-	: S93_st is calculated via Conservation Law
-	: S94_st is calculated via Conservation Law
-	: S95_st is calculated via Conservation Law
-	: S96_st is calculated via Conservation Law
-	: S97_st is calculated via Conservation Law
-	: S98_st is calculated via Conservation Law
+	: S0 is calculated via Conservation Law
+	: S1 is calculated via Conservation Law
+	: S2 is calculated via Conservation Law
+	: S3 is calculated via Conservation Law
+	: S4 is calculated via Conservation Law
+	: S5 is calculated via Conservation Law
+	: S6 is calculated via Conservation Law
+	: S7 is calculated via Conservation Law
+	: S10 is calculated via Conservation Law
+	: S11 is calculated via Conservation Law
+	: S12 is calculated via Conservation Law
+	: S13 is calculated via Conservation Law
+	: S14 is calculated via Conservation Law
+	: S15 is calculated via Conservation Law
+	: S16 is calculated via Conservation Law
+	: S17 is calculated via Conservation Law
+	: S18 is calculated via Conservation Law
+	: S19 is calculated via Conservation Law
+	: S20 is calculated via Conservation Law
+	: S21 is calculated via Conservation Law
+	: S22 is calculated via Conservation Law
+	: S23 is calculated via Conservation Law
+	: S25 is calculated via Conservation Law
+	: S26 is calculated via Conservation Law
+	: S27 is calculated via Conservation Law
+	: S28 is calculated via Conservation Law
+	: S29 is calculated via Conservation Law
+	: S30 is calculated via Conservation Law
+	: S31 is calculated via Conservation Law
+	: S32 is calculated via Conservation Law
+	: S33 is calculated via Conservation Law
+	: S34 is calculated via Conservation Law
+	: S35 is calculated via Conservation Law
+	: S36 is calculated via Conservation Law
+	: S37 is calculated via Conservation Law
+	: S38 is calculated via Conservation Law
+	: S39 is calculated via Conservation Law
+	: S40 is calculated via Conservation Law
+	: S41 is calculated via Conservation Law
+	: S42 is calculated via Conservation Law
+	: S43 is calculated via Conservation Law
+	: S44 is calculated via Conservation Law
+	: S45 is calculated via Conservation Law
+	: S46 is calculated via Conservation Law
+	: S47 is calculated via Conservation Law
+	: S49 is calculated via Conservation Law
+	: S50 is calculated via Conservation Law
+	: S51 is calculated via Conservation Law
+	: S52 is calculated via Conservation Law
+	: S53 is calculated via Conservation Law
+	: S54 is calculated via Conservation Law
+	: S55 is calculated via Conservation Law
+	: S56 is calculated via Conservation Law
+	: S57 is calculated via Conservation Law
+	: S58 is calculated via Conservation Law
+	: S59 is calculated via Conservation Law
+	: S60 is calculated via Conservation Law
+	: S61 is calculated via Conservation Law
+	: S62 is calculated via Conservation Law
+	: S63 is calculated via Conservation Law
+	: S64 is calculated via Conservation Law
+	: S65 is calculated via Conservation Law
+	: S66 is calculated via Conservation Law
+	: S67 is calculated via Conservation Law
+	: S68 is calculated via Conservation Law
+	: S69 is calculated via Conservation Law
+	: S70 is calculated via Conservation Law
+	: S71 is calculated via Conservation Law
+	: S72 is calculated via Conservation Law
+	: S73 is calculated via Conservation Law
+	: S74 is calculated via Conservation Law
+	: S75 is calculated via Conservation Law
+	: S76 is calculated via Conservation Law
+	: S77 is calculated via Conservation Law
+	: S78 is calculated via Conservation Law
+	: S79 is calculated via Conservation Law
+	: S80 is calculated via Conservation Law
+	: S81 is calculated via Conservation Law
+	: S82 is calculated via Conservation Law
+	: S83 is calculated via Conservation Law
+	: S84 is calculated via Conservation Law
+	: S85 is calculated via Conservation Law
+	: S86 is calculated via Conservation Law
+	: S87 is calculated via Conservation Law
+	: S88 is calculated via Conservation Law
+	: S89 is calculated via Conservation Law
+	: S90 is calculated via Conservation Law
+	: S91 is calculated via Conservation Law
+	: S92 is calculated via Conservation Law
+	: S93 is calculated via Conservation Law
+	: S94 is calculated via Conservation Law
+	: S95 is calculated via Conservation Law
+	: S96 is calculated via Conservation Law
+	: S97 is calculated via Conservation Law
+	: S98 is calculated via Conservation Law
 }
 
 INITIAL {
-	: S0_st cannot have initial values as it is determined by conservation law
-	: S1_st cannot have initial values as it is determined by conservation law
-	: S2_st cannot have initial values as it is determined by conservation law
-	: S3_st cannot have initial values as it is determined by conservation law
-	: S4_st cannot have initial values as it is determined by conservation law
-	: S5_st cannot have initial values as it is determined by conservation law
-	: S6_st cannot have initial values as it is determined by conservation law
-	: S7_st cannot have initial values as it is determined by conservation law
-	: S10_st cannot have initial values as it is determined by conservation law
-	: S11_st cannot have initial values as it is determined by conservation law
-	: S12_st cannot have initial values as it is determined by conservation law
-	: S13_st cannot have initial values as it is determined by conservation law
-	: S14_st cannot have initial values as it is determined by conservation law
-	: S15_st cannot have initial values as it is determined by conservation law
-	: S16_st cannot have initial values as it is determined by conservation law
-	: S17_st cannot have initial values as it is determined by conservation law
-	: S18_st cannot have initial values as it is determined by conservation law
-	: S19_st cannot have initial values as it is determined by conservation law
-	: S20_st cannot have initial values as it is determined by conservation law
-	: S21_st cannot have initial values as it is determined by conservation law
-	: S22_st cannot have initial values as it is determined by conservation law
-	: S23_st cannot have initial values as it is determined by conservation law
-	: S25_st cannot have initial values as it is determined by conservation law
-	: S26_st cannot have initial values as it is determined by conservation law
-	: S27_st cannot have initial values as it is determined by conservation law
-	: S28_st cannot have initial values as it is determined by conservation law
-	: S29_st cannot have initial values as it is determined by conservation law
-	: S30_st cannot have initial values as it is determined by conservation law
-	: S31_st cannot have initial values as it is determined by conservation law
-	: S32_st cannot have initial values as it is determined by conservation law
-	: S33_st cannot have initial values as it is determined by conservation law
-	: S34_st cannot have initial values as it is determined by conservation law
-	: S35_st cannot have initial values as it is determined by conservation law
-	: S36_st cannot have initial values as it is determined by conservation law
-	: S37_st cannot have initial values as it is determined by conservation law
-	: S38_st cannot have initial values as it is determined by conservation law
-	: S39_st cannot have initial values as it is determined by conservation law
-	: S40_st cannot have initial values as it is determined by conservation law
-	: S41_st cannot have initial values as it is determined by conservation law
-	: S42_st cannot have initial values as it is determined by conservation law
-	: S43_st cannot have initial values as it is determined by conservation law
-	: S44_st cannot have initial values as it is determined by conservation law
-	: S45_st cannot have initial values as it is determined by conservation law
-	: S46_st cannot have initial values as it is determined by conservation law
-	: S47_st cannot have initial values as it is determined by conservation law
-	: S49_st cannot have initial values as it is determined by conservation law
-	: S50_st cannot have initial values as it is determined by conservation law
-	: S51_st cannot have initial values as it is determined by conservation law
-	: S52_st cannot have initial values as it is determined by conservation law
-	: S53_st cannot have initial values as it is determined by conservation law
-	: S54_st cannot have initial values as it is determined by conservation law
-	: S55_st cannot have initial values as it is determined by conservation law
-	: S56_st cannot have initial values as it is determined by conservation law
-	: S57_st cannot have initial values as it is determined by conservation law
-	: S58_st cannot have initial values as it is determined by conservation law
-	: S59_st cannot have initial values as it is determined by conservation law
-	: S60_st cannot have initial values as it is determined by conservation law
-	: S61_st cannot have initial values as it is determined by conservation law
-	: S62_st cannot have initial values as it is determined by conservation law
-	: S63_st cannot have initial values as it is determined by conservation law
-	: S64_st cannot have initial values as it is determined by conservation law
-	: S65_st cannot have initial values as it is determined by conservation law
-	: S66_st cannot have initial values as it is determined by conservation law
-	: S67_st cannot have initial values as it is determined by conservation law
-	: S68_st cannot have initial values as it is determined by conservation law
-	: S69_st cannot have initial values as it is determined by conservation law
-	: S70_st cannot have initial values as it is determined by conservation law
-	: S71_st cannot have initial values as it is determined by conservation law
-	: S72_st cannot have initial values as it is determined by conservation law
-	: S73_st cannot have initial values as it is determined by conservation law
-	: S74_st cannot have initial values as it is determined by conservation law
-	: S75_st cannot have initial values as it is determined by conservation law
-	: S76_st cannot have initial values as it is determined by conservation law
-	: S77_st cannot have initial values as it is determined by conservation law
-	: S78_st cannot have initial values as it is determined by conservation law
-	: S79_st cannot have initial values as it is determined by conservation law
-	: S80_st cannot have initial values as it is determined by conservation law
-	: S81_st cannot have initial values as it is determined by conservation law
-	: S82_st cannot have initial values as it is determined by conservation law
-	: S83_st cannot have initial values as it is determined by conservation law
-	: S84_st cannot have initial values as it is determined by conservation law
-	: S85_st cannot have initial values as it is determined by conservation law
-	: S86_st cannot have initial values as it is determined by conservation law
-	: S87_st cannot have initial values as it is determined by conservation law
-	: S88_st cannot have initial values as it is determined by conservation law
-	: S89_st cannot have initial values as it is determined by conservation law
-	: S90_st cannot have initial values as it is determined by conservation law
-	: S91_st cannot have initial values as it is determined by conservation law
-	: S92_st cannot have initial values as it is determined by conservation law
-	: S93_st cannot have initial values as it is determined by conservation law
-	: S94_st cannot have initial values as it is determined by conservation law
-	: S95_st cannot have initial values as it is determined by conservation law
-	: S96_st cannot have initial values as it is determined by conservation law
-	: S97_st cannot have initial values as it is determined by conservation law
-	: S98_st cannot have initial values as it is determined by conservation law
+	: S0 cannot have initial values as it is determined by conservation law
+	: S1 cannot have initial values as it is determined by conservation law
+	: S2 cannot have initial values as it is determined by conservation law
+	: S3 cannot have initial values as it is determined by conservation law
+	: S4 cannot have initial values as it is determined by conservation law
+	: S5 cannot have initial values as it is determined by conservation law
+	: S6 cannot have initial values as it is determined by conservation law
+	: S7 cannot have initial values as it is determined by conservation law
+	: S10 cannot have initial values as it is determined by conservation law
+	: S11 cannot have initial values as it is determined by conservation law
+	: S12 cannot have initial values as it is determined by conservation law
+	: S13 cannot have initial values as it is determined by conservation law
+	: S14 cannot have initial values as it is determined by conservation law
+	: S15 cannot have initial values as it is determined by conservation law
+	: S16 cannot have initial values as it is determined by conservation law
+	: S17 cannot have initial values as it is determined by conservation law
+	: S18 cannot have initial values as it is determined by conservation law
+	: S19 cannot have initial values as it is determined by conservation law
+	: S20 cannot have initial values as it is determined by conservation law
+	: S21 cannot have initial values as it is determined by conservation law
+	: S22 cannot have initial values as it is determined by conservation law
+	: S23 cannot have initial values as it is determined by conservation law
+	: S25 cannot have initial values as it is determined by conservation law
+	: S26 cannot have initial values as it is determined by conservation law
+	: S27 cannot have initial values as it is determined by conservation law
+	: S28 cannot have initial values as it is determined by conservation law
+	: S29 cannot have initial values as it is determined by conservation law
+	: S30 cannot have initial values as it is determined by conservation law
+	: S31 cannot have initial values as it is determined by conservation law
+	: S32 cannot have initial values as it is determined by conservation law
+	: S33 cannot have initial values as it is determined by conservation law
+	: S34 cannot have initial values as it is determined by conservation law
+	: S35 cannot have initial values as it is determined by conservation law
+	: S36 cannot have initial values as it is determined by conservation law
+	: S37 cannot have initial values as it is determined by conservation law
+	: S38 cannot have initial values as it is determined by conservation law
+	: S39 cannot have initial values as it is determined by conservation law
+	: S40 cannot have initial values as it is determined by conservation law
+	: S41 cannot have initial values as it is determined by conservation law
+	: S42 cannot have initial values as it is determined by conservation law
+	: S43 cannot have initial values as it is determined by conservation law
+	: S44 cannot have initial values as it is determined by conservation law
+	: S45 cannot have initial values as it is determined by conservation law
+	: S46 cannot have initial values as it is determined by conservation law
+	: S47 cannot have initial values as it is determined by conservation law
+	: S49 cannot have initial values as it is determined by conservation law
+	: S50 cannot have initial values as it is determined by conservation law
+	: S51 cannot have initial values as it is determined by conservation law
+	: S52 cannot have initial values as it is determined by conservation law
+	: S53 cannot have initial values as it is determined by conservation law
+	: S54 cannot have initial values as it is determined by conservation law
+	: S55 cannot have initial values as it is determined by conservation law
+	: S56 cannot have initial values as it is determined by conservation law
+	: S57 cannot have initial values as it is determined by conservation law
+	: S58 cannot have initial values as it is determined by conservation law
+	: S59 cannot have initial values as it is determined by conservation law
+	: S60 cannot have initial values as it is determined by conservation law
+	: S61 cannot have initial values as it is determined by conservation law
+	: S62 cannot have initial values as it is determined by conservation law
+	: S63 cannot have initial values as it is determined by conservation law
+	: S64 cannot have initial values as it is determined by conservation law
+	: S65 cannot have initial values as it is determined by conservation law
+	: S66 cannot have initial values as it is determined by conservation law
+	: S67 cannot have initial values as it is determined by conservation law
+	: S68 cannot have initial values as it is determined by conservation law
+	: S69 cannot have initial values as it is determined by conservation law
+	: S70 cannot have initial values as it is determined by conservation law
+	: S71 cannot have initial values as it is determined by conservation law
+	: S72 cannot have initial values as it is determined by conservation law
+	: S73 cannot have initial values as it is determined by conservation law
+	: S74 cannot have initial values as it is determined by conservation law
+	: S75 cannot have initial values as it is determined by conservation law
+	: S76 cannot have initial values as it is determined by conservation law
+	: S77 cannot have initial values as it is determined by conservation law
+	: S78 cannot have initial values as it is determined by conservation law
+	: S79 cannot have initial values as it is determined by conservation law
+	: S80 cannot have initial values as it is determined by conservation law
+	: S81 cannot have initial values as it is determined by conservation law
+	: S82 cannot have initial values as it is determined by conservation law
+	: S83 cannot have initial values as it is determined by conservation law
+	: S84 cannot have initial values as it is determined by conservation law
+	: S85 cannot have initial values as it is determined by conservation law
+	: S86 cannot have initial values as it is determined by conservation law
+	: S87 cannot have initial values as it is determined by conservation law
+	: S88 cannot have initial values as it is determined by conservation law
+	: S89 cannot have initial values as it is determined by conservation law
+	: S90 cannot have initial values as it is determined by conservation law
+	: S91 cannot have initial values as it is determined by conservation law
+	: S92 cannot have initial values as it is determined by conservation law
+	: S93 cannot have initial values as it is determined by conservation law
+	: S94 cannot have initial values as it is determined by conservation law
+	: S95 cannot have initial values as it is determined by conservation law
+	: S96 cannot have initial values as it is determined by conservation law
+	: S97 cannot have initial values as it is determined by conservation law
+	: S98 cannot have initial values as it is determined by conservation law
 }
 
 BREAKPOINT {
@@ -1223,111 +1223,111 @@ BREAKPOINT {
 
 PROCEDURE assign_calculated_values() {
 	time = t : an alias for the time variable, if needed.
-	S98_st = S98_st_cc : conservation law for (S98_st)
-	S97_st = S97_st_cc : conservation law for (S97_st)
-	S96_st = S96_st_cc : conservation law for (S96_st)
-	S95_st = S95_st_cc : conservation law for (S95_st)
-	S94_st = S94_st_cc : conservation law for (S94_st)
-	S93_st = S93_st_cc : conservation law for (S93_st)
-	S92_st = S92_st_cc : conservation law for (S92_st)
-	S91_st = S91_st_cc : conservation law for (S91_st)
-	S90_st = S90_st_cc : conservation law for (S90_st)
-	S89_st = S89_st_cc : conservation law for (S89_st)
-	S88_st = S88_st_cc : conservation law for (S88_st)
-	S87_st = S87_st_cc : conservation law for (S87_st)
-	S86_st = S86_st_cc : conservation law for (S86_st)
-	S85_st = S85_st_cc : conservation law for (S85_st)
-	S84_st = S84_st_cc : conservation law for (S84_st)
-	S83_st = S83_st_cc : conservation law for (S83_st)
-	S82_st = S82_st_cc : conservation law for (S82_st)
-	S81_st = S81_st_cc : conservation law for (S81_st)
-	S80_st = S80_st_cc : conservation law for (S80_st)
-	S79_st = S79_st_cc : conservation law for (S79_st)
-	S78_st = S78_st_cc : conservation law for (S78_st)
-	S77_st = S77_st_cc : conservation law for (S77_st)
-	S76_st = S76_st_cc : conservation law for (S76_st)
-	S75_st = S75_st_cc : conservation law for (S75_st)
-	S74_st = S74_st_cc : conservation law for (S74_st)
-	S73_st = S73_st_cc : conservation law for (S73_st)
-	S72_st = S72_st_cc : conservation law for (S72_st)
-	S71_st = S71_st_cc : conservation law for (S71_st)
-	S70_st = S70_st_cc : conservation law for (S70_st)
-	S69_st = S69_st_cc : conservation law for (S69_st)
-	S68_st = S68_st_cc : conservation law for (S68_st)
-	S67_st = S67_st_cc : conservation law for (S67_st)
-	S66_st = S66_st_cc : conservation law for (S66_st)
-	S65_st = S65_st_cc : conservation law for (S65_st)
-	S64_st = S64_st_cc : conservation law for (S64_st)
-	S63_st = S63_st_cc : conservation law for (S63_st)
-	S62_st = S62_st_cc : conservation law for (S62_st)
-	S61_st = S61_st_cc : conservation law for (S61_st)
-	S60_st = S60_st_cc : conservation law for (S60_st)
-	S59_st = S59_st_cc : conservation law for (S59_st)
-	S58_st = S58_st_cc : conservation law for (S58_st)
-	S57_st = S57_st_cc : conservation law for (S57_st)
-	S56_st = S56_st_cc : conservation law for (S56_st)
-	S55_st = S55_st_cc : conservation law for (S55_st)
-	S54_st = S54_st_cc : conservation law for (S54_st)
-	S53_st = S53_st_cc : conservation law for (S53_st)
-	S52_st = S52_st_cc : conservation law for (S52_st)
-	S51_st = S51_st_cc : conservation law for (S51_st)
-	S50_st = S50_st_cc : conservation law for (S50_st)
-	S49_st = S49_st_cc : conservation law for (S49_st)
-	S47_st = S47_st_cc : conservation law for (S47_st)
-	S46_st = S46_st_cc : conservation law for (S46_st)
-	S45_st = S45_st_cc : conservation law for (S45_st)
-	S44_st = S44_st_cc : conservation law for (S44_st)
-	S43_st = S43_st_cc : conservation law for (S43_st)
-	S42_st = S42_st_cc : conservation law for (S42_st)
-	S41_st = S41_st_cc : conservation law for (S41_st)
-	S40_st = S40_st_cc : conservation law for (S40_st)
-	S39_st = S39_st_cc : conservation law for (S39_st)
-	S38_st = S38_st_cc : conservation law for (S38_st)
-	S37_st = S37_st_cc : conservation law for (S37_st)
-	S36_st = S36_st_cc : conservation law for (S36_st)
-	S35_st = S35_st_cc : conservation law for (S35_st)
-	S34_st = S34_st_cc : conservation law for (S34_st)
-	S33_st = S33_st_cc : conservation law for (S33_st)
-	S32_st = S32_st_cc : conservation law for (S32_st)
-	S31_st = S31_st_cc : conservation law for (S31_st)
-	S30_st = S30_st_cc : conservation law for (S30_st)
-	S29_st = S29_st_cc : conservation law for (S29_st)
-	S28_st = S28_st_cc : conservation law for (S28_st)
-	S27_st = S27_st_cc : conservation law for (S27_st)
-	S26_st = S26_st_cc : conservation law for (S26_st)
-	S25_st = S25_st_cc : conservation law for (S25_st)
-	S23_st = S23_st_cc : conservation law for (S23_st)
-	S22_st = S22_st_cc : conservation law for (S22_st)
-	S21_st = S21_st_cc : conservation law for (S21_st)
-	S20_st = S20_st_cc : conservation law for (S20_st)
-	S19_st = S19_st_cc : conservation law for (S19_st)
-	S18_st = S18_st_cc : conservation law for (S18_st)
-	S17_st = S17_st_cc : conservation law for (S17_st)
-	S16_st = S16_st_cc : conservation law for (S16_st)
-	S15_st = S15_st_cc : conservation law for (S15_st)
-	S14_st = S14_st_cc : conservation law for (S14_st)
-	S13_st = S13_st_cc : conservation law for (S13_st)
-	S12_st = S12_st_cc : conservation law for (S12_st)
-	S11_st = S11_st_cc : conservation law for (S11_st)
-	S10_st = S10_st_cc : conservation law for (S10_st)
-	S7_st = S7_st_cc : conservation law for (S7_st)
-	S6_st = S6_st_cc : conservation law for (S6_st)
-	S5_st = S5_st_cc : conservation law for (S5_st)
-	S4_st = S4_st_cc : conservation law for (S4_st)
-	S3_st = S3_st_cc : conservation law for (S3_st)
-	S2_st = S2_st_cc : conservation law for (S2_st)
-	S1_st = S1_st_cc : conservation law for (S1_st)
-	S0_st = S0_st_cc : conservation law for (S0_st)
+	S98 = S98_cc : conservation law for (S98)
+	S97 = S97_cc : conservation law for (S97)
+	S96 = S96_cc : conservation law for (S96)
+	S95 = S95_cc : conservation law for (S95)
+	S94 = S94_cc : conservation law for (S94)
+	S93 = S93_cc : conservation law for (S93)
+	S92 = S92_cc : conservation law for (S92)
+	S91 = S91_cc : conservation law for (S91)
+	S90 = S90_cc : conservation law for (S90)
+	S89 = S89_cc : conservation law for (S89)
+	S88 = S88_cc : conservation law for (S88)
+	S87 = S87_cc : conservation law for (S87)
+	S86 = S86_cc : conservation law for (S86)
+	S85 = S85_cc : conservation law for (S85)
+	S84 = S84_cc : conservation law for (S84)
+	S83 = S83_cc : conservation law for (S83)
+	S82 = S82_cc : conservation law for (S82)
+	S81 = S81_cc : conservation law for (S81)
+	S80 = S80_cc : conservation law for (S80)
+	S79 = S79_cc : conservation law for (S79)
+	S78 = S78_cc : conservation law for (S78)
+	S77 = S77_cc : conservation law for (S77)
+	S76 = S76_cc : conservation law for (S76)
+	S75 = S75_cc : conservation law for (S75)
+	S74 = S74_cc : conservation law for (S74)
+	S73 = S73_cc : conservation law for (S73)
+	S72 = S72_cc : conservation law for (S72)
+	S71 = S71_cc : conservation law for (S71)
+	S70 = S70_cc : conservation law for (S70)
+	S69 = S69_cc : conservation law for (S69)
+	S68 = S68_cc : conservation law for (S68)
+	S67 = S67_cc : conservation law for (S67)
+	S66 = S66_cc : conservation law for (S66)
+	S65 = S65_cc : conservation law for (S65)
+	S64 = S64_cc : conservation law for (S64)
+	S63 = S63_cc : conservation law for (S63)
+	S62 = S62_cc : conservation law for (S62)
+	S61 = S61_cc : conservation law for (S61)
+	S60 = S60_cc : conservation law for (S60)
+	S59 = S59_cc : conservation law for (S59)
+	S58 = S58_cc : conservation law for (S58)
+	S57 = S57_cc : conservation law for (S57)
+	S56 = S56_cc : conservation law for (S56)
+	S55 = S55_cc : conservation law for (S55)
+	S54 = S54_cc : conservation law for (S54)
+	S53 = S53_cc : conservation law for (S53)
+	S52 = S52_cc : conservation law for (S52)
+	S51 = S51_cc : conservation law for (S51)
+	S50 = S50_cc : conservation law for (S50)
+	S49 = S49_cc : conservation law for (S49)
+	S47 = S47_cc : conservation law for (S47)
+	S46 = S46_cc : conservation law for (S46)
+	S45 = S45_cc : conservation law for (S45)
+	S44 = S44_cc : conservation law for (S44)
+	S43 = S43_cc : conservation law for (S43)
+	S42 = S42_cc : conservation law for (S42)
+	S41 = S41_cc : conservation law for (S41)
+	S40 = S40_cc : conservation law for (S40)
+	S39 = S39_cc : conservation law for (S39)
+	S38 = S38_cc : conservation law for (S38)
+	S37 = S37_cc : conservation law for (S37)
+	S36 = S36_cc : conservation law for (S36)
+	S35 = S35_cc : conservation law for (S35)
+	S34 = S34_cc : conservation law for (S34)
+	S33 = S33_cc : conservation law for (S33)
+	S32 = S32_cc : conservation law for (S32)
+	S31 = S31_cc : conservation law for (S31)
+	S30 = S30_cc : conservation law for (S30)
+	S29 = S29_cc : conservation law for (S29)
+	S28 = S28_cc : conservation law for (S28)
+	S27 = S27_cc : conservation law for (S27)
+	S26 = S26_cc : conservation law for (S26)
+	S25 = S25_cc : conservation law for (S25)
+	S23 = S23_cc : conservation law for (S23)
+	S22 = S22_cc : conservation law for (S22)
+	S21 = S21_cc : conservation law for (S21)
+	S20 = S20_cc : conservation law for (S20)
+	S19 = S19_cc : conservation law for (S19)
+	S18 = S18_cc : conservation law for (S18)
+	S17 = S17_cc : conservation law for (S17)
+	S16 = S16_cc : conservation law for (S16)
+	S15 = S15_cc : conservation law for (S15)
+	S14 = S14_cc : conservation law for (S14)
+	S13 = S13_cc : conservation law for (S13)
+	S12 = S12_cc : conservation law for (S12)
+	S11 = S11_cc : conservation law for (S11)
+	S10 = S10_cc : conservation law for (S10)
+	S7 = S7_cc : conservation law for (S7)
+	S6 = S6_cc : conservation law for (S6)
+	S5 = S5_cc : conservation law for (S5)
+	S4 = S4_cc : conservation law for (S4)
+	S3 = S3_cc : conservation law for (S3)
+	S2 = S2_cc : conservation law for (S2)
+	S1 = S1_cc : conservation law for (S1)
+	S0 = S0_cc : conservation law for (S0)
 	: Ion WRITE variable value updates
 	pSubstratei = pSubstrate
 	PKAci = PKAc
 	EX0 = 5000000 : assignment for expression (EX0)
 	EX1 = 1 : assignment for expression (EX1)
 	EX2 = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-exp(-(time-DA_start)/tau_DA2)))) : assignment for expression (EX2)
-	S8_st = 0 : assignment for expression (S8_st)
-	S9_st = 5000000 : assignment for expression (S9_st)
-	S24_st = 60 : assignment for expression (S24_st)
-	S48_st = 20 : assignment for expression (S48_st)
+	S8 = 0 : assignment for expression (S8)
+	S9 = 5000000 : assignment for expression (S9)
+	S24 = 60 : assignment for expression (S24)
+	S48 = 20 : assignment for expression (S48)
 	R0 = kf_R0*GaolfGTP : flux expression R0
 	R1 = kf_R1*D1R_Golf_DA : flux expression R1
 	R2 = kf_R2*D1R_Golf*DA-kr_R2*D1R_Golf_DA : flux expression R2

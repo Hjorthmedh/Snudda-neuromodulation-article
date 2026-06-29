@@ -20,7 +20,6 @@ def parse_tsv_file(file_path: str) -> pd.DataFrame:
     with open(file_path, "r", encoding="utf-8") as f:
         for line in f:
             line = line.strip()
-            # Skip empty lines, metadata headers, or comments
             if not line or line.startswith("%") or line.startswith("!!"):
                 continue
             lines.append(line)
@@ -30,7 +29,6 @@ def parse_tsv_file(file_path: str) -> pd.DataFrame:
 
     split_rows = [l.split("\t") for l in lines]
 
-    # Find the header row (the row where the first element starts with '!')
     h_idx = 0
     for i, r in enumerate(split_rows):
         if r and r[0].startswith("!"):
@@ -63,7 +61,6 @@ def parse_sbtab_folder(folder_path: str) -> dict[str, pd.DataFrame]:
         if df is None:
             continue
 
-        # Standardize table keys via flexible string matching
         lower_base = base_name.lower()
         if "reaction" in lower_base:
             tables["Reaction"] = df
@@ -229,7 +226,6 @@ def parse_reaction_formulae(compound_df: pd.DataFrame, reaction_df: pd.DataFrame
         a = [x.strip() for x in lhs.split("+") if x.strip()]
         b = [x.strip() for x in rhs.split("+") if x.strip()]
 
-        # Process Products (Right-Hand Side)
         term_b = update_ode_and_stoichiometry(b, compound_df, expression_df, input_df)
         for k in range(len(b)):
             j = term_b["J"][k]
@@ -240,7 +236,6 @@ def parse_reaction_formulae(compound_df: pd.DataFrame, reaction_df: pd.DataFrame
                 ODE[idx] = f"{ODE[idx]}+{coeff_b}{rxn_id}"
                 N[idx, i] += val
 
-        # Process Reactants (Left-Hand Side)
         term_a = update_ode_and_stoichiometry(a, compound_df, expression_df, input_df)
         for k in range(len(a)):
             j = term_a["J"][k]
@@ -386,7 +381,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     ion_variables = set()
     ion_lines = []
-    explicit_ion_writebacks = []  # Tracks bindings needed for WRITE nodes
+    explicit_ion_writebacks = []
 
     if "USEION" in compound.columns:
         ion_mask = compound["USEION"].astype(str).str.strip().str.len() > 0
@@ -413,10 +408,9 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         if r_var: ion_variables.add(tr(r_var))
         if w_var: 
             ion_variables.add(tr(w_var))
-            # Match config file references directly against compound base names
             matched_compound = None
             for c_idx in compound.index:
-                if str(c_idx).startswith(orig_ion_name):
+                if str(c_idx) == orig_ion_name:
                     matched_compound = c_idx
                     break
             if matched_compound:
@@ -440,10 +434,9 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         pointer_assigned_declarations.append(f"\t{p_name} ({p_unit})")
         pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({p_unit}/millisecond)")
         
-        suffixed_name = f"{orig_name}_st"
-        if suffixed_name in compound.index:
-            pointer_compounds.add(suffixed_name)
-            pointer_assignments.append(f"\t{tr(suffixed_name)} = {p_name} : driven directly via RxD node tracking")
+        if orig_name in compound.index:
+            pointer_compounds.add(orig_name)
+            pointer_assignments.append(f"\t{tr(orig_name)} = {p_name} : driven directly via RxD node tracking")
 
     mod["NEURON"] = [f"NEURON {{", f"\tSUFFIX {safe_suffix_name}"] + range_lines + ion_lines + pointer_neuron_lines + ["}"]
 
@@ -468,7 +461,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             
             formula_part = f" - ({row_cl['Formula']})" if row_cl['Formula'] != "0" else ""
             trans_formula = formula_part
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_formula = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_formula)
                 
             conservation_law.append(fmt["ConservationLaw"].format(tr(c_name), f"{tr(row_cl['ConstantName'])}{trans_formula}", c_name))
@@ -569,15 +562,16 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         if c_name in pointer_compounds:
             clean_ode = re.sub(r"^\s*\+", "", str(ode_expr))
             if not clean_ode or clean_ode.isspace(): clean_ode = "0"
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 clean_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, clean_ode)
-            pointer_assignments.append(f"\t{tr(c_name[:-3] + '_rate')} = {clean_ode} : writeback consumption rate matrix element")
+            
+            pointer_assignments.append(f"\t{tr(c_name + '_rate')} = {clean_ode} : writeback consumption rate matrix element")
             continue
 
         if n_laws > 0 and i in eliminates_list:
             state_block.append(f"\t: {tr(c_name)} is calculated via Conservation Law")
             trans_ode = ode_expr
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
             derivative_block.append(fmt["comment"].format(tr(c_name), row_comp.get("InitialValue", "0"), trans_ode))
             ivp_block.append(f"\t: {tr(c_name)} cannot have initial values as it is determined by conservation law")
@@ -585,7 +579,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             has_active_odes = True
             state_block.append(fmt["state"].format(tr(c_name), neuron_unit(str(row_comp.get("Unit", ""))), c_name))
             trans_ode = re.sub(r"^\s*\+", "", str(ode_expr))
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
             derivative_block.append(fmt["ode"].format(tr(c_name), trans_ode, c_name))
             ivp_block.append(f"\t {tr(c_name)} = {row_comp.get('InitialValue', '0')} : initial condition")
@@ -594,7 +588,6 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     expression_lines.extend(conservation_law)
     expression_lines.extend(pointer_assignments)
     
-    # Critical Fix: Inject assignments to satisfy WRITE requirement for non-STATE ion variables
     if explicit_ion_writebacks:
         expression_lines.append("\t: Ion WRITE variable value updates")
         for ion_w_var, source_var in explicit_ion_writebacks:
@@ -603,14 +596,14 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     if expression is not None and not expression.empty:
         for idx, row in expression.iterrows(): 
             trans_form = row["Formula"]
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_form = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_form)
             expression_lines.append(fmt["assignment"].format(tr(idx), trans_form, idx))
             
     if reaction is not None and not reaction.empty:
         for idx, row in reaction.iterrows(): 
             trans_flux = row["Flux"]
-            for k_id, v_id in name_map.items():
+            for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_flux = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_flux)
             expression_lines.append(f"\t{tr(idx)} = {trans_flux} : flux expression {idx}")
     expression_lines.append("}")
@@ -654,10 +647,21 @@ def main():
     output_path = os.path.join(os.getcwd(), output_filename)
 
     neuron_config = {}
+    protected_names = set()
     if args.config and os.path.exists(args.config):
         print(f"[*] Loading NEURON external mapping config: {args.config}")
         with open(args.config, "r", encoding="utf-8") as jf:
             neuron_config = json.load(jf)
+        
+        for key in neuron_config.get("pointers", {}).keys():
+            protected_names.add(key)
+        for val in neuron_config.get("pointers", {}).values():
+            protected_names.add(val.get("pointer_name"))
+        for key in neuron_config.get("ions", {}).keys():
+            protected_names.add(key)
+        for val in neuron_config.get("ions", {}).values():
+            if val.get("write"): protected_names.add(val.get("write"))
+            if val.get("read"): protected_names.add(val.get("read"))
 
     print(f"[*] Analyzing folder contents: {folder_path}")
     raw_sbtab = parse_sbtab_folder(folder_path)
@@ -669,22 +673,34 @@ def main():
     parameter = get_parameters(raw_sbtab)
     input_df = get_inputs(raw_sbtab)
 
-    safe_suffix = "_st"
-    original_compound_ids = list(compound.index)
-    sorted_original_ids = sorted(original_compound_ids, key=len, reverse=True)
+    # 1. FIXED LOGIC: Clean compound names ONLY if they start with numbers
+    cleaned_compound_indices = []
+    for idx in compound.index:
+        name_str = str(idx)
+        if name_str in protected_names:
+            cleaned_compound_indices.append(name_str)
+        else:
+            if re.match(r"^\d", name_str):
+                # Prefix numeric-first variables cleanly with a valid alphabetic character
+                name_str = f"comp_{name_str}"
+            cleaned_compound_indices.append(name_str)
     
-    compound.index = [f"{idx}{safe_suffix}" for idx in compound.index]
+    # Map from old layout coordinates to target clean syntax coordinates
+    compound_rename_map = dict(zip(compound.index, cleaned_compound_indices))
+    compound.index = cleaned_compound_indices
     
     if reaction is not None and not reaction.empty:
-        for orig_id in sorted_original_ids:
-            pattern = rf"\b{re.escape(str(orig_id))}\b"
-            reaction["Flux"] = reaction["Flux"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
-            reaction["Formula"] = reaction["Formula"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
+        for old_id, new_id in sorted(compound_rename_map.items(), key=lambda x: len(str(x[0])), reverse=True):
+            if old_id == new_id: continue
+            pattern = rf"\b{re.escape(str(old_id))}\b"
+            reaction["Flux"] = reaction["Flux"].apply(lambda x: re.sub(pattern, new_id, str(x)))
+            reaction["Formula"] = reaction["Formula"].apply(lambda x: re.sub(pattern, new_id, str(x)))
 
     if expression is not None and not expression.empty:
-        for orig_id in sorted_original_ids:
-            pattern = rf"\b{re.escape(str(orig_id))}\b"
-            expression["Formula"] = expression["Formula"].apply(lambda x: re.sub(pattern, f"{orig_id}{safe_suffix}", str(x)))
+        for old_id, new_id in sorted(compound_rename_map.items(), key=lambda x: len(str(x[0])), reverse=True):
+            if old_id == new_id: continue
+            pattern = rf"\b{re.escape(str(old_id))}\b"
+            expression["Formula"] = expression["Formula"].apply(lambda x: re.sub(pattern, new_id, str(x)))
 
     if "IsConstant" in compound.columns and compound["IsConstant"].any():
         cc = compound[compound["IsConstant"]]
@@ -706,10 +722,12 @@ def main():
             ivs = pd.to_numeric(compound["InitialValue"], errors="coerce").fillna(0.0).tolist()
             con_law_df = get_law_text(laws, list(compound.index), ivs)
 
-    # Deterministic short name maps
+    # 2. Targeted translation maps for variables exceeding NMODL's length limits
     name_translations = {}
     
     def register_safe_name(long_name, class_prefix):
+        if long_name in protected_names:
+            return long_name
         if len(long_name) <= 28: 
             return long_name
         if long_name not in name_translations:
@@ -731,8 +749,20 @@ def main():
     if con_law_df is not None:
         for cl_idx, cl_row in con_law_df.iterrows():
             register_safe_name(str(cl_row["ConstantName"]), "CONS")
+            
+    # Track external configuration pointer rates
+    for orig_name in neuron_config.get("pointers", {}).keys():
+        register_safe_name(f"{orig_name}_rate", "PR")
 
-    print(f"[*] Shortened {len(name_translations)} variables to comply with NMODL string lengths.")
+    # Scan for long implicit rate constants found in reaction fluxes
+    if reaction is not None and not reaction.empty:
+        for _, r_row in reaction.iterrows():
+            flux_str = str(r_row["Flux"])
+            implicit_rates = re.findall(r"\b(k[fr]_\w+)\b", flux_str)
+            for rate in implicit_rates:
+                register_safe_name(rate, "P")
+
+    print(f"[*] Shortened {len(name_translations)} exceptionally long variables to satisfy NMODL string rules.")
 
     print("[*] Structuring block files...")
     mod_blocks = make_mod(
