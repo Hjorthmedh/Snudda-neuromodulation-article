@@ -1,4 +1,5 @@
 import argparse
+import json
 import os
 import re
 from datetime import datetime
@@ -325,7 +326,12 @@ def neuron_unit(unit: str) -> str:
     return re.sub(r"\s*\*\s*", "-", re.sub(r"[()]", "", re.sub(r"^\s*1/", "/", unit)))
 
 
-def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, con_law=None):
+def make_mod(H, constant, parameter, input_df, expression, reaction, compound, ode, con_law=None, config=None):
+    if config is None:
+        config = {}
+    pointers_config = config.get("pointers", {})
+    ions_config = config.get("ions", {})
+
     mod = {}
     fmt = {
         "const": "\t{} = {} ({}) : a constant",
@@ -339,7 +345,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         "state": "\t{} ({}) : a state variable",
         "ode": "\t{}' = {} : affects compound {}",
         "assignment": "\t{} = {} : assignment for expression {}",
-        "ion": "\tUSEION {} READ {} WRITE {} VALENCE {:d} : {}",
+        "ion": "\tUSEION {} {} {} VALENCE {:d}",
     }
 
     mod["TITLE"] = [f"TITLE {H}"]
@@ -350,18 +356,60 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     range_lines.extend(one_or_more_lines("\tRANGE", expression, ": assigned"))
     range_lines.extend(one_or_more_lines("\tRANGE", compound, ": compound"))
 
+    # Tracking list to capture all ion READ/WRITE dependencies for ASSIGNED block safety inclusion
+    ion_variables = set()
+
+    # Process USEION configuration from tabular parameters
+    ion_lines = []
     if "USEION" in compound.columns:
         ion_mask = compound["USEION"].astype(str).str.strip().str.len() > 0
-        compound_ion, compound_clean = compound[ion_mask], compound[~ion_mask].copy()
-    else:
-        compound_ion, compound_clean = pd.DataFrame(), compound.copy()
+        compound_ion = compound[ion_mask]
+        for idx, row in compound_ion.iterrows():
+            val = int(row["VALENCE"]) if "VALENCE" in row and pd.notna(row["VALENCE"]) else 1
+            r_var = str(row.get("READ", "")).strip() if pd.notna(row.get("READ")) else ""
+            w_var = str(row.get("WRITE", "")).strip() if pd.notna(row.get("WRITE")) else ""
+            
+            if r_var and r_var.lower() != "none": ion_variables.add(r_var)
+            if w_var and w_var.lower() != "none": ion_variables.add(w_var)
+            
+            r_str = f"READ {r_var}" if r_var and r_var.lower() != "none" else ""
+            w_str = f"WRITE {w_var}" if w_var and w_var.lower() != "none" else ""
+            ion_lines.append(fmt["ion"].format(row.get("USEION", ""), r_str, w_str, val))
 
-    ion_lines = []
-    for idx, row in compound_ion.iterrows():
-        val = int(row["VALENCE"]) if "VALENCE" in row and pd.notna(row["VALENCE"]) else 1
-        ion_lines.append(fmt["ion"].format(row.get("USEION", ""), row.get("READ", ""), row.get("WRITE", ""), val, idx))
+    # Incorporate Ion configuration from external JSON layout map
+    for orig_name, ion_info in ions_config.items():
+        ion_name = orig_name
+        r_var = ion_info.get("read", "").strip()
+        w_var = ion_info.get("write", "").strip()
+        valence = ion_info.get("valence", 0)
+        
+        if r_var: ion_variables.add(r_var)
+        if w_var: ion_variables.add(w_var)
+        
+        r_str = f"READ {r_var}" if r_var else ""
+        w_str = f"WRITE {w_var}" if w_var else ""
+        ion_lines.append(fmt["ion"].format(ion_name, r_str, w_str, valence))
 
-    mod["NEURON"] = ["NEURON {", f"\tSUFFIX {H}"] + range_lines + ion_lines + ["}"]
+    # Process POINTER configuration tags
+    pointer_neuron_lines = []
+    pointer_assignments = []
+    pointer_assigned_declarations = []
+    pointer_compounds = set()
+
+    for orig_name, p_info in pointers_config.items():
+        p_name = p_info.get("pointer_name")
+        p_unit = p_info.get("unit", "millimole/liter")
+        pointer_neuron_lines.append(f"\tPOINTER {p_name}")
+        pointer_assigned_declarations.append(f"\t{p_name} ({p_unit})")
+        pointer_assigned_declarations.append(f"\t{orig_name}_rate ({p_unit}/millisecond)")
+        
+        # Track the suffixed form of the pointer compound
+        suffixed_name = f"{orig_name}_st"
+        if suffixed_name in compound.index:
+            pointer_compounds.add(suffixed_name)
+            pointer_assignments.append(f"\t{suffixed_name} = {p_name} : driven directly via RxD node tracking")
+
+    mod["NEURON"] = ["NEURON {", f"\tSUFFIX {H}"] + range_lines + ion_lines + pointer_neuron_lines + ["}"]
 
     # Collect known symbols to prevent declaring them as rogue values later
     known_symbols = set(list(compound.index))
@@ -369,11 +417,17 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     if expression is not None: known_symbols.update(list(expression.index))
     if input_df is not None: known_symbols.update(list(input_df.index))
 
+    # Safe-register pointer variables so structural scanners skip them
+    for orig_name, p_info in pointers_config.items():
+        known_symbols.add(p_info.get("pointer_name"))
+        known_symbols.add(f"{orig_name}_rate")
+
     conservation_law, conservation_input, c_name_law, n_laws = [], [], [], 0
     if con_law is not None and not con_law.empty:
         n_laws = len(con_law)
         for _, row_cl in con_law.iterrows():
-            c_name = compound_clean.index[int(row_cl["Eliminates"]) - 1]
+            c_name = compound.index[int(row_cl["Eliminates"]) - 1]
+            if c_name in pointer_compounds: continue # Pointers bypass conservation reduction loops
             c_name_law.append(c_name)
             conservation_input.append(fmt["total"].format(row_cl["ConstantName"], row_cl["Constant"]))
             known_symbols.add(str(row_cl["ConstantName"]))
@@ -408,7 +462,6 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             added_parameters.add(p_name)
             known_symbols.add(p_name)
 
-    # Auto-register missing rate constant parameters (e.g., kf_*, kr_*) found in reactions
     if reaction is not None and not reaction.empty:
         for _, r_row in reaction.iterrows():
             flux_str = str(r_row["Flux"])
@@ -427,34 +480,25 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     parameter_lines.append("}")
     mod["PARAMETER"] = parameter_lines
 
-    # --- UPDATED STRUCTURAL ASSIGNED SAFETY SCAN ---
-    # Now comprehensively scans BOTH Reaction AND Expression formula strings 
-    # to catch every floating parameter (e.g., DA_basal, tau_DA1) missing from sheets.
+    # --- STRUCTURAL ASSIGNED SAFETY SCAN ---
     rogue_assigned = set()
-    
-    # 1. Scan Reaction Fluxes
     if reaction is not None and not reaction.empty:
         for idx, r_row in reaction.iterrows():
             known_symbols.add(str(idx))
             flux_str = str(r_row["Flux"])
             tokens = re.findall(r"\b([a-zA-Z_]\w*)\b", flux_str)
             for token in tokens:
-                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]:
-                    continue
-                if token not in known_symbols and token not in added_parameters:
-                    rogue_assigned.add(token)
+                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]: continue
+                if token not in known_symbols and token not in added_parameters: rogue_assigned.add(token)
 
-    # 2. Scan Expression Formulas
     if expression is not None and not expression.empty:
         for idx, e_row in expression.iterrows():
             known_symbols.add(str(idx))
             formula_str = str(e_row["Formula"])
             tokens = re.findall(r"\b([a-zA-Z_]\w*)\b", formula_str)
             for token in tokens:
-                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]:
-                    continue
-                if token not in known_symbols and token not in added_parameters:
-                    rogue_assigned.add(token)
+                if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]: continue
+                if token not in known_symbols and token not in added_parameters: rogue_assigned.add(token)
 
     assigned_lines = ["ASSIGNED {", "\ttime (millisecond) : alias for t"]
     if expression is not None and not expression.empty:
@@ -463,7 +507,15 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         for idx in reaction.index: assigned_lines.append(fmt["flux"].format(idx))
     for name in c_name_law: assigned_lines.append(f"\t{name} : computed from conservation law")
     
-    # Inject dynamically protected variables so NEURON compilation environment clears
+    # Move pointer-driven compounds out of STATE and into ASSIGNED block space
+    for c_name in sorted(list(pointer_compounds)):
+        assigned_lines.append(f"\t{c_name} : variable assigned externally via pointer mapping")
+    assigned_lines.extend(pointer_assigned_declarations)
+
+    # CRITICAL INCLUSION: Append all registered internal/external concentration ion variables
+    for ion_var in sorted(list(ion_variables)):
+        assigned_lines.append(f"\t{ion_var} (millimole/liter) : ion variable registered for internal scope linkage")
+
     for rogue in sorted(list(rogue_assigned)):
         assigned_lines.append(f"\t{rogue} : catch-all baseline fallback tracking structural bounds")
     assigned_lines.append("}")
@@ -473,11 +525,18 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     eliminates_list = [int(x) for x in con_law["Eliminates"]] if n_laws > 0 else []
 
     has_active_odes = False
-    for i in range(1, len(compound_clean) + 1):
+    for i in range(1, len(compound) + 1):
         idx_0 = i - 1
-        c_name = compound_clean.index[idx_0]
-        row_comp = compound_clean.iloc[idx_0]
+        c_name = compound.index[idx_0]
+        row_comp = compound.iloc[idx_0]
         ode_expr = ode[idx_0] if idx_0 < len(ode) else ""
+
+        if c_name in pointer_compounds:
+            # Trap total consumption network fluxes into pointer writeback metrics instead of defining STATE variables
+            clean_ode = re.sub(r"^\s*\+", "", str(ode_expr))
+            if not clean_ode or clean_ode.isspace(): clean_ode = "0"
+            pointer_assignments.append(f"\t{c_name[:-3]}_rate = {clean_ode} : writeback consumption rate matrix element")
+            continue
 
         if n_laws > 0 and i in eliminates_list:
             state_block.append(f"\t: {c_name} is calculated via Conservation Law")
@@ -491,6 +550,8 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     expression_lines = ["PROCEDURE assign_calculated_values() {", "\ttime = t : an alias for the time variable, if needed."]
     expression_lines.extend(conservation_law)
+    expression_lines.extend(pointer_assignments)
+    
     if expression is not None and not expression.empty:
         for idx, row in expression.iterrows(): expression_lines.append(fmt["assignment"].format(idx, row["Formula"], idx))
     if reaction is not None and not reaction.empty:
@@ -523,6 +584,7 @@ def main():
     parser.add_argument("model_folder", type=str, help="Path to the directory containing the separate *.tsv model files")
     parser.add_argument("-o", "--output", type=str, default=None, help="Name of output MOD file (defaults to folder_name.mod)")
     parser.add_argument("-n", "--name", type=str, default=None, help="Mechanism SUFFIX name inside the MOD block (defaults to folder name)")
+    parser.add_argument("-c", "--config", type=str, default=None, help="Path to JSON configuration file for NEURON tracking (pointers/ions)")
     parser.add_argument("--no-cla", action="store_true", help="Disable linear Conservation Law algebraic state reductions")
     
     args = parser.parse_args()
@@ -533,6 +595,12 @@ def main():
     model_name = args.name if args.name else folder_name
     output_filename = args.output if args.output else f"{model_name}.mod"
     output_path = os.path.join(os.getcwd(), output_filename)
+
+    neuron_config = {}
+    if args.config and os.path.exists(args.config):
+        print(f"[*] Loading NEURON external mapping config: {args.config}")
+        with open(args.config, "r", encoding="utf-8") as jf:
+            neuron_config = json.load(jf)
 
     print(f"[*] Analyzing folder contents: {folder_path}")
     raw_sbtab = parse_sbtab_folder(folder_path)
@@ -545,16 +613,11 @@ def main():
     input_df = get_inputs(raw_sbtab)
 
     safe_suffix = "_st"
-    
-    # Track original IDs before suffixing
     original_compound_ids = list(compound.index)
-    
-    # Sort descending by length so complex IDs are replaced before shorter substrings
     sorted_original_ids = sorted(original_compound_ids, key=len, reverse=True)
     
     compound.index = [f"{idx}{safe_suffix}" for idx in compound.index]
     
-    # Regular expression transformation loops
     if reaction is not None and not reaction.empty:
         for orig_id in sorted_original_ids:
             pattern = rf"\b{re.escape(str(orig_id))}\b"
@@ -597,6 +660,7 @@ def main():
         compound=compound,
         ode=ode_list,
         con_law=con_law_df,
+        config=neuron_config,
     )
 
     final_mod_text = convert_to_string(mod_blocks)

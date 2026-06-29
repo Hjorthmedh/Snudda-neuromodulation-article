@@ -2,7 +2,7 @@ TITLE SBtab_D1
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Sun Jun 28 10:23:07 2026
+	date: Mon Jun 29 11:06:19 2026
 ENDCOMMENT
 
 NEURON {
@@ -103,6 +103,10 @@ NEURON {
 	RANGE S96_st : compound
 	RANGE S97_st : compound
 	RANGE S98_st : compound
+	USEION pSubstrate  WRITE pSubstratei VALENCE 0
+	USEION PKAc  WRITE PKAci VALENCE 0
+	POINTER ca_ref
+	POINTER da_ref
 }
 
 CONSTANT {
@@ -906,6 +910,12 @@ ASSIGNED {
 	S2_st : computed from conservation law
 	S1_st : computed from conservation law
 	S0_st : computed from conservation law
+	ca_ref (millimole/liter)
+	Ca_rate (millimole/liter/millisecond)
+	da_ref (millimole/liter)
+	DA_rate (millimole/liter/millisecond)
+	PKAci (millimole/liter) : ion variable registered for internal scope linkage
+	pSubstratei (millimole/liter) : ion variable registered for internal scope linkage
 	AC5 : catch-all baseline fallback tracking structural bounds
 	AC5_ATP : catch-all baseline fallback tracking structural bounds
 	AC5_Ca : catch-all baseline fallback tracking structural bounds

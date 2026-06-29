@@ -1,0 +1,22 @@
+{
+  "pointers": {
+    "Ca": {
+      "pointer_name": "ca_ref",
+      "unit": "millimole/liter"
+    },
+    "DA": {
+      "pointer_name": "da_ref",
+      "unit": "millimole/liter"
+    }
+  },
+  "ions": {
+    "pSubstrate": {
+      "write": "pSubstratei",
+      "valence": 0
+    },
+    "PKAc": {
+      "write": "PKAci",
+      "valence": 0
+    }
+  }
+}
