@@ -2,7 +2,7 @@ TITLE SBtab_D1
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Mon Jun 29 15:48:12 2026
+	date: Mon Jun 29 16:13:34 2026
 ENDCOMMENT
 
 NEURON {
@@ -1099,7 +1099,9 @@ PROCEDURE assign_calculated_values() {
 	PKAci = PKAc
 	ATP_expression = 5000000 : assignment for expression (ATP_expression)
 	Ca_expression = 1 : assignment for expression (Ca_expression)
-	DA_expression = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-exp(-(time-DA_start)/tau_DA2)))) : assignment for expression (DA_expression)
+	DA_expression = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-
+		exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-
+		exp(-(time-DA_start)/tau_DA2)))) : assignment for expression (DA_expression)
 	S8 = 0 : assignment for expression (S8)
 	S9 = 5000000 : assignment for expression (S9)
 	S24 = 60 : assignment for expression (S24)

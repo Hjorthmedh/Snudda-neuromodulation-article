@@ -359,6 +359,28 @@ def get_law_text(laws: np.ndarray, compound_names: list[str], initial_values: li
 # ==========================================
 # 4. MOD WRITER LAYOUT ENGINE
 # ==========================================
+def wrap_expression(expr: str, max_len: int = 100, indent: str = "\t\t") -> str:
+    """Wraps long mathematical formulas across multiple lines at operator boundaries to satisfy NMODL rules."""
+    if len(expr) <= max_len:
+        return expr
+    
+    lines = []
+    current_line = ""
+    
+    for i, char in enumerate(expr):
+        current_line += char
+        if char in ('+', '-') and len(current_line) >= max_len:
+            # Avoid breaking inside scientific notations (e.g., 1e-5 or 1e+5)
+            if i > 0 and expr[i-1].lower() == 'e':
+                continue
+            lines.append(current_line)
+            current_line = indent
+            
+    if current_line and current_line != indent:
+        lines.append(current_line)
+    return "\n".join(lines)
+
+
 def one_or_more_lines(prefix: str, table: pd.DataFrame, suffix: str, name_map: dict = None) -> list[str]:
     if table is None or table.empty: return []
     raw_names = [str(idx) for idx in table.index]
@@ -530,6 +552,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_formula = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_formula)
                 
+            trans_formula = wrap_expression(trans_formula, max_len=100, indent="\t\t")
             conservation_law.append(fmt["ConservationLaw"].format(tr(c_name), f"{tr(row_cl['ConstantName'])}{trans_formula}", c_name))
 
     constant_lines = ["CONSTANT {"]
@@ -625,7 +648,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 clean_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, clean_ode)
             
-            pointer_assignments.append(f"\t{tr(c_name + '_rate')} = {clean_ode} : writeback consumption rate matrix element")
+            pointer_assignments.append(f"\t{tr(c_name + '_rate')} = {wrap_expression(clean_ode, max_len=100, indent='\t\t')} : writeback consumption rate matrix element")
             continue
 
         if n_laws > 0 and i in eliminates_list:
@@ -633,7 +656,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             trans_ode = ode_expr
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
-            derivative_block.append(fmt["comment"].format(tr(c_name), row_comp.get("InitialValue", "0"), trans_ode))
+            derivative_block.append(fmt["comment"].format(tr(c_name), row_comp.get("InitialValue", "0"), wrap_expression(trans_ode, max_len=100, indent="\t\t: ")))
             ivp_block.append(f"\t: {tr(c_name)} cannot have initial values as it is determined by conservation law")
         else:
             has_active_odes = True
@@ -641,7 +664,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             trans_ode = re.sub(r"^\s*\+", "", str(ode_expr))
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
-            derivative_block.append(fmt["ode"].format(tr(c_name), trans_ode, c_name))
+            derivative_block.append(fmt["ode"].format(tr(c_name), wrap_expression(trans_ode, max_len=100, indent="\t\t"), c_name))
             ivp_block.append(f"\t {tr(c_name)} = {row_comp.get('InitialValue', '0')} : initial condition")
 
     expression_lines = ["PROCEDURE assign_calculated_values() {", "\ttime = t : an alias for the time variable, if needed."]
@@ -658,14 +681,14 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             trans_form = row["Formula"]
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_form = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_form)
-            expression_lines.append(fmt["assignment"].format(tr(idx), trans_form, idx))
+            expression_lines.append(fmt["assignment"].format(tr(idx), wrap_expression(trans_form, max_len=100, indent="\t\t"), idx))
             
     if reaction is not None and not reaction.empty:
         for idx, row in reaction.iterrows(): 
             trans_flux = row["Flux"]
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_flux = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_flux)
-            expression_lines.append(f"\t{tr(idx)} = {trans_flux} : flux expression {idx}")
+            expression_lines.append(f"\t{tr(idx)} = {wrap_expression(trans_flux, max_len=100, indent="\t\t")} : flux expression {idx}")
     expression_lines.append("}")
 
     mod["EXPRESSION"] = expression_lines
@@ -741,7 +764,6 @@ def main():
         else:
             if re.match(r"^\d", name_str):
                 name_str = f"comp_{name_str}"
-            # Logic adding '_st' suffix has been removed here
             cleaned_compound_indices.append(name_str)
     
     compound_rename_map = dict(zip(compound.index, cleaned_compound_indices))
