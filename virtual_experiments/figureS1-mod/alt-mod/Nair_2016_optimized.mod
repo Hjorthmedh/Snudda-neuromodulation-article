@@ -2,7 +2,7 @@ TITLE Nair_2016_optimized
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Wed Jul  1 14:39:50 2026
+	date: Wed Jul  1 15:41:08 2026
 ENDCOMMENT
 
 NEURON {
@@ -737,6 +737,7 @@ INITIAL {
 	 CaMKII_CaM_psd_Substrate = 0.0 : initial condition
 	 CaMKII_CaM_Ca2_psd_Substrate = 0.0 : initial condition
 	 CaMKII_CaM_Ca4_psd_Substrate = 0.0 : initial condition
+	assign_calculated_values()
 }
 
 BREAKPOINT {

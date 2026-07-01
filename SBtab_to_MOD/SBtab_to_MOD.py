@@ -753,7 +753,10 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
                 if not u_name:
                     u_name = neuron_unit(str(row_comp.get('Unit', '')))
             except Exception:
-                scaled_iv = row_comp.get('InitialValue', '0')
+                trans_iv = str(row_comp.get('InitialValue', '0'))
+                for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
+                    trans_iv = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_iv)
+                scaled_iv = trans_iv
                 u_name = neuron_unit(str(row_comp.get('Unit', '')))
 
             state_block.append(fmt["state"].format(tr(c_name), u_name, c_name))
@@ -798,7 +801,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     mod["EXPRESSION"] = expression_lines
     mod["STATE"] = ["STATE {"] + state_block + ["}"]
-    mod["INITIAL"] = ["INITIAL {"] + ivp_block + ["}"]
+    mod["INITIAL"] = ["INITIAL {"] + ivp_block + ["\tassign_calculated_values()", "}"]
     
     if has_active_odes:
         mod["BREAKPOINT"] = ["BREAKPOINT {", "\tSOLVE ode METHOD cnexp", "\tassign_calculated_values() : procedure", "}"]
