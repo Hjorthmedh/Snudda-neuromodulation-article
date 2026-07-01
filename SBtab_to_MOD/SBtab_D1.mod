@@ -2,7 +2,7 @@ TITLE SBtab_D1
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Mon Jun 29 17:08:53 2026
+	date: Wed Jul  1 14:41:51 2026
 ENDCOMMENT
 
 NEURON {
@@ -357,13 +357,13 @@ PARAMETER {
 	S94_cc = 0.0 : total amount for subset (S94_cc)
 	S93_cc = 0.0 : total amount for subset (S93_cc)
 	S92_cc = 0.0 : total amount for subset (S92_cc)
-	S91_cc = 20000.0 : total amount for subset (S91_cc)
+	S91_cc = 0.02 : total amount for subset (S91_cc)
 	S90_cc = 0.0 : total amount for subset (S90_cc)
 	S89_cc = 0.0 : total amount for subset (S89_cc)
 	S88_cc = 0.0 : total amount for subset (S88_cc)
 	S87_cc = 0.0 : total amount for subset (S87_cc)
 	S86_cc = 0.0 : total amount for subset (S86_cc)
-	S85_cc = 4000.0 : total amount for subset (S85_cc)
+	S85_cc = 0.004 : total amount for subset (S85_cc)
 	S84_cc = 0.0 : total amount for subset (S84_cc)
 	S83_cc = 0.0 : total amount for subset (S83_cc)
 	S82_cc = 0.0 : total amount for subset (S82_cc)
@@ -371,7 +371,7 @@ PARAMETER {
 	S80_cc = 0.0 : total amount for subset (S80_cc)
 	S79_cc = 0.0 : total amount for subset (S79_cc)
 	S78_cc = 0.0 : total amount for subset (S78_cc)
-	S77_cc = 3000.0 : total amount for subset (S77_cc)
+	S77_cc = 0.003 : total amount for subset (S77_cc)
 	S76_cc = 0.0 : total amount for subset (S76_cc)
 	S75_cc = 0.0 : total amount for subset (S75_cc)
 	S74_cc = 0.0 : total amount for subset (S74_cc)
@@ -380,13 +380,13 @@ PARAMETER {
 	S71_cc = 0.0 : total amount for subset (S71_cc)
 	S70_cc = 0.0 : total amount for subset (S70_cc)
 	S69_cc = 0.0 : total amount for subset (S69_cc)
-	S68_cc = 1200.0 : total amount for subset (S68_cc)
+	S68_cc = 0.0012 : total amount for subset (S68_cc)
 	S67_cc = 0.0 : total amount for subset (S67_cc)
 	S66_cc = 0.0 : total amount for subset (S66_cc)
 	S65_cc = 0.0 : total amount for subset (S65_cc)
-	S64_cc = 700.0 : total amount for subset (S64_cc)
+	S64_cc = 0.0007 : total amount for subset (S64_cc)
 	S63_cc = 0.0 : total amount for subset (S63_cc)
-	S62_cc = 2000.0 : total amount for subset (S62_cc)
+	S62_cc = 0.002 : total amount for subset (S62_cc)
 	S61_cc = 0.0 : total amount for subset (S61_cc)
 	S60_cc = 0.0 : total amount for subset (S60_cc)
 	S59_cc = 0.0 : total amount for subset (S59_cc)
@@ -396,20 +396,20 @@ PARAMETER {
 	S55_cc = 0.0 : total amount for subset (S55_cc)
 	S54_cc = 0.0 : total amount for subset (S54_cc)
 	S53_cc = 0.0 : total amount for subset (S53_cc)
-	S52_cc = 2000.0 : total amount for subset (S52_cc)
+	S52_cc = 0.002 : total amount for subset (S52_cc)
 	S51_cc = 0.0 : total amount for subset (S51_cc)
 	S50_cc = 0.0 : total amount for subset (S50_cc)
 	S49_cc = 0.0 : total amount for subset (S49_cc)
-	S47_cc = 50000.0 : total amount for subset (S47_cc)
+	S47_cc = 0.049999999999999996 : total amount for subset (S47_cc)
 	S46_cc = 0.0 : total amount for subset (S46_cc)
 	S45_cc = 0.0 : total amount for subset (S45_cc)
 	S44_cc = 0.0 : total amount for subset (S44_cc)
 	S43_cc = 0.0 : total amount for subset (S43_cc)
 	S42_cc = 0.0 : total amount for subset (S42_cc)
-	S41_cc = 2000.0 : total amount for subset (S41_cc)
+	S41_cc = 0.002 : total amount for subset (S41_cc)
 	S40_cc = 0.0 : total amount for subset (S40_cc)
-	S39_cc = 1800.0 : total amount for subset (S39_cc)
-	S38_cc = 3000.0 : total amount for subset (S38_cc)
+	S39_cc = 0.0018 : total amount for subset (S39_cc)
+	S38_cc = 0.003 : total amount for subset (S38_cc)
 	S37_cc = 0.0 : total amount for subset (S37_cc)
 	S36_cc = 0.0 : total amount for subset (S36_cc)
 	S35_cc = 0.0 : total amount for subset (S35_cc)
@@ -418,11 +418,11 @@ PARAMETER {
 	S32_cc = 0.0 : total amount for subset (S32_cc)
 	S31_cc = 0.0 : total amount for subset (S31_cc)
 	S30_cc = 0.0 : total amount for subset (S30_cc)
-	S29_cc = 20000.0 : total amount for subset (S29_cc)
+	S29_cc = 0.02 : total amount for subset (S29_cc)
 	S28_cc = 0.0 : total amount for subset (S28_cc)
 	S27_cc = 0.0 : total amount for subset (S27_cc)
 	S26_cc = 0.0 : total amount for subset (S26_cc)
-	S25_cc = 9000.0 : total amount for subset (S25_cc)
+	S25_cc = 0.009 : total amount for subset (S25_cc)
 	S23_cc = 0.0 : total amount for subset (S23_cc)
 	S22_cc = 0.0 : total amount for subset (S22_cc)
 	S21_cc = 0.0 : total amount for subset (S21_cc)
@@ -430,13 +430,13 @@ PARAMETER {
 	S19_cc = 0.0 : total amount for subset (S19_cc)
 	S18_cc = 0.0 : total amount for subset (S18_cc)
 	S17_cc = 0.0 : total amount for subset (S17_cc)
-	S16_cc = 2000.0 : total amount for subset (S16_cc)
+	S16_cc = 0.002 : total amount for subset (S16_cc)
 	S15_cc = 0.0 : total amount for subset (S15_cc)
 	S14_cc = 0.0 : total amount for subset (S14_cc)
 	S13_cc = 0.0 : total amount for subset (S13_cc)
 	S12_cc = 0.0 : total amount for subset (S12_cc)
 	S11_cc = 0.0 : total amount for subset (S11_cc)
-	S10_cc = 2000.0 : total amount for subset (S10_cc)
+	S10_cc = 0.002 : total amount for subset (S10_cc)
 	S7_cc = 0.0 : total amount for subset (S7_cc)
 	S6_cc = 0.0 : total amount for subset (S6_cc)
 	S5_cc = 0.0 : total amount for subset (S5_cc)
@@ -444,7 +444,7 @@ PARAMETER {
 	S3_cc = 0.0 : total amount for subset (S3_cc)
 	S2_cc = 0.0 : total amount for subset (S2_cc)
 	S1_cc = 0.0 : total amount for subset (S1_cc)
-	S0_cc = 700.0 : total amount for subset (S0_cc)
+	S0_cc = 0.0007 : total amount for subset (S0_cc)
 }
 
 ASSIGNED {
@@ -1095,15 +1095,15 @@ PROCEDURE assign_calculated_values() {
 	: Ion WRITE variable value updates
 	pSubstratei = pSubstrate
 	PKAci = PKAc
-	ATP_expression = 5000000 : assignment for expression (ATP_expression)
-	Ca_expression = 1 : assignment for expression (Ca_expression)
+	ATP_expression = 5.0 : assignment for expression (ATP_expression)
+	Ca_expression = 1e-06 : assignment for expression (Ca_expression)
 	DA_expression = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-
 		exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-
 		exp(-(time-DA_start)/tau_DA2)))) : assignment for expression (DA_expression)
-	S8 = 0 : assignment for expression (S8)
-	S9 = 5000000 : assignment for expression (S9)
-	S24 = 60 : assignment for expression (S24)
-	S48 = 20 : assignment for expression (S48)
+	S8 = 0.0 : assignment for expression (S8)
+	S9 = 5.0 : assignment for expression (S9)
+	S24 = 5.9999999999999995e-05 : assignment for expression (S24)
+	S48 = 1.9999999999999998e-05 : assignment for expression (S48)
 	R0 = kf_R0*GaolfGTP : flux expression R0
 	R1 = kf_R1*D1R_Golf_DA : flux expression R1
 	R2 = kf_R2*D1R_Golf*DA-kr_R2*D1R_Golf_DA : flux expression R2

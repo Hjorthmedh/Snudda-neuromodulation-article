@@ -401,14 +401,12 @@ def standard_clean_unit(unit_str: str) -> str:
     if not isinstance(unit_str, str) or pd.isna(unit_str):
         return ""
     s = unit_str.strip().replace("−", "-")
-    # Convert full words to standard pq abbreviations
     s = re.sub(r'\bnanomole\b', 'nmol', s, flags=re.IGNORECASE)
     s = re.sub(r'\bmicromole\b', 'umol', s, flags=re.IGNORECASE)
     s = re.sub(r'\bmillimole\b', 'mmol', s, flags=re.IGNORECASE)
     s = re.sub(r'\bmole\b', 'mol', s, flags=re.IGNORECASE)
     s = re.sub(r'\bliter\b', 'L', s, flags=re.IGNORECASE)
     s = re.sub(r'\bsecond\b', 's', s, flags=re.IGNORECASE)
-    # Handle shorthand concentration variations
     s = re.sub(r'\bnM\b', 'nmol/L', s)
     s = re.sub(r'\buM\b', 'umol/L', s)
     s = re.sub(r'\bmM\b', 'mmol/L', s)
@@ -417,7 +415,6 @@ def standard_clean_unit(unit_str: str) -> str:
 
 def neuron_unit(unit_str: str) -> str:
     """Uses the quantities package to safely parse and format NMODL friendly unit symbols."""
-    
     if not isinstance(unit_str, str) or pd.isna(unit_str) or unit_str.strip() in ["", "1", "dimensionless"]:
         return ""
     try:
@@ -441,7 +438,6 @@ def process_unit_and_value(value: float, unit_str: str) -> tuple[float, str]:
     try:
         q = value * pq.Quantity(1.0, clean_str)
         
-        # Match physical dimensions to target NEURON types automatically
         # 1. Concentrations (Base: mol/L) -> Target: millimole/liter
         if q.simplifies.dimensionality == pq.Quantity(1.0, 'mol/L').simplifies.dimensionality:
             q_rescaled = q.rescale('mmol/L')
@@ -470,18 +466,15 @@ def process_unit_and_value(value: float, unit_str: str) -> tuple[float, str]:
     except Exception:
         pass
 
-
-    # Safety Manual Fallback if quantities layout parsing fails completely
+    # Safety Manual Fallback
     try:
         lower_unit = unit_str.lower()
         if "nanomole" in lower_unit or "nm" in lower_unit:
-            # Check if it's explicitly a rate (per millisecond/second) or just a concentration division
             if "ms" in lower_unit or "s" in lower_unit or "per" in lower_unit:
                 if "2" in lower_unit:
                     return value * 1e12, "liter2/millimole2/ms"
                 return value * 1e6, "liter/millimole/ms"
             else:
-                # Catching standard concentrations like nanomole/liter or nmol/L safely
                 return value * 1e-6, "millimole/liter"
                 
         elif "micromole" in lower_unit or "um" in lower_unit:
@@ -490,11 +483,9 @@ def process_unit_and_value(value: float, unit_str: str) -> tuple[float, str]:
                     return value * 1e6, "liter2/millimole2/ms"
                 return value * 1e3, "liter/millimole/ms"
             else:
-                # Catching standard concentrations like micromole/liter or umol/L safely
                 return value * 1e-3, "millimole/liter"
     except Exception:
         pass
-    
     
     return value, neuron_unit(unit_str)    
 
@@ -569,6 +560,11 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
                 if str(c_idx) == orig_ion_name:
                     matched_compound = c_idx
                     break
+            if matched_compound is None and expression is not None:
+                for e_idx in expression.index:
+                    if str(e_idx) == orig_ion_name:
+                        matched_compound = e_idx
+                        break
             if matched_compound:
                 explicit_ion_writebacks.append((tr(w_var), tr(matched_compound)))
             else:
@@ -587,14 +583,14 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
         if orig_name.upper() == "CA":
             ion_lines.append("\tUSEION cal READ cali VALENCE 2")
             pointer_assigned_declarations.append("\tcali (millimole/liter)")
-            if orig_name in compound.index:
+            if orig_name in compound.index or (expression is not None and orig_name in expression.index):
                 pointer_compounds.add(orig_name)
                 pointer_assignments.append(f"\t{tr(orig_name)} = cali : natively mapped to intracellular calcium")
         
         elif orig_name.upper() == "DA":
             ion_lines.append("\tUSEION DA READ DAi VALENCE 0")
             pointer_assigned_declarations.append("\tDAi (millimole/liter)")
-            if orig_name in compound.index:
+            if orig_name in compound.index or (expression is not None and orig_name in expression.index):
                 pointer_compounds.add(orig_name)
                 pointer_assignments.append(f"\t{tr(orig_name)} = DAi : natively mapped to extracellular dopamine")
                 
@@ -605,7 +601,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             pointer_assigned_declarations.append(f"\t{p_name} ({neuron_unit(p_unit)})")
             pointer_assigned_declarations.append(f"\t{tr(orig_name + '_rate')} ({neuron_unit(p_unit)}/ms)")
             
-            if orig_name in compound.index:
+            if orig_name in compound.index or (expression is not None and orig_name in expression.index):
                 pointer_compounds.add(orig_name)
                 pointer_assignments.append(f"\t{tr(orig_name)} = {p_name} : driven directly via external pointer")
 
@@ -625,7 +621,7 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     if con_law is not None and not con_law.empty:
         n_laws = len(con_law)
         for _, row_cl in con_law.iterrows():
-            c_name = compound.index[int(row_cl["Eliminates"]) - 1]
+            c_name = compound.index[int(row_cl["Eliminates"]) - 1] if int(row_cl["Eliminates"]) - 1 < len(compound) else str(row_cl["Eliminates"])
             if c_name in pointer_compounds: continue 
             c_name_law.append(c_name)
             conservation_input.append(fmt["total"].format(tr(row_cl["ConstantName"]), row_cl["Constant"], row_cl["ConstantName"]))
@@ -697,9 +693,15 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
                 if token.lower() in ["exp", "log", "log10", "sin", "cos", "tan", "t", "time", "inf"]: continue
                 if token not in known_symbols and token not in added_parameters: rogue_assigned.add(token)
 
+
     assigned_lines = ["ASSIGNED {", "\ttime (ms) : alias for t"]
     if expression is not None and not expression.empty:
-        for idx in expression.index: assigned_lines.append(fmt["expression"].format(tr(idx), idx))
+        for idx in expression.index: 
+            # --- NEW CHECK: Skip standard declaration if it's handled by pointers ---
+            if str(idx) in pointer_compounds:
+                continue
+            assigned_lines.append(fmt["expression"].format(tr(idx), idx))
+            
     if reaction is not None and not reaction.empty:
         for idx in reaction.index: assigned_lines.append(fmt["flux"].format(tr(idx), idx))
     for name in c_name_law: assigned_lines.append(f"\t{tr(name)} : computed from conservation law ({name})")
@@ -714,8 +716,9 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
     for rogue in sorted(list(rogue_assigned)):
         assigned_lines.append(f"\t{tr(rogue)} : catch-all baseline fallback tracking structural bounds ({rogue})")
     assigned_lines.append("}")
-    mod["ASSIGNED"] = assigned_lines
-
+    mod["ASSIGNED"] = assigned_lines                
+                
+    
     state_block, derivative_block, ivp_block = [], [], []
     eliminates_list = [int(x) for x in con_law["Eliminates"]] if n_laws > 0 else []
 
@@ -744,12 +747,21 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
             ivp_block.append(f"\t: {tr(c_name)} cannot have initial values as it is determined by conservation law")
         else:
             has_active_odes = True
-            state_block.append(fmt["state"].format(tr(c_name), neuron_unit(str(row_comp.get("Unit", ""))), c_name))
+            try:
+                raw_iv = float(row_comp.get('InitialValue', '0'))
+                scaled_iv, u_name = process_unit_and_value(raw_iv, str(row_comp.get('Unit', '')))
+                if not u_name:
+                    u_name = neuron_unit(str(row_comp.get('Unit', '')))
+            except Exception:
+                scaled_iv = row_comp.get('InitialValue', '0')
+                u_name = neuron_unit(str(row_comp.get('Unit', '')))
+
+            state_block.append(fmt["state"].format(tr(c_name), u_name, c_name))
             trans_ode = re.sub(r"^\s*\+", "", str(ode_expr))
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_ode = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_ode)
             derivative_block.append(fmt["ode"].format(tr(c_name), wrap_expression(trans_ode, max_len=100, indent="\t\t"), c_name))
-            ivp_block.append(f"\t {tr(c_name)} = {row_comp.get('InitialValue', '0')} : initial condition")
+            ivp_block.append(f"\t {tr(c_name)} = {scaled_iv} : initial condition")
 
     expression_lines = ["PROCEDURE assign_calculated_values() {", "\ttime = t : an alias for the time variable, if needed."]
     expression_lines.extend(conservation_law)
@@ -762,7 +774,16 @@ def make_mod(H, constant, parameter, input_df, expression, reaction, compound, o
 
     if expression is not None and not expression.empty:
         for idx, row in expression.iterrows(): 
-            trans_form = row["Formula"]
+            if str(idx) in pointer_compounds:
+                continue
+            trans_form = str(row["Formula"]).strip()
+            if re.match(r"^\s*[-+]?\d*\.?\d+(?:[eE][-+]?\d+)?\s*$", trans_form):
+                try:
+                    val = float(trans_form)
+                    v_scaled, _ = process_unit_and_value(val, str(row.get("Unit", "")))
+                    trans_form = str(v_scaled)
+                except Exception:
+                    pass
             for k_id, v_id in sorted(name_map.items(), key=lambda x: len(x[0]), reverse=True):
                 trans_form = re.sub(rf"\b{re.escape(k_id)}\b", v_id, trans_form)
             expression_lines.append(fmt["assignment"].format(tr(idx), wrap_expression(trans_form, max_len=100, indent="\t\t"), idx))
@@ -883,7 +904,14 @@ def main():
         laws = get_conservation_laws(stoichiometry_matrix)
         if laws is not None:
             print(f"    Found {laws.shape[1]} linear constraints.")
-            ivs = pd.to_numeric(compound["InitialValue"], errors="coerce").fillna(0.0).tolist()
+            ivs = []
+            for idx, row in compound.iterrows():
+                try:
+                    val = float(pd.to_numeric(row["InitialValue"], errors="coerce") or 0.0)
+                    v_scaled, _ = process_unit_and_value(val, str(row.get("Unit", "")))
+                    ivs.append(v_scaled)
+                except Exception:
+                    ivs.append(0.0)
             con_law_df = get_law_text(laws, list(compound.index), ivs)
 
     name_translations = {}
