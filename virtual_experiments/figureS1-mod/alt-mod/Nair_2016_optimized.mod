@@ -2,7 +2,7 @@ TITLE Nair_2016_optimized
 
 COMMENT
 	automatically generated from separate SBtab TSV files
-	date: Wed Jul  1 13:56:12 2026
+	date: Wed Jul  1 14:39:50 2026
 ENDCOMMENT
 
 NEURON {
@@ -350,24 +350,24 @@ PARAMETER {
 	kf_R136 = 1.1 (liter/millimole/ms) : a kinetic parameter (kf_R136)
 	kr_R136 = 0.0054 (1/ms) : a kinetic parameter (kr_R136)
 	kf_R137 = 10.0 (1/ms) : a kinetic parameter (kf_R137)
-	PP2B_cc = 4000.0 : total amount for subset (PP2B_cc)
-	PP1_cc = 3000.0 : total amount for subset (PP1_cc)
+	PP2B_cc = 0.004 : total amount for subset (PP2B_cc)
+	PP1_cc = 0.003 : total amount for subset (PP1_cc)
 	PKAc_cc = 0.0 : total amount for subset (PKAc_cc)
-	PKA_cc = 1200.0 : total amount for subset (PKA_cc)
-	PDE10r_cc = 700.0 : total amount for subset (PDE10r_cc)
-	PDE4_cc = 2000.0 : total amount for subset (PDE4_cc)
-	Golf_cc = 2000.0 : total amount for subset (Golf_cc)
+	PKA_cc = 0.0012 : total amount for subset (PKA_cc)
+	PDE10r_cc = 0.0007 : total amount for subset (PDE10r_cc)
+	PDE4_cc = 0.002 : total amount for subset (PDE4_cc)
+	Golf_cc = 0.002 : total amount for subset (Golf_cc)
 	D1R_cc = 0.0 : total amount for subset (D1R_cc)
-	CDK5_cc = 1800.0 : total amount for subset (CDK5_cc)
-	Substrate_cc = 3000.0 : total amount for subset (Substrate_cc)
-	CaMKII_cc = 20000.0 : total amount for subset (CaMKII_cc)
-	CaM_cc = 9000.0 : total amount for subset (CaM_cc)
-	B72PP2A_cc = 2000.0 : total amount for subset (B72PP2A_cc)
-	ARPP21_cc = 20000.0 : total amount for subset (ARPP21_cc)
-	D32_cc = 50000.0 : total amount for subset (D32_cc)
-	B56PP2A_cc = -68000.0 : total amount for subset (B56PP2A_cc)
+	CDK5_cc = 0.0018 : total amount for subset (CDK5_cc)
+	Substrate_cc = 0.003 : total amount for subset (Substrate_cc)
+	CaMKII_cc = 0.02 : total amount for subset (CaMKII_cc)
+	CaM_cc = 0.009 : total amount for subset (CaM_cc)
+	B72PP2A_cc = 0.002 : total amount for subset (B72PP2A_cc)
+	ARPP21_cc = 0.02 : total amount for subset (ARPP21_cc)
+	D32_cc = 0.049999999999999996 : total amount for subset (D32_cc)
+	B56PP2A_cc = -0.06799999999999999 : total amount for subset (B56PP2A_cc)
 	AC5_Ca_GaolfGTP_cc = 0.0 : total amount for subset (AC5_Ca_GaolfGTP_cc)
-	AC5_cc = 700.0 : total amount for subset (AC5_cc)
+	AC5_cc = 0.0007 : total amount for subset (AC5_cc)
 }
 
 ASSIGNED {
@@ -377,8 +377,6 @@ ASSIGNED {
 	DA_expression : pre-defined algebraic expression (DA_expression)
 	AMP : pre-defined algebraic expression (AMP)
 	ATP : pre-defined algebraic expression (ATP)
-	Ca : pre-defined algebraic expression (Ca)
-	DA : pre-defined algebraic expression (DA)
 	R0 : reaction flux (R0)
 	R1 : reaction flux (R1)
 	R2 : reaction flux (R2)
@@ -535,6 +533,8 @@ ASSIGNED {
 	B56PP2A : computed from conservation law (B56PP2A)
 	AC5_Ca_GaolfGTP : computed from conservation law (AC5_Ca_GaolfGTP)
 	AC5 : computed from conservation law (AC5)
+	Ca : variable assigned externally via pointer mapping (Ca)
+	DA : variable assigned externally via pointer mapping (DA)
 	cali (millimole/liter)
 	DAi (millimole/liter)
 	PKAci (mol/L) : ion variable registered for internal scope linkage
@@ -545,198 +545,198 @@ ASSIGNED {
 
 STATE {
 	: AC5 is calculated via Conservation Law
-	AC5_ATP (nanomole/liter) : state variable (AC5_ATP)
-	AC5_Ca (nanomole/liter) : state variable (AC5_Ca)
-	AC5_Ca_ATP (nanomole/liter) : state variable (AC5_Ca_ATP)
+	AC5_ATP (millimole/liter) : state variable (AC5_ATP)
+	AC5_Ca (millimole/liter) : state variable (AC5_Ca)
+	AC5_Ca_ATP (millimole/liter) : state variable (AC5_Ca_ATP)
 	: AC5_Ca_GaolfGTP is calculated via Conservation Law
-	AC5_Ca_GaolfGTP_ATP (nanomole/liter) : state variable (AC5_Ca_GaolfGTP_ATP)
-	AC5_GaolfGTP (nanomole/liter) : state variable (AC5_GaolfGTP)
-	AC5_GaolfGTP_ATP (nanomole/liter) : state variable (AC5_GaolfGTP_ATP)
+	AC5_Ca_GaolfGTP_ATP (millimole/liter) : state variable (AC5_Ca_GaolfGTP_ATP)
+	AC5_GaolfGTP (millimole/liter) : state variable (AC5_GaolfGTP)
+	AC5_GaolfGTP_ATP (millimole/liter) : state variable (AC5_GaolfGTP_ATP)
 	: B56PP2A is calculated via Conservation Law
-	B56PP2A_D32p75 (nanomole/liter) : state variable (B56PP2A_D32p75)
-	B56PP2A_pARPP21 (nanomole/liter) : state variable (B56PP2A_pARPP21)
-	B56PP2Ap (nanomole/liter) : state variable (B56PP2Ap)
-	B56PP2Ap_D32p75 (nanomole/liter) : state variable (B56PP2Ap_D32p75)
-	B56PP2Ap_pARPP21 (nanomole/liter) : state variable (B56PP2Ap_pARPP21)
+	B56PP2A_D32p75 (millimole/liter) : state variable (B56PP2A_D32p75)
+	B56PP2A_pARPP21 (millimole/liter) : state variable (B56PP2A_pARPP21)
+	B56PP2Ap (millimole/liter) : state variable (B56PP2Ap)
+	B56PP2Ap_D32p75 (millimole/liter) : state variable (B56PP2Ap_D32p75)
+	B56PP2Ap_pARPP21 (millimole/liter) : state variable (B56PP2Ap_pARPP21)
 	: B72PP2A is calculated via Conservation Law
-	B72PP2A_D32p34 (nanomole/liter) : state variable (B72PP2A_D32p34)
-	B72PP2A_D32p75 (nanomole/liter) : state variable (B72PP2A_D32p75)
-	B72PP2A_pARPP21 (nanomole/liter) : state variable (B72PP2A_pARPP21)
-	B72PP2A_Ca_D32p34 (nanomole/liter) : state variable (B72PP2A_Ca_D32p34)
-	B72PP2A_Ca_D32p75 (nanomole/liter) : state variable (B72PP2A_Ca_D32p75)
-	B72PP2A_Ca (nanomole/liter) : state variable (B72PP2A_Ca)
-	B72PP2A_Ca_pARPP21 (nanomole/liter) : state variable (B72PP2A_Ca_pARPP21)
+	B72PP2A_D32p34 (millimole/liter) : state variable (B72PP2A_D32p34)
+	B72PP2A_D32p75 (millimole/liter) : state variable (B72PP2A_D32p75)
+	B72PP2A_pARPP21 (millimole/liter) : state variable (B72PP2A_pARPP21)
+	B72PP2A_Ca_D32p34 (millimole/liter) : state variable (B72PP2A_Ca_D32p34)
+	B72PP2A_Ca_D32p75 (millimole/liter) : state variable (B72PP2A_Ca_D32p75)
+	B72PP2A_Ca (millimole/liter) : state variable (B72PP2A_Ca)
+	B72PP2A_Ca_pARPP21 (millimole/liter) : state variable (B72PP2A_Ca_pARPP21)
 	: CaM is calculated via Conservation Law
-	CaM_Ca2 (nanomole/liter) : state variable (CaM_Ca2)
-	CaM_Ca4 (nanomole/liter) : state variable (CaM_Ca4)
-	CaM_Ca4_pARPP21 (nanomole/liter) : state variable (CaM_Ca4_pARPP21)
+	CaM_Ca2 (millimole/liter) : state variable (CaM_Ca2)
+	CaM_Ca4 (millimole/liter) : state variable (CaM_Ca4)
+	CaM_Ca4_pARPP21 (millimole/liter) : state variable (CaM_Ca4_pARPP21)
 	: CaMKII is calculated via Conservation Law
-	CaMKII_CaM_Ca4 (nanomole/liter) : state variable (CaMKII_CaM_Ca4)
-	CaMKII_CaM (nanomole/liter) : state variable (CaMKII_CaM)
-	CaMKII_CaM_Ca2 (nanomole/liter) : state variable (CaMKII_CaM_Ca2)
-	CaMKII_CaM_Ca2_psd (nanomole/liter) : state variable (CaMKII_CaM_Ca2_psd)
-	CaMKII_CaM_psd (nanomole/liter) : state variable (CaMKII_CaM_psd)
-	CaMKII_CaM_Ca4_psd (nanomole/liter) : state variable (CaMKII_CaM_Ca4_psd)
-	CaMKII_psd (nanomole/liter) : state variable (CaMKII_psd)
-	cAMP (nanomole/liter) : state variable (cAMP)
+	CaMKII_CaM_Ca4 (millimole/liter) : state variable (CaMKII_CaM_Ca4)
+	CaMKII_CaM (millimole/liter) : state variable (CaMKII_CaM)
+	CaMKII_CaM_Ca2 (millimole/liter) : state variable (CaMKII_CaM_Ca2)
+	CaMKII_CaM_Ca2_psd (millimole/liter) : state variable (CaMKII_CaM_Ca2_psd)
+	CaMKII_CaM_psd (millimole/liter) : state variable (CaMKII_CaM_psd)
+	CaMKII_CaM_Ca4_psd (millimole/liter) : state variable (CaMKII_CaM_Ca4_psd)
+	CaMKII_psd (millimole/liter) : state variable (CaMKII_psd)
+	cAMP (millimole/liter) : state variable (cAMP)
 	: Substrate is calculated via Conservation Law
 	: CDK5 is calculated via Conservation Law
-	CDK5_D32 (nanomole/liter) : state variable (CDK5_D32)
+	CDK5_D32 (millimole/liter) : state variable (CDK5_D32)
 	: D1R is calculated via Conservation Law
-	D1R_DA (nanomole/liter) : state variable (D1R_DA)
-	D1R_Golf_DA (nanomole/liter) : state variable (D1R_Golf_DA)
-	D1R_Golf (nanomole/liter) : state variable (D1R_Golf)
-	D32p34 (nanomole/liter) : state variable (D32p34)
-	D32p75 (nanomole/liter) : state variable (D32p75)
+	D1R_DA (millimole/liter) : state variable (D1R_DA)
+	D1R_Golf_DA (millimole/liter) : state variable (D1R_Golf_DA)
+	D1R_Golf (millimole/liter) : state variable (D1R_Golf)
+	D32p34 (millimole/liter) : state variable (D32p34)
+	D32p75 (millimole/liter) : state variable (D32p75)
 	: D32 is calculated via Conservation Law
-	GaolfGDP (nanomole/liter) : state variable (GaolfGDP)
-	GaolfGTP (nanomole/liter) : state variable (GaolfGTP)
-	Gbgolf (nanomole/liter) : state variable (Gbgolf)
+	GaolfGDP (millimole/liter) : state variable (GaolfGDP)
+	GaolfGTP (millimole/liter) : state variable (GaolfGTP)
+	Gbgolf (millimole/liter) : state variable (Gbgolf)
 	: Golf is calculated via Conservation Law
-	pCaMKII (nanomole/liter) : state variable (pCaMKII)
-	pCaMKII_CaM_Ca4 (nanomole/liter) : state variable (pCaMKII_CaM_Ca4)
-	pCaMKII_CaM (nanomole/liter) : state variable (pCaMKII_CaM)
-	pCaMKII_CaM_Ca2 (nanomole/liter) : state variable (pCaMKII_CaM_Ca2)
-	pCaMKII_CaM_Ca2_psd (nanomole/liter) : state variable (pCaMKII_CaM_Ca2_psd)
-	pCaMKII_CaM_psd (nanomole/liter) : state variable (pCaMKII_CaM_psd)
-	pCaMKII_CaM_Ca4_psd (nanomole/liter) : state variable (pCaMKII_CaM_Ca4_psd)
-	pCaMKII_psd (nanomole/liter) : state variable (pCaMKII_psd)
-	pSubstrate (nanomole/liter) : state variable (pSubstrate)
+	pCaMKII (millimole/liter) : state variable (pCaMKII)
+	pCaMKII_CaM_Ca4 (millimole/liter) : state variable (pCaMKII_CaM_Ca4)
+	pCaMKII_CaM (millimole/liter) : state variable (pCaMKII_CaM)
+	pCaMKII_CaM_Ca2 (millimole/liter) : state variable (pCaMKII_CaM_Ca2)
+	pCaMKII_CaM_Ca2_psd (millimole/liter) : state variable (pCaMKII_CaM_Ca2_psd)
+	pCaMKII_CaM_psd (millimole/liter) : state variable (pCaMKII_CaM_psd)
+	pCaMKII_CaM_Ca4_psd (millimole/liter) : state variable (pCaMKII_CaM_Ca4_psd)
+	pCaMKII_psd (millimole/liter) : state variable (pCaMKII_psd)
+	pSubstrate (millimole/liter) : state variable (pSubstrate)
 	: PDE4 is calculated via Conservation Law
-	PDE4_cAMP (nanomole/liter) : state variable (PDE4_cAMP)
+	PDE4_cAMP (millimole/liter) : state variable (PDE4_cAMP)
 	: PDE10r is calculated via Conservation Law
-	PDE10r_cAMP (nanomole/liter) : state variable (PDE10r_cAMP)
-	PDE10c (nanomole/liter) : state variable (PDE10c)
-	PDE10c_cAMP (nanomole/liter) : state variable (PDE10c_cAMP)
+	PDE10r_cAMP (millimole/liter) : state variable (PDE10r_cAMP)
+	PDE10c (millimole/liter) : state variable (PDE10c)
+	PDE10c_cAMP (millimole/liter) : state variable (PDE10c_cAMP)
 	: PKA is calculated via Conservation Law
 	: PKAc is calculated via Conservation Law
-	PKAc_B56PP2A (nanomole/liter) : state variable (PKAc_B56PP2A)
-	PKAc_D32 (nanomole/liter) : state variable (PKAc_D32)
-	PKAc_ARPP21 (nanomole/liter) : state variable (PKAc_ARPP21)
-	PKA_Ca2MP (nanomole/liter) : state variable (PKA_Ca2MP)
-	PKA_Ca4MP (nanomole/liter) : state variable (PKA_Ca4MP)
-	PKAc_D32p75 (nanomole/liter) : state variable (PKAc_D32p75)
-	PKAreg (nanomole/liter) : state variable (PKAreg)
+	PKAc_B56PP2A (millimole/liter) : state variable (PKAc_B56PP2A)
+	PKAc_D32 (millimole/liter) : state variable (PKAc_D32)
+	PKAc_ARPP21 (millimole/liter) : state variable (PKAc_ARPP21)
+	PKA_Ca2MP (millimole/liter) : state variable (PKA_Ca2MP)
+	PKA_Ca4MP (millimole/liter) : state variable (PKA_Ca4MP)
+	PKAc_D32p75 (millimole/liter) : state variable (PKAc_D32p75)
+	PKAreg (millimole/liter) : state variable (PKAreg)
 	: PP1 is calculated via Conservation Law
-	PP1_pCaMKII_psd (nanomole/liter) : state variable (PP1_pCaMKII_psd)
-	PP1_pSubstrate (nanomole/liter) : state variable (PP1_pSubstrate)
-	PP1_D32p34 (nanomole/liter) : state variable (PP1_D32p34)
-	C_1 (nanomole/liter) : state variable (CaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd)
-	C_2 (nanomole/liter) : state variable (pCaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd)
-	C_3 (nanomole/liter) : state variable (CaMKII_CaM_Ca4_CaMKII_CaM_Ca4)
-	C_4 (nanomole/liter) : state variable (pCaMKII_CaM_Ca4_CaMKII_CaM_Ca4)
+	PP1_pCaMKII_psd (millimole/liter) : state variable (PP1_pCaMKII_psd)
+	PP1_pSubstrate (millimole/liter) : state variable (PP1_pSubstrate)
+	PP1_D32p34 (millimole/liter) : state variable (PP1_D32p34)
+	C_1 (millimole/liter) : state variable (CaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd)
+	C_2 (millimole/liter) : state variable (pCaMKII_CaM_Ca4_psd_CaMKII_CaM_Ca4_psd)
+	C_3 (millimole/liter) : state variable (CaMKII_CaM_Ca4_CaMKII_CaM_Ca4)
+	C_4 (millimole/liter) : state variable (pCaMKII_CaM_Ca4_CaMKII_CaM_Ca4)
 	: PP2B is calculated via Conservation Law
-	PP2Bc (nanomole/liter) : state variable (PP2Bc)
-	PP2Bc_D32p34 (nanomole/liter) : state variable (PP2Bc_D32p34)
-	PP2B_CaM (nanomole/liter) : state variable (PP2B_CaM)
-	PP2B_CaM_Ca2 (nanomole/liter) : state variable (PP2B_CaM_Ca2)
-	pARPP21 (nanomole/liter) : state variable (pARPP21)
+	PP2Bc (millimole/liter) : state variable (PP2Bc)
+	PP2Bc_D32p34 (millimole/liter) : state variable (PP2Bc_D32p34)
+	PP2B_CaM (millimole/liter) : state variable (PP2B_CaM)
+	PP2B_CaM_Ca2 (millimole/liter) : state variable (PP2B_CaM_Ca2)
+	pARPP21 (millimole/liter) : state variable (pARPP21)
 	: ARPP21 is calculated via Conservation Law
-	pCaMKII_psd_Substrate (nanomole/liter) : state variable (pCaMKII_psd_Substrate)
-	pCaMKII_CaM_psd_Substrate (nanomole/liter) : state variable (pCaMKII_CaM_psd_Substrate)
-	C_5 (nanomole/liter) : state variable (pCaMKII_CaM_Ca2_psd_Substrate)
-	C_6 (nanomole/liter) : state variable (pCaMKII_CaM_Ca4_psd_Substrate)
-	CaMKII_CaM_psd_Substrate (nanomole/liter) : state variable (CaMKII_CaM_psd_Substrate)
-	CaMKII_CaM_Ca2_psd_Substrate (nanomole/liter) : state variable (CaMKII_CaM_Ca2_psd_Substrate)
-	CaMKII_CaM_Ca4_psd_Substrate (nanomole/liter) : state variable (CaMKII_CaM_Ca4_psd_Substrate)
+	pCaMKII_psd_Substrate (millimole/liter) : state variable (pCaMKII_psd_Substrate)
+	pCaMKII_CaM_psd_Substrate (millimole/liter) : state variable (pCaMKII_CaM_psd_Substrate)
+	C_5 (millimole/liter) : state variable (pCaMKII_CaM_Ca2_psd_Substrate)
+	C_6 (millimole/liter) : state variable (pCaMKII_CaM_Ca4_psd_Substrate)
+	CaMKII_CaM_psd_Substrate (millimole/liter) : state variable (CaMKII_CaM_psd_Substrate)
+	CaMKII_CaM_Ca2_psd_Substrate (millimole/liter) : state variable (CaMKII_CaM_Ca2_psd_Substrate)
+	CaMKII_CaM_Ca4_psd_Substrate (millimole/liter) : state variable (CaMKII_CaM_Ca4_psd_Substrate)
 }
 
 INITIAL {
 	: AC5 cannot have initial values as it is determined by conservation law
-	 AC5_ATP = 0 : initial condition
-	 AC5_Ca = 0 : initial condition
-	 AC5_Ca_ATP = 0 : initial condition
+	 AC5_ATP = 0.0 : initial condition
+	 AC5_Ca = 0.0 : initial condition
+	 AC5_Ca_ATP = 0.0 : initial condition
 	: AC5_Ca_GaolfGTP cannot have initial values as it is determined by conservation law
-	 AC5_Ca_GaolfGTP_ATP = 0 : initial condition
-	 AC5_GaolfGTP = 0 : initial condition
-	 AC5_GaolfGTP_ATP = 0 : initial condition
+	 AC5_Ca_GaolfGTP_ATP = 0.0 : initial condition
+	 AC5_GaolfGTP = 0.0 : initial condition
+	 AC5_GaolfGTP_ATP = 0.0 : initial condition
 	: B56PP2A cannot have initial values as it is determined by conservation law
-	 B56PP2A_D32p75 = 0 : initial condition
-	 B56PP2A_pARPP21 = 0 : initial condition
-	 B56PP2Ap = 0 : initial condition
-	 B56PP2Ap_D32p75 = 0 : initial condition
-	 B56PP2Ap_pARPP21 = 0 : initial condition
+	 B56PP2A_D32p75 = 0.0 : initial condition
+	 B56PP2A_pARPP21 = 0.0 : initial condition
+	 B56PP2Ap = 0.0 : initial condition
+	 B56PP2Ap_D32p75 = 0.0 : initial condition
+	 B56PP2Ap_pARPP21 = 0.0 : initial condition
 	: B72PP2A cannot have initial values as it is determined by conservation law
-	 B72PP2A_D32p34 = 0 : initial condition
-	 B72PP2A_D32p75 = 0 : initial condition
-	 B72PP2A_pARPP21 = 0 : initial condition
-	 B72PP2A_Ca_D32p34 = 0 : initial condition
-	 B72PP2A_Ca_D32p75 = 0 : initial condition
-	 B72PP2A_Ca = 0 : initial condition
-	 B72PP2A_Ca_pARPP21 = 0 : initial condition
+	 B72PP2A_D32p34 = 0.0 : initial condition
+	 B72PP2A_D32p75 = 0.0 : initial condition
+	 B72PP2A_pARPP21 = 0.0 : initial condition
+	 B72PP2A_Ca_D32p34 = 0.0 : initial condition
+	 B72PP2A_Ca_D32p75 = 0.0 : initial condition
+	 B72PP2A_Ca = 0.0 : initial condition
+	 B72PP2A_Ca_pARPP21 = 0.0 : initial condition
 	: CaM cannot have initial values as it is determined by conservation law
-	 CaM_Ca2 = 0 : initial condition
-	 CaM_Ca4 = 0 : initial condition
-	 CaM_Ca4_pARPP21 = 0 : initial condition
+	 CaM_Ca2 = 0.0 : initial condition
+	 CaM_Ca4 = 0.0 : initial condition
+	 CaM_Ca4_pARPP21 = 0.0 : initial condition
 	: CaMKII cannot have initial values as it is determined by conservation law
-	 CaMKII_CaM_Ca4 = 0 : initial condition
-	 CaMKII_CaM = 0 : initial condition
-	 CaMKII_CaM_Ca2 = 0 : initial condition
-	 CaMKII_CaM_Ca2_psd = 0 : initial condition
-	 CaMKII_CaM_psd = 0 : initial condition
-	 CaMKII_CaM_Ca4_psd = 0 : initial condition
-	 CaMKII_psd = 0 : initial condition
-	 cAMP = 0 : initial condition
+	 CaMKII_CaM_Ca4 = 0.0 : initial condition
+	 CaMKII_CaM = 0.0 : initial condition
+	 CaMKII_CaM_Ca2 = 0.0 : initial condition
+	 CaMKII_CaM_Ca2_psd = 0.0 : initial condition
+	 CaMKII_CaM_psd = 0.0 : initial condition
+	 CaMKII_CaM_Ca4_psd = 0.0 : initial condition
+	 CaMKII_psd = 0.0 : initial condition
+	 cAMP = 0.0 : initial condition
 	: Substrate cannot have initial values as it is determined by conservation law
 	: CDK5 cannot have initial values as it is determined by conservation law
-	 CDK5_D32 = 0 : initial condition
+	 CDK5_D32 = 0.0 : initial condition
 	: D1R cannot have initial values as it is determined by conservation law
-	 D1R_DA = 0 : initial condition
-	 D1R_Golf_DA = 0 : initial condition
-	 D1R_Golf = 0 : initial condition
-	 D32p34 = 0 : initial condition
-	 D32p75 = 0 : initial condition
+	 D1R_DA = 0.0 : initial condition
+	 D1R_Golf_DA = 0.0 : initial condition
+	 D1R_Golf = 0.0 : initial condition
+	 D32p34 = 0.0 : initial condition
+	 D32p75 = 0.0 : initial condition
 	: D32 cannot have initial values as it is determined by conservation law
-	 GaolfGDP = 0 : initial condition
-	 GaolfGTP = 0 : initial condition
-	 Gbgolf = 0 : initial condition
+	 GaolfGDP = 0.0 : initial condition
+	 GaolfGTP = 0.0 : initial condition
+	 Gbgolf = 0.0 : initial condition
 	: Golf cannot have initial values as it is determined by conservation law
-	 pCaMKII = 0 : initial condition
-	 pCaMKII_CaM_Ca4 = 0 : initial condition
-	 pCaMKII_CaM = 0 : initial condition
-	 pCaMKII_CaM_Ca2 = 0 : initial condition
-	 pCaMKII_CaM_Ca2_psd = 0 : initial condition
-	 pCaMKII_CaM_psd = 0 : initial condition
-	 pCaMKII_CaM_Ca4_psd = 0 : initial condition
-	 pCaMKII_psd = 0 : initial condition
-	 pSubstrate = 0 : initial condition
+	 pCaMKII = 0.0 : initial condition
+	 pCaMKII_CaM_Ca4 = 0.0 : initial condition
+	 pCaMKII_CaM = 0.0 : initial condition
+	 pCaMKII_CaM_Ca2 = 0.0 : initial condition
+	 pCaMKII_CaM_Ca2_psd = 0.0 : initial condition
+	 pCaMKII_CaM_psd = 0.0 : initial condition
+	 pCaMKII_CaM_Ca4_psd = 0.0 : initial condition
+	 pCaMKII_psd = 0.0 : initial condition
+	 pSubstrate = 0.0 : initial condition
 	: PDE4 cannot have initial values as it is determined by conservation law
-	 PDE4_cAMP = 0 : initial condition
+	 PDE4_cAMP = 0.0 : initial condition
 	: PDE10r cannot have initial values as it is determined by conservation law
-	 PDE10r_cAMP = 0 : initial condition
-	 PDE10c = 0 : initial condition
-	 PDE10c_cAMP = 0 : initial condition
+	 PDE10r_cAMP = 0.0 : initial condition
+	 PDE10c = 0.0 : initial condition
+	 PDE10c_cAMP = 0.0 : initial condition
 	: PKA cannot have initial values as it is determined by conservation law
 	: PKAc cannot have initial values as it is determined by conservation law
-	 PKAc_B56PP2A = 0 : initial condition
-	 PKAc_D32 = 0 : initial condition
-	 PKAc_ARPP21 = 0 : initial condition
-	 PKA_Ca2MP = 0 : initial condition
-	 PKA_Ca4MP = 0 : initial condition
-	 PKAc_D32p75 = 0 : initial condition
-	 PKAreg = 0 : initial condition
+	 PKAc_B56PP2A = 0.0 : initial condition
+	 PKAc_D32 = 0.0 : initial condition
+	 PKAc_ARPP21 = 0.0 : initial condition
+	 PKA_Ca2MP = 0.0 : initial condition
+	 PKA_Ca4MP = 0.0 : initial condition
+	 PKAc_D32p75 = 0.0 : initial condition
+	 PKAreg = 0.0 : initial condition
 	: PP1 cannot have initial values as it is determined by conservation law
-	 PP1_pCaMKII_psd = 0 : initial condition
-	 PP1_pSubstrate = 0 : initial condition
-	 PP1_D32p34 = 0 : initial condition
-	 C_1 = 0 : initial condition
-	 C_2 = 0 : initial condition
-	 C_3 = 0 : initial condition
-	 C_4 = 0 : initial condition
+	 PP1_pCaMKII_psd = 0.0 : initial condition
+	 PP1_pSubstrate = 0.0 : initial condition
+	 PP1_D32p34 = 0.0 : initial condition
+	 C_1 = 0.0 : initial condition
+	 C_2 = 0.0 : initial condition
+	 C_3 = 0.0 : initial condition
+	 C_4 = 0.0 : initial condition
 	: PP2B cannot have initial values as it is determined by conservation law
-	 PP2Bc = 0 : initial condition
-	 PP2Bc_D32p34 = 0 : initial condition
-	 PP2B_CaM = 0 : initial condition
-	 PP2B_CaM_Ca2 = 0 : initial condition
-	 pARPP21 = 0 : initial condition
+	 PP2Bc = 0.0 : initial condition
+	 PP2Bc_D32p34 = 0.0 : initial condition
+	 PP2B_CaM = 0.0 : initial condition
+	 PP2B_CaM_Ca2 = 0.0 : initial condition
+	 pARPP21 = 0.0 : initial condition
 	: ARPP21 cannot have initial values as it is determined by conservation law
-	 pCaMKII_psd_Substrate = 0 : initial condition
-	 pCaMKII_CaM_psd_Substrate = 0 : initial condition
-	 C_5 = 0 : initial condition
-	 C_6 = 0 : initial condition
-	 CaMKII_CaM_psd_Substrate = 0 : initial condition
-	 CaMKII_CaM_Ca2_psd_Substrate = 0 : initial condition
-	 CaMKII_CaM_Ca4_psd_Substrate = 0 : initial condition
+	 pCaMKII_psd_Substrate = 0.0 : initial condition
+	 pCaMKII_CaM_psd_Substrate = 0.0 : initial condition
+	 C_5 = 0.0 : initial condition
+	 C_6 = 0.0 : initial condition
+	 CaMKII_CaM_psd_Substrate = 0.0 : initial condition
+	 CaMKII_CaM_Ca2_psd_Substrate = 0.0 : initial condition
+	 CaMKII_CaM_Ca4_psd_Substrate = 0.0 : initial condition
 }
 
 BREAKPOINT {
@@ -872,18 +872,18 @@ PROCEDURE assign_calculated_values() {
 		PP2Bc_D32p34-pARPP21-ARPP21) : conservation law for (B56PP2A)
 	AC5_Ca_GaolfGTP = AC5_Ca_GaolfGTP_cc - (AC5_Ca_GaolfGTP_ATP+AC5_GaolfGTP+AC5_GaolfGTP_ATP+GaolfGDP+GaolfGTP-Gbgolf) : conservation law for (AC5_Ca_GaolfGTP)
 	AC5 = AC5_cc - (AC5_ATP+AC5_Ca+AC5_Ca_ATP+Gbgolf-GaolfGDP-GaolfGTP) : conservation law for (AC5)
+	Ca = cali : natively mapped to intracellular calcium
+	DA = DAi : natively mapped to extracellular dopamine
 	: Ion WRITE variable value updates
 	pSubstratei = pSubstrate
 	PKAci = PKAc
-	ATP_expression = 5000000 : assignment for expression (ATP_expression)
-	Ca_expression = 1 : assignment for expression (Ca_expression)
+	ATP_expression = 5.0 : assignment for expression (ATP_expression)
+	Ca_expression = 1e-06 : assignment for expression (Ca_expression)
 	DA_expression = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-
 		exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-
 		exp(-(time-DA_start)/tau_DA2)))) : assignment for expression (DA_expression)
-	AMP = 0 : assignment for expression (AMP)
-	ATP = 5000000 : assignment for expression (ATP)
-	Ca = 60 : assignment for expression (Ca)
-	DA = 20 : assignment for expression (DA)
+	AMP = 0.0 : assignment for expression (AMP)
+	ATP = 5.0 : assignment for expression (ATP)
 	R0 = kf_R0*GaolfGTP : flux expression R0
 	R1 = kf_R1*D1R_Golf_DA : flux expression R1
 	R2 = kf_R2*D1R_Golf*DA-kr_R2*D1R_Golf_DA : flux expression R2
