@@ -103,7 +103,7 @@ NEURON {
 	RANGE CaMKII_CaM_Ca2_psd_Substrate : compound
 	RANGE CaMKII_CaM_Ca4_psd_Substrate : compound
     USEION DA READ DAi VALENCE 0 : DA owned by RxD (reaction_diffusion_DA_only.json)
-    USEION cal READ cali VALENCE 2 : cali maintained by caldyn_ms (use_rxd=0 in mod branch)
+    USEION cal READ cali VALENCE 2 : cali owned by RxD; caldyn_ms runs with use_rxd=1 and emits ical
     USEION pSubstrate WRITE pSubstratei VALENCE 0 : read by synaptic plasticity mechs
     USEION PKAc WRITE PKAci VALENCE 0
 
@@ -511,7 +511,7 @@ PROCEDURE assign_calculated_values() {
 	EX2 = DA_basal+(1/(1+exp((-10E+10)*(time-DA_start)))*(DA_max/(exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA1)-exp(-tau_DA1*tau_DA2/(tau_DA2-tau_DA1)*log(tau_DA2/tau_DA1)/tau_DA2))*(exp(-(time-DA_start)/tau_DA1)-exp(-(time-DA_start)/tau_DA2)))) : assignment for expression EX2
 	AMP = 0: assignment for expression AMP
 	ATP = 5: assignment for expression ATP
-	Ca = cali : cytosolic Ca from caldyn_ms (mM)
+	Ca = cali : cytosolic Ca from the RxD cal species (mM), read-only here
 	DA = DAi : cascade species are all in mM
 	R0 = kf_R0*GaolfGTP : flux expression R0
 	R1 = kf_R1*D1R_Golf_DA : flux expression R1

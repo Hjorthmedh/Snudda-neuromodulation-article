@@ -3,9 +3,14 @@
   networks/rxd     — full RxD cascade computes PKAc from bath DA
   networks/mod     — DA+cal RxD bath; Nair_2016_optimized.mod (METHOD euler)
   networks/mod_di  — DA+cal RxD bath; Nair_2016_optimized_di.mod (derivimplicit)
-  networks/mod_ptr — DA+cal RxD bath; Nair_2016_optimized_ptr.mod (derivimplicit
-                     + POINTER-based read/write back to RxD nodes so the cascade's
-                     Ca/DA consumption feeds into the mass balance)
+  networks/mod_ptr — DA+cal RxD bath; Nair_2016_optimized_ptr.mod (METHOD euler
+                     + POINTER-based read of the RxD nodes, writing the cascade's
+                     Ca consumption back so it feeds into the mass balance. DA is
+                     read-only: it is bath-clamped, so the RxD reference does not
+                     deplete it either.)
+
+mod_ptr cannot be run via `snudda simulate` (the CLI does not wire POINTERs);
+use run_mod_ptr.py instead.
 """
 import os
 from snudda import Snudda

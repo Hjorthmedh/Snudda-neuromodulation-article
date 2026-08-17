@@ -2,12 +2,17 @@ TITLE Nair_2016_optimized_ptr
 COMMENT
 	automatically generated from an SBtab file
 	date: Tue Jun 23 12:20:31 2026
-	POINTER variant: same cascade equations and derivimplicit integration
-	as Nair_2016_optimized_di, but cal and DA come in through POINTERs
-	(ca_ref, da_ref) pointing directly at the corresponding RxD node's
-	_ref_concentration, and the per-step net consumption of Ca and DA
-	is written back to the same pointers. This restores the mass-balance
-	feedback that the USEION-based variants miss at small distal volumes.
+
+	POINTER variant: same cascade equations as Nair_2016_optimized, and
+	like it integrated with METHOD euler (see BREAKPOINT), but cal and DA
+	uses POINTERs (ca_ref, da_ref) pointing directly at the
+	corresponding RxD node's _ref_concentration.
+
+	The per-step net consumption of Ca is written back through ca_ref to
+	preserve mass equivalence. DA is read-only: it is bath-clamped
+	(boundary_condition: true -> rxd.Parameter), so the RxD reference
+	does not deplete it either, and writing da_ref would add a sink the
+	reference lacks. See README.md for the full argument.
 
 	Pointers MUST be set from Python after instantiation:
 	  h.setpointer(rxd_cal_node._ref_concentration, "ca_ref", seg.Nair_2016_optimized_ptr)
@@ -114,8 +119,8 @@ NEURON {
 	RANGE CaMKII_CaM_psd_Substrate : compound
 	RANGE CaMKII_CaM_Ca2_psd_Substrate : compound
 	RANGE CaMKII_CaM_Ca4_psd_Substrate : compound
-    POINTER ca_ref : RxD cal node concentration (read and written-back)
-    POINTER da_ref : RxD DA  node concentration (read and written-back)
+    POINTER ca_ref : RxD cal node concentration (read, and written back in BREAKPOINT)
+    POINTER da_ref : RxD DA  node concentration (read only - DA is bath-clamped)
     USEION pSubstrate WRITE pSubstratei VALENCE 0 : read by synaptic plasticity mechs
     USEION PKAc WRITE PKAci VALENCE 0
 
