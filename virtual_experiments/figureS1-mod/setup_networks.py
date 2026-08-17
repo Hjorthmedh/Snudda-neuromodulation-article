@@ -1,8 +1,11 @@
-"""Build two single-dSPN networks for figure S1.
+"""Build four single-dSPN networks for figure S1.
 
-  networks/rxd  — full RxD cascade computes PKAc from bath DA
-  networks/mod  — single-species RxD (just DA) as bath input port;
-                  Nair_2016_optimized.mod computes the cascade
+  networks/rxd     — full RxD cascade computes PKAc from bath DA
+  networks/mod     — DA+cal RxD bath; Nair_2016_optimized.mod (METHOD euler)
+  networks/mod_di  — DA+cal RxD bath; Nair_2016_optimized_di.mod (derivimplicit)
+  networks/mod_ptr — DA+cal RxD bath; Nair_2016_optimized_ptr.mod (derivimplicit
+                     + POINTER-based read/write back to RxD nodes so the cascade's
+                     Ca/DA consumption feeds into the mass balance)
 """
 import os
 from snudda import Snudda
@@ -32,9 +35,13 @@ def build(network_dir, modulation_json, rxd_config, extra_mechanisms=None):
 
 
 if __name__ == "__main__":
-    NAIR = {"soma": ["Nair_2016_optimized"], "basal": ["Nair_2016_optimized"]}
-    build("networks/rxd", MOD_PARAMS_RXD, rxd_config=RXD_CASCADE, extra_mechanisms=None)
-    build("networks/mod", MOD_PARAMS_MOD, rxd_config=RXD_DA_ONLY, extra_mechanisms=NAIR)
+    NAIR     = {"soma": ["Nair_2016_optimized"],     "basal": ["Nair_2016_optimized"]}
+    NAIR_DI  = {"soma": ["Nair_2016_optimized_di"],  "basal": ["Nair_2016_optimized_di"]}
+    NAIR_PTR = {"soma": ["Nair_2016_optimized_ptr"], "basal": ["Nair_2016_optimized_ptr"]}
+    build("networks/rxd",     MOD_PARAMS_RXD, rxd_config=RXD_CASCADE, extra_mechanisms=None)
+    build("networks/mod",     MOD_PARAMS_MOD, rxd_config=RXD_DA_ONLY, extra_mechanisms=NAIR)
+    build("networks/mod_di",  MOD_PARAMS_MOD, rxd_config=RXD_DA_ONLY, extra_mechanisms=NAIR_DI)
+    build("networks/mod_ptr", MOD_PARAMS_MOD, rxd_config=RXD_DA_ONLY, extra_mechanisms=NAIR_PTR)
 
     mech_dir = "mechanisms"
     print()
@@ -45,7 +52,11 @@ if __name__ == "__main__":
     print(f"nrnivmodl {mech_dir}/")
     print()
     print(f"# Run")
-    print(f"snudda simulate networks/rxd --time 2 --simulation_config sim_rxd.json "
+    print(f"snudda simulate networks/rxd     --simulation_config sim_rxd.json "
           f"--mechdir {mech_dir} --enable_rxd_neuromodulation")
-    print(f"snudda simulate networks/mod --time 2 --simulation_config sim_mod.json "
+    print(f"snudda simulate networks/mod     --simulation_config sim_mod.json "
           f"--mechdir {mech_dir} --enable_rxd_neuromodulation")
+    print(f"snudda simulate networks/mod_di  --simulation_config sim_mod_di.json "
+          f"--mechdir {mech_dir} --enable_rxd_neuromodulation")
+    print(f"# mod_ptr uses POINTERs so it can't run through the snudda CLI directly:")
+    print(f"python run_mod_ptr.py")

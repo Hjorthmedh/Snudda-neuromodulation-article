@@ -3,15 +3,21 @@ This segment demonstrates how to use .mod files for reaction scheme implementati
 
 In this example, we implement the D1R cascade (Nair 2016) as a membrane mechanism, but keep dopamine and calcium as RxD variables. (Dopamine and calcium are read only in the membrane mechanism, so there is no risk of write conflicts.) This way, we can use RxD for variables that needs transmembrane fluxes, axial diffusion, etc.
 
-For the .mod file, we use the faster but less exact solver EULER. This converges within floating point error to the RxD reference despite being less exact with an overall speedup around ~100x. (The timesteps used for neuron simulations are much smaller than the event scale of the biochemstry.)
+The same cascade is provided in two `.mod` flavours that differ only in their integrator:
+
+| file                          | SUFFIX                     | SOLVE method     |
+|-------------------------------|----------------------------|------------------|
+| `Nair_2016_optimized.mod`     | `Nair_2016_optimized`      | `euler`          |
+| `Nair_2016_optimized_di.mod`  | `Nair_2016_optimized_di`   | `derivimplicit`  |
+
+`euler` is faster but less exact; `derivimplicit` does a Newton step per `dt` and is the most accurate first-order option NEURON offers for stiff systems. Running both lets us separate solver error from any other source of divergence vs. the RxD reference (e.g. ordering of `assign_calculated_values()` relative to `SOLVE`, RxD's spatial discretization, etc.).
 
 ## Running the example
-
 The `.mod` file is generated from the SBtab spec in `sbtab_source/`
 >>> SbTAB conversion goes here <<< (+ description if manual edits are needed)
 
 ```bash
-python setup_networks.py                                # builds networks/rxd and networks/mod
+python setup_networks.py                                # builds networks/{rxd,mod,mod_di}
 
 # For demo purposes, we create a new folder of mechanisms that includes the new .mod.
 mkdir -p mechanisms
@@ -20,14 +26,19 @@ cp *.mod                                    mechanisms/
 nrnivmodl mechanisms/
 
 # Run RxD reference
-snudda simulate networks/rxd --simulation_config sim_rxd.json \
+snudda simulate networks/rxd    --simulation_config sim_rxd.json \
     --mechdir mechanisms --enable_rxd_neuromodulation
 
-# Run 
-snudda simulate networks/mod --simulation_config sim_mod.json \
+# Run .mod with euler
+snudda simulate networks/mod    --simulation_config sim_mod.json \
+    --mechdir mechanisms --enable_rxd_neuromodulation
+
+# Run .mod with derivimplicit
+snudda simulate networks/mod_di --simulation_config sim_mod_di.json \
     --mechdir mechanisms --enable_rxd_neuromodulation
 
 python plot_compare.py                                  # → compare_rxd_vs_mod.{png,html}
+python plot_compare_distal.py                           # → compare_rxd_vs_mod_distal.{png,html}
 ```
 
 ## Wall-clock cost
