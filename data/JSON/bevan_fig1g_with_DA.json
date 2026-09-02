@@ -10,7 +10,19 @@
     "use_rxd_neuromodulation": true,
 
     "record_rxd_species_soma": [0, 1],
-    "record_density_mechanism": {	
+    "record_density_mechanism": {
+
+	"sk_ms.modulation_factor": {
+	    "neuron_id": [0, 1],
+	    "section_id": [-1, -1],
+	    "section_x": [0.5, 0.5]
+	},
+
+	"car_ms.modulation_factor": {
+	    "neuron_id": [0, 1],
+	    "section_id": [-1, -1],
+	    "section_x": [0.5, 0.5]
+	},	
 	"kir_ms.modulation_factor": {
 	    "neuron_id": [0, 1],
 	    "section_id": [-1, -1],
