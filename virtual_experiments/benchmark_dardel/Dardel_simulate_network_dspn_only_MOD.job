@@ -34,6 +34,9 @@ srun -n 1 -N 1 --exact --overlap --mem=0 snudda create $network_path --input dop
 # ipcluster stop
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 nrnivmodl mechanisms/
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 
 srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
 
