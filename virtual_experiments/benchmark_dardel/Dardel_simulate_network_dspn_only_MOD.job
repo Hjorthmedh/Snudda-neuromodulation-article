@@ -2,10 +2,10 @@
 #SBATCH --partition=main
 #SBATCH -o log/runSnudda-%j-output.txt
 #SBATCH -e log/runSnudda-%j-error.txt
-#SBATCH -t 23:00:00
+#SBATCH -t 7:00:00
 #SBATCH -J DA_sim
 #SBATCH -A naiss2025-5-309
-#SBATCH --nodes=10
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=128
 #SBATCH --cpus-per-task=1
 #SBATCH --mem-per-cpu=930M
@@ -14,7 +14,7 @@
 # REMEMBER TO CREATE THE "log" DIRECTORY
 
 export N_WORKERS=$SLURM_NTASKS
-export NUM_DSPN=1280
+export NUM_DSPN=128
 
 # The network is so small, no point doing parallel network setup
 export NO_ENGINES=1
@@ -37,9 +37,38 @@ export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 1 nrnivmodl mechanisms/
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+export SPECIAL_PATH=x86_64/special
 
-srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
+# srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
 
-exit_code=$?
-echo "Exit code: $exit_code"
+
+# First run one job, with all cores
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 128 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-128.json &> log/output-128.txt &
+
+# When that job finishes, start 64, 32, 16, 8, 4, 2, 1 at same time, since we have 128 cores.
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 64 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-64.json &> log/output-64.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 32 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-32.json  &> log/output-32.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 16 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-16.json &> log/output-16.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 8 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-8.json &> log/output-8.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 4 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-4.json &> log/output-4.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 2 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-2.json &> log/output-2.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-1.json &> log/output-1.txt &
+
+wait
+
 
