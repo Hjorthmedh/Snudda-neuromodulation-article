@@ -8,7 +8,6 @@ parser = argparse.ArgumentParser(
 parser.add_argument("file_path", type=Path, help="Path to base JSON file")
 args = parser.parse_args()
 
-# Create sim_config directory alongside the base file
 out_dir = args.file_path.parent / "sim_config"
 out_dir.mkdir(exist_ok=True)
 
@@ -16,9 +15,12 @@ with open(args.file_path, "r", encoding="utf-8") as f:
     data = json.load(f)
 
 original_output = data["output_file"]
+original_log = data["log_file"]
 
 for ctr in [1, 2, 4, 8, 16, 32, 64, 128]:
     data["output_file"] = original_output.replace(".hdf5", f"-{ctr}.hdf5")
+    data["log_file"] = original_log.replace(".txt", f"-{ctr}.txt")
+
     output_path = out_dir / f"{args.file_path.stem}-{ctr}{args.file_path.suffix}"
 
     with open(output_path, "w", encoding="utf-8") as f:
