@@ -3,7 +3,7 @@
 #SBATCH -o log/runSnudda-%j-output.txt
 #SBATCH -e log/runSnudda-%j-error.txt
 #SBATCH -t 7:00:00
-#SBATCH -J RxD benchmark
+#SBATCH -J RxD_benchmark
 #SBATCH -A naiss2026-3-474
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=128
