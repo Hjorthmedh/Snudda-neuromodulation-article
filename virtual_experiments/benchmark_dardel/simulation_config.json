@@ -5,6 +5,7 @@
     "output_file": "$network_path/simulation/output_DA_sim.hdf5",
     "log_file": "$network_path/log/DA_sim.txt",
     "time": 3.0,
+    "sample_dt": 1e-3,
     "record_all_soma": true,
     "use_rxd_neuromodulation": true,
     "record_rxd_species_all": [0, 1, 2, 3],
