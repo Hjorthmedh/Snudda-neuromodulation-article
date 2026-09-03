@@ -4,7 +4,7 @@
 #SBATCH -e log/runSnudda-%j-error.txt
 #SBATCH -t 7:00:00
 #SBATCH -J DA_sim
-#SBATCH -A naiss2025-5-309
+#SBATCH -A naiss2026-3-474
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=128
 #SBATCH --cpus-per-task=1
