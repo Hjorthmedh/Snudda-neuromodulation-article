@@ -38,6 +38,13 @@ source $HOME/Snudda/snudda_env/bin/activate
 
 # Only compile NEURON MODules if user sets COMPILE_MOD=1
 
+# We set these, since RxD might ask to compile...
+export CC=cc
+export CXX=CC
+export FC=ftn
+export MPICC=cc
+export MPICXX=CC
+
 if [  -n "$COMPILE_MOD"  ]; then
 
     # Only recompile if the MOD files are missing
