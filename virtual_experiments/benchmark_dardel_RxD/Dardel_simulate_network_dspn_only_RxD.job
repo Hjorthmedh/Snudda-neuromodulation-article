@@ -1,0 +1,79 @@
+#!/bin/bash -l
+#SBATCH --partition=main
+#SBATCH -o log/runSnudda-%j-output.txt
+#SBATCH -e log/runSnudda-%j-error.txt
+#SBATCH -t 24:00:00
+#SBATCH -J RxD_benchmark
+#SBATCH -A naiss2026-3-474
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=128
+#SBATCH --cpus-per-task=1
+#SBATCH --mem=0
+#SBATCH --mail-type=ALL
+
+# REMEMBER TO CREATE THE "log" DIRECTORY
+
+
+export N_WORKERS=$SLURM_NTASKS
+export NUM_DSPN=128
+
+# The network is so small, no point doing parallel network setup
+export NO_ENGINES=1
+
+source ../dardel_environment.sh
+
+export network_path="networks/striatum_with_dopamine_dspn_MOD"
+export sim_config_file="simulation_config_MOD.json"
+export input_file="${network_path}/input-spikes.hdf5"
+
+
+
+
+ export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 -N 1 --exact --overlap --mem=0 python setup_network_dspn_only_RxD.py
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 -N 1 --exact --overlap --mem=0 snudda create $network_path --input dopamine_experiment_input.json
+
+# ipcluster stop
+
+# export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+# srun -n 1 nrnivmodl mechanisms/
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+export SPECIAL_PATH=x86_64/special
+
+# srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
+
+
+# First run one job, with all cores
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 128 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-128.json &> log/output-RxD-128.txt &
+
+# When that job finishes, start 64, 32, 16, 8, 4, 2, 1 at same time, since we have 128 cores.
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 64 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-64.json &> log/output-RxD-64.txt &
+
+# Running in foreground, because we got out of memory error. So rerunning. This time 128,64,32 runs first, then all the rest.
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 32 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-32.json  &> log/output-RxD-32.txt
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 16 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-16.json &> log/output-RxD-16.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 8 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-8.json &> log/output-RxD-8.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 4 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-4.json &> log/output-RxD-4.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 2 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-2.json &> log/output-RxD-2.txt &
+
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-1.json &> log/output-RxD-1.txt &
+
+wait
+
+
