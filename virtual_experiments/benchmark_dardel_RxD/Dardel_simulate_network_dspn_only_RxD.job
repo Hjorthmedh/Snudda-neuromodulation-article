@@ -22,8 +22,8 @@ export NO_ENGINES=1
 
 source ../dardel_environment.sh
 
-export network_path="networks/striatum_with_dopamine_dspn_MOD"
-export sim_config_file="simulation_config_MOD.json"
+export network_path="networks/striatum_with_dopamine_dspn_RxD"
+export sim_config_file="simulation_config_RxD.json"
 export input_file="${network_path}/input-spikes.hdf5"
 
 
