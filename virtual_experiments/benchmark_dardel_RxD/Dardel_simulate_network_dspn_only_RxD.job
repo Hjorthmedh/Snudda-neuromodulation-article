@@ -37,8 +37,8 @@ srun -n 1 -N 1 --exact --overlap --mem=0 snudda create $network_path --input dop
 
 # ipcluster stop
 
-# export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
-# srun -n 1 nrnivmodl mechanisms/
+export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
+srun -n 1 nrnivmodl mechanisms/
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 export SPECIAL_PATH=x86_64/special
@@ -48,16 +48,17 @@ export SPECIAL_PATH=x86_64/special
 
 # First run one job, with all cores
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
-srun -n 128 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-128.json &> log/output-RxD-128.txt &
+srun -n 128 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-128.json &> log/output-RxD-128.txt 
 
 # When that job finishes, start 64, 32, 16, 8, 4, 2, 1 at same time, since we have 128 cores.
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 64 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-64.json &> log/output-RxD-64.txt &
 
-# Running in foreground, because we got out of memory error. So rerunning. This time 128,64,32 runs first, then all the rest.
+# Running in foreground, because we got out of memory error. So rerunning. This time 64,32 runs first, then all the rest.
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 32 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-32.json  &> log/output-RxD-32.txt
+
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 16 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config_RxD-16.json &> log/output-RxD-16.txt &
