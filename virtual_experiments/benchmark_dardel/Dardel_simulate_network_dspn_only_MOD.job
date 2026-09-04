@@ -2,7 +2,7 @@
 #SBATCH --partition=main
 #SBATCH -o log/runSnudda-%j-output.txt
 #SBATCH -e log/runSnudda-%j-error.txt
-#SBATCH -t 7:00:00
+#SBATCH -t 14:00:00
 #SBATCH -J RxD_benchmark
 #SBATCH -A naiss2026-3-474
 #SBATCH --nodes=1
@@ -51,8 +51,9 @@ srun -n 128 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 64 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-64.json &> log/output-64.txt &
 
+# Running in foreground, because we got out of memory error. So rerunning. This time 128,64,32 runs first, then all the rest.
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
-srun -n 32 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-32.json  &> log/output-32.txt &
+srun -n 32 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-32.json  &> log/output-32.txt
 
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 16 $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config sim_config/simulation_config-16.json &> log/output-16.txt &
