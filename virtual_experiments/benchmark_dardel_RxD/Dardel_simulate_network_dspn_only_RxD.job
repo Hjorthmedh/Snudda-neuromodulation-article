@@ -43,7 +43,7 @@ srun -n 1 nrnivmodl mechanisms/
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 export SPECIAL_PATH=x86_64/special
 
-# srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
+srun -n $N_WORKERS $SPECIAL_PATH -mpi -python $SNUDDA_DIR/snudda/simulate/simulate.py $network_path $input_file --simulation_config $sim_config_file
 
 
 # First run one job, with all cores
