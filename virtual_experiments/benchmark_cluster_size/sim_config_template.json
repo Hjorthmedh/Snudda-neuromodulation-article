@@ -1,0 +1,5 @@
+{
+    "post_init_pointer_mapping": {
+	"Nair_2016_optimized_ptr": { "cal": "ca_ref", "DA": "da_ref"}
+    }
+}
