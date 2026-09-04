@@ -37,6 +37,9 @@ srun -n 1 -N 1 --exact --overlap --mem=0 snudda create $network_path --input dop
 
 # ipcluster stop
 
+# Remove old modules..
+rm -r x86_64
+
 export FI_CXI_DEFAULT_VNI=$(od -vAn -N4 -tu < /dev/urandom)
 srun -n 1 nrnivmodl mechanisms/
 
