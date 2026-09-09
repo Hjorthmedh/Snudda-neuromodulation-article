@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="342.10559mm"
-   height="88.899994mm"
-   viewBox="0 0 342.10559 88.899994"
+   width="114.3mm"
+   height="261.26434mm"
+   viewBox="0 0 114.3 261.26434"
    version="1.1"
    id="svg1"
    xml:space="preserve"
@@ -27,8 +27,8 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      inkscape:zoom="0.86"
-     inkscape:cx="865.11628"
-     inkscape:cy="353.48837"
+     inkscape:cx="401.16279"
+     inkscape:cy="632.55814"
      inkscape:window-width="1728"
      inkscape:window-height="977"
      inkscape:window-x="0"
@@ -553,10 +553,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-47.794201,-103.98124)"><g
+     transform="translate(-47.625002,-105.08544)"><g
        id="g1-1"
        inkscape:label="1"
-       transform="matrix(0.26458333,0,0,0.26458333,164.40165,103.98124)"><path
+       transform="matrix(0.26458333,0,0,0.26458333,47.625002,191.77705)"><path
          id="path1-9"
          d="M 0,0 H 324 V 252 H 0 Z"
          style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -1273,27 +1273,27 @@
            y="0">Linear</tspan></text></g><text
        xml:space="preserve"
        style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="50.357353"
+       x="49.828186"
        y="112.8007"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
          style="stroke-width:0.264583"
-         x="50.357353"
+         x="49.828186"
          y="112.8007">A</tspan></text><text
        xml:space="preserve"
        style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="164.95044"
-       y="111.69651"
+       x="49.401344"
+       y="200.5965"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
          style="stroke-width:0.264583"
-         x="164.95044"
-         y="111.69651">B</tspan></text><g
+         x="49.401344"
+         y="200.5965">B</tspan></text><g
        id="g1-9"
        inkscape:label="1"
-       transform="matrix(0.26458333,0,0,0.26458333,278.70165,105.59487)"><path
+       transform="matrix(0.26458333,0,0,0.26458333,49.175935,280.67704)"><path
          id="path1-2"
          d="M 0,0 H 315.20731 V 242.85187 H 0 Z"
          style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none"
@@ -1848,4 +1848,14 @@
            style="font-variant:normal;font-weight:normal;font-size:10px;font-family:'DejaVu Sans';writing-mode:lr-tb;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none"
            x="0"
            dx="0 0 0 0 0 0 0 0 0 0 -0.21875"
-           y="0">MOD measured</tspan></text></g></g></svg>
+           y="0">MOD measured</tspan></text></g><text
+       xml:space="preserve"
+       style="font-size:10.5833px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="49.110825"
+       y="288.53183"
+       id="text2-3"><tspan
+         sodipodi:role="line"
+         id="tspan2-5"
+         style="stroke-width:0.264583"
+         x="49.110825"
+         y="288.53183">C</tspan></text></g></svg>
