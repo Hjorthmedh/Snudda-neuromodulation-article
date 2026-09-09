@@ -1,114 +1,232 @@
-import os
 import pandas as pd
 import matplotlib.pyplot as plt
-
-# Main (no-RxD / MOD) benchmark file
-filename = "run_times_dardel_MOD.csv"
-
-# Optional second benchmark file for the equivalent RxD run.
-# Set to None (or just leave the file missing on disk) to exclude it -
-# the script will fall back to plotting only the MOD data.
-filename_rxd = "run_times_dardel_RXD.csv"
+from matplotlib.ticker import FixedLocator, FixedFormatter
 
 
-def load_benchmark(path):
-    """Read a benchmark CSV, drop missing runs, sort by node count,
-    and return (nodes, duration_in_hours).
+# ------------------------------------------------------------
+# Load data
+#
+# Script is run from:
+# figures/figure5C-benchmark
+#
+# Benchmark data are located in:
+# virtual_experiments/benchmark_dardel_RxD
+# virtual_experiments/benchmark_dardel_MOD
+# ------------------------------------------------------------
 
-    Assumes a 'nodes' column plus exactly one runtime column (in
-    seconds) - the runtime column's name doesn't need to match
-    between files (e.g. 'runtime_mod' vs 'runtime_rxd')."""
-    df = pd.read_csv(path, skipinitialspace=True)
-    value_col = [c for c in df.columns if c != "nodes"][0]
-    df = df.dropna(subset=[value_col])
-    df = df.sort_values("nodes")
-    return df["nodes"], df[value_col] / 3600.0  # seconds -> hours
-
-
-# Read data from CSV
-nodes, duration = load_benchmark(filename)
-
-# Ideal linear scaling (strong scaling), anchored to the smallest
-# available node count (not necessarily 1, since low-node runs may
-# still be missing)
-n_ref = nodes.iloc[0]
-T_ref = duration.iloc[0]
-ideal_duration = T_ref * n_ref / nodes
-
-# Optionally read the RxD data, if the file exists
-has_rxd = filename_rxd is not None and os.path.isfile(filename_rxd)
-if has_rxd:
-    nodes_rxd, duration_rxd = load_benchmark(filename_rxd)
-
-# Create figure
-plt.figure(figsize=(4.5, 3.5), dpi=300)
-
-# Plot
-plt.plot(
-    nodes,
-    duration,
-    marker="o",
-    linewidth=2,
-    markersize=6,
-    color="0",
-    label="No RxD"
+rxd = pd.read_csv(
+    "../../virtual_experiments/benchmark_dardel_RxD/"
+    "benchmark_dardel_rxd_runtime.csv"
 )
 
-# Plot RxD data, if available
-if has_rxd:
-    plt.plot(
-        nodes_rxd,
-        duration_rxd,
-        linestyle="-.",
-        marker=".",
-        linewidth=2,
-        markersize=6,
-        color="0.5",
-        label="With RxD"
+mod = pd.read_csv(
+    "../../virtual_experiments/benchmark_dardel_MOD/"
+    "benchmark_dardel_MOD_runtime.csv"
+)
+
+
+# ------------------------------------------------------------
+# Explicitly convert data columns to numeric
+# ------------------------------------------------------------
+
+for data in (rxd, mod):
+    data["num_workers"] = pd.to_numeric(
+        data["num_workers"],
+        errors="coerce",
     )
 
-# Ideal scaling reference
-plt.plot(
-    nodes,
-    ideal_duration,
-    linestyle="--",
-    linewidth=2,
-    color="0.75",
-    label="Linear"
+    if "run_time" in data.columns:
+        data["run_time"] = pd.to_numeric(
+            data["run_time"],
+            errors="coerce",
+        )
+
+    if "estimated_run_time" in data.columns:
+        data["estimated_run_time"] = pd.to_numeric(
+            data["estimated_run_time"],
+            errors="coerce",
+        )
+
+
+# ------------------------------------------------------------
+# Create figure
+# ------------------------------------------------------------
+
+fig, ax = plt.subplots(figsize=(4.5, 3.5))
+
+
+# ------------------------------------------------------------
+# Plot one simulation
+# ------------------------------------------------------------
+
+def plot_runtime(data, name, color):
+
+    # --------------------------------------------------------
+    # Measured runtime
+    # --------------------------------------------------------
+
+    if "run_time" in data.columns:
+
+        measured = (
+            data[
+                data["run_time"].notna()
+                & data["num_workers"].notna()
+            ]
+            .sort_values("num_workers")
+        )
+
+        if not measured.empty:
+            ax.plot(
+                measured["num_workers"],
+                measured["run_time"],
+                marker="o",
+                linestyle="-",
+                linewidth=1.5,
+                markersize=5,
+                color=color,
+                markerfacecolor=color,
+                markeredgecolor=color,
+                label=f"{name} measured",
+            )
+
+    # --------------------------------------------------------
+    # Estimated runtime
+    # --------------------------------------------------------
+
+    if "estimated_run_time" in data.columns:
+
+        estimated = (
+            data[
+                data["estimated_run_time"].notna()
+                & data["num_workers"].notna()
+            ]
+            .sort_values("num_workers")
+        )
+
+        if not estimated.empty:
+            ax.plot(
+                estimated["num_workers"],
+                estimated["estimated_run_time"],
+                marker="o",
+                linestyle="--",
+                linewidth=1.5,
+                markersize=5,
+                color=color,
+                markerfacecolor="none",
+                markeredgecolor=color,
+                label=f"{name} estimated (from partial run)",
+            )
+
+
+# ------------------------------------------------------------
+# Plot RxD and MOD
+# ------------------------------------------------------------
+
+plot_runtime(rxd, "RxD", "black")
+plot_runtime(mod, "MOD", "red")
+
+
+# ------------------------------------------------------------
+# Logarithmic axes
+# ------------------------------------------------------------
+
+ax.set_xscale("log")
+ax.set_yscale("log")
+
+
+# ------------------------------------------------------------
+# X-axis ticks
+#
+# Show 1, 2, 4, 8, 16, 32, 64, 128 rather than 10^0 etc.
+# ------------------------------------------------------------
+
+worker_ticks = [1, 2, 4, 8, 16, 32, 64, 128]
+
+ax.xaxis.set_major_locator(
+    FixedLocator(worker_ticks)
 )
 
-plt.legend(fontsize=10, loc='best')
+ax.xaxis.set_major_formatter(
+    FixedFormatter([str(x) for x in worker_ticks])
+)
 
-plt.xscale("log")
-plt.yscale("log")
 
+# ------------------------------------------------------------
 # Labels and title
-plt.xlabel("Number of nodes", fontsize=12)
-plt.ylabel("Duration (hours)", fontsize=12)
+# ------------------------------------------------------------
 
-# Ticks
+ax.set_xlabel(
+    "Number of workers",
+    fontsize=12,
+)
+
+ax.set_ylabel(
+    "Runtime (s)",
+    fontsize=12,
+)
+
+ax.set_title(
+    "Runtime of RxD and MOD simulation",
+    fontsize=13,
+    pad=10,
+)
+
+
+# ------------------------------------------------------------
+# Style
+# ------------------------------------------------------------
+
+ax.spines["top"].set_visible(False)
+ax.spines["right"].set_visible(False)
+
+ax.spines["left"].set_linewidth(1.0)
+ax.spines["bottom"].set_linewidth(1.0)
+
+ax.tick_params(
+    direction="out",
+    width=1.0,
+)
+
 plt.xticks(fontsize=10)
 plt.yticks(fontsize=10)
 
-ax = plt.gca()
-
-# Grid
 ax.grid(False)
-ax.spines["top"].set_visible(False)
-ax.spines["right"].set_visible(False)
-ax.spines["left"].set_linewidth(1.0)
-ax.spines["bottom"].set_linewidth(1.0)
-ax.tick_params(direction="out", width=1.0)
 
-plt.title(
-    "Simulation of 128 dSPN on HPE Cray EX",
-    fontsize=13,
-    pad=10
+
+# ------------------------------------------------------------
+# Legend
+# ------------------------------------------------------------
+
+ax.legend(
+    frameon=False,
+    fontsize=10,
+    loc="best",
 )
 
-# Tight layout for publication
-plt.tight_layout()
 
-# Save figure (recommended for publication)
-plt.savefig("benchmark_scaling_dardel_mod_rxd.pdf", bbox_inches='tight')
-plt.savefig("benchmark_scaling_dardel_mod_rxd.png", bbox_inches='tight')
+# ------------------------------------------------------------
+# Layout
+# ------------------------------------------------------------
+
+fig.tight_layout()
+
+
+# ------------------------------------------------------------
+# Save
+# ------------------------------------------------------------
+
+print("Writing rxd_mod_runtime_scaling.png and .pdf")
+
+fig.savefig(
+    "rxd_mod_runtime_scaling.pdf",
+    bbox_inches="tight",
+)
+
+fig.savefig(
+    "rxd_mod_runtime_scaling.png",
+    dpi=300,
+    bbox_inches="tight",
+)
+
+plt.close(fig)
+
