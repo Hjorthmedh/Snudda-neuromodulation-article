@@ -1,4 +1,4 @@
-number_of_nodes, run_time, estimated_run_time
+num_workers,run_time,estimated_run_time
 128, 19907.4,
 64, 65349.6,
 32, , 105823.7
