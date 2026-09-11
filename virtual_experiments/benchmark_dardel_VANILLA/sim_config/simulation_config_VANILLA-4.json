@@ -1,0 +1,11 @@
+{
+    "network_path": "networks/striatum_dspn",
+    "network_file": "$network_path/network-synapses.hdf5",
+    "input_file": "$network_path/input-spikes.hdf5",
+    "output_file": "$network_path/simulation/output_sim-4.hdf5",
+    "log_file": "$network_path/log/sim_VANILLA-4.txt",
+    "time": 3.0,
+    "sample_dt": 0.001,
+    "record_all_soma": true,
+    "use_rxd_neuromodulation": false
+}
